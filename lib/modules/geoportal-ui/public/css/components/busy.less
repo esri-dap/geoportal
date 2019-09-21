@@ -1,14 +1,14 @@
-.apos-global-busy
+.geop-global-busy
 {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: @apos-z-index-max;
+  z-index: @geop-z-index-max;
 
   width: 100vw;
   height: 100vh;
 
-  background-color: fade(@apos-mid, 50%);
+  background-color: fade(@geop-mid, 50%);
   opacity: 0;
 
   &.active
@@ -25,14 +25,14 @@
     width: 36px;
     height: 36px;
 
-    color: @apos-green;
+    color: @geop-green;
     .fa;
     font-size: 36px;
     content: '\f110';
     line-height: 100%;
-    .apos-rotate();
-    .apos-transition();
+    .geop-rotate();
+    .geop-transition();
   }
 
-  .apos-transition(opacity, .3s, ease);
+  .geop-transition(opacity, .3s, ease);
 }

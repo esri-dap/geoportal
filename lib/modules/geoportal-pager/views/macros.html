@@ -6,12 +6,12 @@
 {# busted in this release of nunjucks #}
 
 {% macro render(options, url) %}
-  <div class="apos-ui">
+  <div class="geop-ui">
     {% if ((options.page > 1) or (options.total > 1)) %}
-      <div class="apos-pager">
+      <div class="geop-pager">
         {{ pagerPage(1, options, url) }}
         {% if options.page > 4 %}
-          <span class="apos-pager-gap">&hellip;</span>
+          <span class="geop-pager-gap">&hellip;</span>
         {% endif %}
 
         {% for page in geop.pager.pageRange({ page: options.page, total: options.total, shown: 5 }) %}
@@ -19,7 +19,7 @@
         {% endfor %}
 
         {% if options.page < (options.total - 3) %}
-          <span class="apos-pager-gap">&hellip;</span>
+          <span class="geop-pager-gap">&hellip;</span>
         {% endif %}
         {{ pagerPage(options.total, options, url) }}
       </div>
@@ -35,10 +35,10 @@
 
 {% macro pagerPage(page, options, url) %}
   {% if (page <= options.total) %}
-    <span class="apos-pager-number{% if page == 1 %} apos-first{% endif %}{% if page == options.total %} apos-last{% endif %}{% if page == options.page %} apos-active{% endif %}">
+    <span class="geop-pager-number{% if page == 1 %} geop-first{% endif %}{% if page == options.total %} geop-last{% endif %}{% if page == options.page %} geop-active{% endif %}">
       {%- if (options.page != page) -%}
         {# Dual markup for javascript applications and plain old links #}
-        <a data-apos-page="{{ page }}" href="{{ url | build({ page: page, append: 1 }) }}">
+        <a data-geop-page="{{ page }}" href="{{ url | build({ page: page, append: 1 }) }}">
       {%- endif -%}
       {{ page }}
       {%- if (options.page != page) -%}

@@ -1,6 +1,6 @@
 var async = require('async');
 
-// Properly clean up an apostrophe instance and drop its
+// Properly clean up an geoportal instance and drop its
 // database collections to create a sane environment for the next test.
 // Drops the collections, not the entire database, to avoid problems
 // when testing something like a mongodb hosting environment with

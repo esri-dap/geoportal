@@ -1,40 +1,40 @@
-.apos-notification-container {
+.geop-notification-container {
   position: fixed;
   width: 33vw;
-  bottom: @apos-padding-2;
-  right: @apos-padding-2;
-  z-index: @apos-z-index-8;
+  bottom: @geop-padding-2;
+  right: @geop-padding-2;
+  z-index: @geop-z-index-8;
 
-  @media @apos-breakpoint-desktop-xl
+  @media @geop-breakpoint-desktop-xl
   {
-    bottom: @apos-padding-4;
-    right: @apos-padding-4;
+    bottom: @geop-padding-4;
+    right: @geop-padding-4;
   }
 }
 
 // With and without scoping so these styles
 // beat out the defaults inside modals too. -Tom
 
-.apos-notification,
-.apos-ui .apos-notification {
-  background-color: @apos-white;
-  color: @apos-dark;
-  .apos-button-border(@apos-dark);
-  .apos-rounded();
-  .apos-drop-shadow();
+.geop-notification,
+.geop-ui .geop-notification {
+  background-color: @geop-white;
+  color: @geop-dark;
+  .geop-button-border(@geop-dark);
+  .geop-rounded();
+  .geop-drop-shadow();
   overflow: hidden;
-  margin-bottom: @apos-padding-2;
+  margin-bottom: @geop-padding-2;
   padding: 0;
   text-align: left;
   line-height: inherit;
   position: relative;
   cursor: pointer;
-  .apos-transition;
+  .geop-transition;
 
   &-message {
     font-size: 16px;
     margin-right: 32px;
-    padding: @apos-padding-1 @apos-padding-2 !important;
+    padding: @geop-padding-1 @geop-padding-2 !important;
 
     &-close {
       position: absolute;
@@ -49,25 +49,25 @@
   }
 }
 
-.apos-notification.apos-notification--error {
-  .apos-button-border(@apos-white);
-  background-color: @apos-red;
-  color: @apos-white;
+.geop-notification.geop-notification--error {
+  .geop-button-border(@geop-white);
+  background-color: @geop-red;
+  color: @geop-white;
 }
 
-.apos-notification.apos-notification--warn {
-  .apos-button-border(@apos-white);
-  background-color: @apos-gold;
-  color: @apos-white;
+.geop-notification.geop-notification--warn {
+  .geop-button-border(@geop-white);
+  background-color: @geop-gold;
+  color: @geop-white;
 }
 
-.apos-notification.apos-notification--success {
-  .apos-button-border(@apos-white);
-  background-color: @apos-green;
-  color: @apos-white;
+.geop-notification.geop-notification--success {
+  .geop-button-border(@geop-white);
+  background-color: @geop-green;
+  color: @geop-white;
 }
 
-.apos-notification--pulse {
+.geop-notification--pulse {
   animation: aposPulse 2s infinite;
 }
 

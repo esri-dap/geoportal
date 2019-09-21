@@ -2,7 +2,7 @@ var t = require('../test-lib/test.js');
 var assert = require('assert');
 var Promise = require('bluebird');
 
-describe('Promisified Events: apostrophe-docs:beforeInses', function() {
+describe('Promisified Events: geoportal-docs:beforeInses', function() {
 
   this.timeout(50000);
 
@@ -13,7 +13,7 @@ describe('Promisified Events: apostrophe-docs:beforeInses', function() {
   var apos;
   var coreEventsWork = false;
 
-  it('should implement apostrophe-docs:beforeInsert handlers properly', function(done) {
+  it('should implement geoportal-docs:beforeInsert handlers properly', function(done) {
     apos = require('../index.js')({
       root: module,
       shortName: 'test2',
@@ -28,7 +28,7 @@ describe('Promisified Events: apostrophe-docs:beforeInses', function() {
                 });
               }
             });
-            self.on('apostrophe:modulesReady', 'modulesReadyCoreEventsWork', function() {
+            self.on('geoportal:modulesReady', 'modulesReadyCoreEventsWork', function() {
               coreEventsWork = true;
             });
             // Old school callAll works too (for now)

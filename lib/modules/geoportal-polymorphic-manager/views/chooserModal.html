@@ -2,7 +2,7 @@
 {%- import "geoportal-modal:macros.html" as modals -%}
 {%- import 'geoportal-ui:components/buttons.html' as buttons -%}
 {%- block modalClass -%}
-  apostrophe-polymorphic-chooser-modal apos-ui-modal-no-sidebar apos-manager
+  geoportal-polymorphic-chooser-modal geop-ui-modal-no-sidebar geop-manager
 {%- endblock -%}
 
 {%- block controls -%}
@@ -23,16 +23,16 @@
 {%- endblock -%}
 
 {%- block body -%}
-  <div class="apos-chooser" data-chooser></div>
-  <div class="apos-chooser-tabs-wrapper apos-polymorphic-manager">
-    <div class="apos-chooser-tab-bar">
+  <div class="geop-chooser" data-chooser></div>
+  <div class="geop-chooser-tabs-wrapper geop-polymorphic-manager">
+    <div class="geop-chooser-tab-bar">
       {% for type in data.types %}
-        <button class="apos-chooser-tab-button{% if loop.index0 === 0 %} apos-chooser-tab-button--active{% endif %}" data-tab-button="{{ type.name }}">{{ type.options.pluralLabel }}</button>
+        <button class="geop-chooser-tab-button{% if loop.index0 === 0 %} geop-chooser-tab-button--active{% endif %}" data-tab-button="{{ type.name }}">{{ type.options.pluralLabel }}</button>
       {% endfor %}
     </div>
-    <div class="apos-chooser-tabs">
+    <div class="geop-chooser-tabs">
       {% for type in data.types %}
-        <div class="apos-chooser-tab{% if loop.index0 === 0 %} apos-chooser-tab--active{% endif %}" data-tab="{{ type.name }}"></div>
+        <div class="geop-chooser-tab{% if loop.index0 === 0 %} geop-chooser-tab--active{% endif %}" data-tab="{{ type.name }}"></div>
       {% endfor %}
     </div>
   </div>

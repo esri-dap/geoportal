@@ -1,5 +1,5 @@
 // ===============================================================
-//    Apostrophe Modal
+//    Geoportal Modal
 // ===============================================================
 //
 //
@@ -24,13 +24,13 @@
 
 
 // Variables  ===================================
-@apos-z-index-modal: @apos-z-index-7;
-@apos-modal-timing: 0.25s;
-@apos-modal-transition-curve: ease;
+@geop-z-index-modal: @geop-z-index-7;
+@geop-modal-timing: 0.25s;
+@geop-modal-transition-curve: ease;
 
 
 // Base Class  ===================================
-.apos-ui.apos-modal
+.geop-ui.geop-modal
 {
 	position: fixed;
 
@@ -39,14 +39,14 @@
 	bottom: 20px;
 	left: 20px;
 
-  z-index: @apos-z-index-modal;
+  z-index: @geop-z-index-modal;
 
   overflow: hidden;
   opacity: 1;
 
-  .apos-transform(translate3d(0,0,0) scale3d(1,1,1));
-  .apos-transitions(transform @apos-modal-timing @apos-modal-transition-curve, opacity @apos-modal-timing @apos-modal-transition-curve;);
-	.apos-table tbody
+  .geop-transform(translate3d(0,0,0) scale3d(1,1,1));
+  .geop-transitions(transform @geop-modal-timing @geop-modal-transition-curve, opacity @geop-modal-timing @geop-modal-transition-curve;);
+	.geop-table tbody
   {
     height: 100%;
     overflow: auto;
@@ -54,7 +54,7 @@
 }
 
 // A modal nested as a view should be less aggressive about sizing and positioning
-.apos-ui.apos-modal .apos-modal
+.geop-ui.geop-modal .geop-modal
 {
   width: 100%;
   height: 100%;
@@ -66,16 +66,16 @@
   position: relative;
 }
 
-.apos-modal--pushed
+.geop-modal--pushed
 {
-  .apos-modal-body
+  .geop-modal-body
   {
-    border-left: 220px solid @apos-light;
+    border-left: 220px solid @geop-light;
   }
 }
 // Modal Body ===================================
-.apos-modal
-.apos-modal-content
+.geop-modal
+.geop-modal-content
 {
   position: absolute;
 
@@ -83,27 +83,27 @@
   height: ~'calc(100vh - 100px - 189px - 82px)';     // 100vh - 100 (position) - 189 (header + breadcrumb) - 82px (footer bar)
   width: 100%;
 
-  // background-color: @apos-white;
-	background-color: lighten(@apos-light, 5%);
+  // background-color: @geop-white;
+	background-color: lighten(@geop-light, 5%);
 }
 
-.apos-modal-body
+.geop-modal-body
 {
 	height: 100%;
 	overflow: auto;
-  .apos-scrollbar;
-  background-color: lighten(@apos-light, 5%);
+  .geop-scrollbar;
+  background-color: lighten(@geop-light, 5%);
 	li a {
-		&:hover { color: @apos-primary; }
+		&:hover { color: @geop-primary; }
 	}
 }
 
 // Stack Push Transition ===================================
-.apos-modal.apos-modal-stack-push
+.geop-modal.geop-modal-stack-push
 {
 	opacity: 0;
-	.apos-transform(translate3d(0,0,0) scale3d(1.2,1.2,1));
-	.apos-transitions(transform @apos-modal-timing @apos-modal-transition-curve, opacity @apos-modal-timing @apos-modal-transition-curve;);
+	.geop-transform(translate3d(0,0,0) scale3d(1.2,1.2,1));
+	.geop-transitions(transform @geop-modal-timing @geop-modal-transition-curve, opacity @geop-modal-timing @geop-modal-transition-curve;);
 }
 
 
@@ -111,22 +111,22 @@
 // Sliding Transition ===================================
 // - In a 'slide' transition, the body translates
 //   out of the modal
-.apos-modal-slideable .apos-modal-content
+.geop-modal-slideable .geop-modal-content
 {
-  .apos-transform(translate3d(-100%,0,0));
-  .apos-transition(transform, @apos-modal-timing, @apos-modal-transition-curve);
+  .geop-transform(translate3d(-100%,0,0));
+  .geop-transition(transform, @geop-modal-timing, @geop-modal-transition-curve);
 }
 
 
 // Current Slide ===================================
-.apos-modal-slideable
-.apos-modal-content.apos-modal-slide-current
+.geop-modal-slideable
+.geop-modal-content.geop-modal-slide-current
 {
-	.apos-transform(translate3d(0,0,0));
+	.geop-transform(translate3d(0,0,0));
 }
 
 // Next Slide ===================================
-.apos-modal-content.apos-modal-slide-current + .apos-modal-content
+.geop-modal-content.geop-modal-slide-current + .geop-modal-content
 {
-	.apos-transform(translate3d(100%,0,0));
+	.geop-transform(translate3d(100%,0,0));
 }

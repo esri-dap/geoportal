@@ -32,7 +32,7 @@ describe('Base Module', function() {
   it('should provide geop.assets with the right context for pushing assets', function(done) {
     var found = false;
     for (var i = geop.assets.pushed.stylesheets.length - 1; i >= 0; i--) {
-      if (geop.assets.pushed.stylesheets[i].file === __dirname + '/lib/modules/apostrophe-test-module-push/public/css/test.css') {
+      if (geop.assets.pushed.stylesheets[i].file === __dirname + '/lib/modules/geoportal-test-module-push/public/css/test.css') {
         found = true;
         break;
       }

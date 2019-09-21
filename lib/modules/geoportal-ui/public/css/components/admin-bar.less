@@ -1,38 +1,38 @@
-.apos-admin-bar
+.geop-admin-bar
 {
   position: fixed;
   height: 60px;
-  top: @apos-padding-2;
-  left: @apos-padding-2;
-  z-index: @apos-z-index-7;
-  background-color: @apos-base;
-  color: @apos-white;
-  .apos-button-border(@apos-white);
-  .apos-rounded();
-  .apos-drop-shadow();
+  top: @geop-padding-2;
+  left: @geop-padding-2;
+  z-index: @geop-z-index-7;
+  background-color: @geop-base;
+  color: @geop-white;
+  .geop-button-border(@geop-white);
+  .geop-rounded();
+  .geop-drop-shadow();
   overflow: hidden;
-  // .apos-transition;
-  .apos-no-select;
+  // .geop-transition;
+  .geop-no-select;
 
-  @media @apos-breakpoint-desktop-xl
+  @media @geop-breakpoint-desktop-xl
   {
     height: 80px;
-    top: @apos-padding-4;
-    left: @apos-padding-4;
+    top: @geop-padding-4;
+    left: @geop-padding-4;
   }
 
-  * { .apos-transition; }
+  * { .geop-transition; }
 }
 
-.apos-admin-bar-logo
+.geop-admin-bar-logo
 {
   position: relative;
   padding: 13px 15px 8px 15px;
-  @media @apos-breakpoint-desktop-xl
+  @media @geop-breakpoint-desktop-xl
   {
-    padding: @apos-padding-2;
+    padding: @geop-padding-2;
   }
-  .apos-inline-block();
+  .geop-inline-block();
   
   cursor: pointer;
 
@@ -40,7 +40,7 @@
   {
     max-height: 30px;
     max-width: 30px;
-    @media @apos-breakpoint-desktop-xl
+    @media @geop-breakpoint-desktop-xl
     {
       max-height: 36px;
       max-width: 36px;
@@ -49,100 +49,100 @@
 
 }
 
-.apos-admin-bar-items
+.geop-admin-bar-items
 {
   display: inline-block;
   white-space: nowrap;
-  .apos-transition;
+  .geop-transition;
   transform: translateX(-130%);
 
-  .apos-admin-bar-item{ opacity: 0; }
+  .geop-admin-bar-item{ opacity: 0; }
 
 }
 
-.apos-admin-bar-item
+.geop-admin-bar-item
 {
   cursor: pointer;
   height: 56px;
-  @media @apos-breakpoint-desktop-xl
+  @media @geop-breakpoint-desktop-xl
   {
     height: 75px;  
   }
 
   &:hover
   {
-    background-color: darken(@apos-primary, 3%)
+    background-color: darken(@geop-primary, 3%)
   }
   
   // height: 100%;
-  .apos-inline-block(middle);
+  .geop-inline-block(middle);
 }
 
 
-.apos-admin-bar-item:before
+.geop-admin-bar-item:before
 {
   content: '';
-  .apos-inline-block(middle);
+  .geop-inline-block(middle);
   height: 100%;
 }
 
-.apos-admin-bar-item .apos-active
+.geop-admin-bar-item .geop-active
 {
-  background-color: darken(@apos-base, 10%);
+  background-color: darken(@geop-base, 10%);
 }
 
-.apos-admin-bar-items > div:last-child
+.geop-admin-bar-items > div:last-child
 {
-  padding-right: @apos-padding-3;
+  padding-right: @geop-padding-3;
 }
 
-.apos-admin-bar-inner
+.geop-admin-bar-inner
 {
   max-width: 60px;
   font-size: 13px;
-  @media @apos-breakpoint-desktop-xl
+  @media @geop-breakpoint-desktop-xl
   {
     font-size: 16px;
     max-width: 80px;
   }
 }
 
-.apos-admin-bar-item-inner
+.geop-admin-bar-item-inner
 {
-  .apos-inline-block(middle);
-  padding: 0 @apos-padding-1;
-  @media @apos-breakpoint-desktop-xl
+  .geop-inline-block(middle);
+  padding: 0 @geop-padding-1;
+  @media @geop-breakpoint-desktop-xl
   {
-    padding: 0 @apos-padding-2;
+    padding: 0 @geop-padding-2;
   }
   
-  // .apos-transition();
+  // .geop-transition();
   height: 100%;
   line-height: 4.5em;
-  @media @apos-breakpoint-desktop-xl
+  @media @geop-breakpoint-desktop-xl
   {
     line-height: 4.9em;
   }
 }
 
-.apos-admin-bar.apos-active
+.geop-admin-bar.geop-active
 
 {
-  .apos-admin-bar-items { transform: translateX(0%); .apos-admin-bar-item{ opacity: 1; } }
-  .apos-admin-bar-inner { max-width: 1400px; }
+  .geop-admin-bar-items { transform: translateX(0%); .geop-admin-bar-item{ opacity: 1; } }
+  .geop-admin-bar-inner { max-width: 1400px; }
 }
 
-.apos-admin-bar .apos-admin-bar-item .apos-dropdown
+.geop-admin-bar .geop-admin-bar-item .geop-dropdown
 {
-  .apos-drop-shadow(0, 0, 0, 0);
+  .geop-drop-shadow(0, 0, 0, 0);
 }
 
-.apos-admin-bar .apos-admin-bar-item .apos-dropdown-items
+.geop-admin-bar .geop-admin-bar-item .geop-dropdown-items
 {
   top: 102%;
 }
 
-.apos-admin-bar a
+.geop-admin-bar a
 {
   // Direct links should look the same as other dropdown menu items. -Tom
   color: inherit;

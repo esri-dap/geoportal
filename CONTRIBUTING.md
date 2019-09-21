@@ -1,10 +1,10 @@
 # Introduction
-Interested in contributing to ApostropheCMS? That’s fantastic! We really appreciate your interest and value your time. Because of that fact, we’ve drafted some guidelines to make the most of your contributions, and helps maintain ApostropheCMS as the best Node CMS in the universe.
+Interested in contributing to GeoportalCMS? That’s fantastic! We really appreciate your interest and value your time. Because of that fact, we’ve drafted some guidelines to make the most of your contributions, and helps maintain GeoportalCMS as the best Node CMS in the universe.
 
 # Community
-There is a growing community of users on [Gitter](https://gitter.im/apostrophecms/apostrophe), and you can post and find answers to support questions about ApostropheCMS in [StackOverflow](https://stackoverflow.com/questions/tagged/apostrophe-cms) where fellow ApostropheCMS users are happy to help you out.
+There is a growing community of users on [Gitter](https://gitter.im/geoportalcms/geoportal), and you can post and find answers to support questions about GeoportalCMS in [StackOverflow](https://stackoverflow.com/questions/tagged/geoportal-cms) where fellow GeoportalCMS users are happy to help you out.
 
-We hold regular meetups at our office in Philadelphia which are broadcasted on our [Twitch channel](https://www.twitch.tv/apostrophecms). This is a great opportunity to check-in with the Apostrophe team, say “Hi” and hear about what we are working on.
+We hold regular meetups at our office in Philadelphia which are broadcasted on our [Twitch channel](https://www.twitch.tv/geoportalcms). This is a great opportunity to check-in with the Geoportal team, say “Hi” and hear about what we are working on.
 
 # Code of Conduct
 
@@ -16,11 +16,11 @@ level of experience, education, socio-economic status, nationality, personal
 appearance, race, religion, or sexual identity and orientation. All contributors are expected to abide by the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 # Contributions Made Easy
-One way to contribute to ApostropheCMS is by expanding the existing documentation. The docs repo is here: https://github.com/apostrophecms/apostrophe-documentation. Pull requests that update and refine this information are super useful.
+One way to contribute to GeoportalCMS is by expanding the existing documentation. The docs repo is here: https://github.com/geoportalcms/geoportal-documentation. Pull requests that update and refine this information are super useful.
 
-Along those lines, the authoring of blog posts about your experiences using ApostropheCMS or tweets expressing your interest help spread the word. When you launch a site on ApostropheCMS, ping us in Gitter or on Twitter. We love a good success story.
+Along those lines, the authoring of blog posts about your experiences using GeoportalCMS or tweets expressing your interest help spread the word. When you launch a site on GeoportalCMS, ping us in Gitter or on Twitter. We love a good success story.
 
-Of course, we welcome traditional open source contributions via pull requests and new open issues to our GitHub repository. If you’d like to dig in right away see issues with the [“contributions welcome” label](https://github.com/apostrophecms/apostrophe/issues?q=is%3Aopen+is%3Aissue+label%3A%22contributions+welcome%22).
+Of course, we welcome traditional open source contributions via pull requests and new open issues to our GitHub repository. If you’d like to dig in right away see issues with the [“contributions welcome” label](https://github.com/geoportalcms/geoportal/issues?q=is%3Aopen+is%3Aissue+label%3A%22contributions+welcome%22).
 
 Detailed information about submitting code contributions and new issues to our GitHub repository are documented below.
 
@@ -45,13 +45,13 @@ Adding the label of “enhancement” along with categorizing your issue with an
 If you’ve perused our open issues labeled “Bug” and decide to work to resolve one, or you’ve got a new feature that you’d like to commit to the core project, please keep these things in mind:
 
 1. Make sure your pull request includes tests. [For examples of back-end unit tests, look here](
-https://github.com/apostrophecms/apostrophe/tree/master/test) at the test folder of the apostrophe module. This level of coverage is expected for backend features that aren't already covered by a test. [For examples of front-end, browser-based regression tests, checkout the apostrophe-enterprise-testbed module](https://github.com/apostrophecms/apostrophe-enterprise-testbed). We don't expect that every contributor is ready to write Nightwatch tests like these, but it is surely appreciated. If it’s a bug fix you should have a test that reproduces the issue (if you can’t write a test for the bug you are addressing, please note the reason why).
-2. Run ESLint to be sure your update adheres to our coding standards. The `apostrophe` module already has a `.eslintrc` file, so the simplest way is to run: `npx eslint .` Your editor may automatically point out eslint-detected concerns as well.
+https://github.com/geoportalcms/geoportal/tree/master/test) at the test folder of the geoportal module. This level of coverage is expected for backend features that aren't already covered by a test. [For examples of front-end, browser-based regression tests, checkout the geoportal-enterprise-testbed module](https://github.com/geoportalcms/geoportal-enterprise-testbed). We don't expect that every contributor is ready to write Nightwatch tests like these, but it is surely appreciated. If it’s a bug fix you should have a test that reproduces the issue (if you can’t write a test for the bug you are addressing, please note the reason why).
+2. Run ESLint to be sure your update adheres to our coding standards. The `geoportal` module already has a `.eslintrc` file, so the simplest way is to run: `npx eslint .` Your editor may automatically point out eslint-detected concerns as well.
 3. Enhancements should include documentation and include implementation details were applicable.
 
 # Should you make a new npm module?
 
-Great question. If it's not a bug fix or an improvement to the core UI, it often doesn't belong in the core `apostrophe` npm module. For instance, our blogging functionality is in the separate `apostrophe-blog` npm module.
+Great question. If it's not a bug fix or an improvement to the core UI, it often doesn't belong in the core `geoportal` npm module. For instance, our blogging functionality is in the separate `geoportal-blog` npm module.
 
-See [publishing your own npm modules for Apostrophe](https://docs.apostrophecms.org/apostrophe/other/more-modules#publishing-your-own-npm-modules-for-apostrophe) for more information.
+See [publishing your own npm modules for Geoportal](https://docs.geoportalcms.org/geoportal/other/more-modules#publishing-your-own-npm-modules-for-geoportal) for more information.
 

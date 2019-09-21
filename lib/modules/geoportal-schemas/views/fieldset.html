@@ -1,13 +1,13 @@
 {% macro render(field, bodyMacro) %}
-  {# WARNING: if you remove apos-field as a class you will have problems with nested schemas reusing #}
+  {# WARNING: if you remove geop-field as a class you will have problems with nested schemas reusing #}
   {# field names. We use this class with our $.findSafe plugin. #}
   {% set options = { 'id': geop.utils.generateId(), fieldClasses: field.fieldClasses, fieldAttributes: field.fieldAttributes } %}
-  <fieldset class="apos-field apos-field-{{ field.type | css }} apos-field-{{ field.name | css }} {{ field.classes }}" data-name="{{ field.name }}" {{ field.attributes }}>
-    <label for="{{ options.id }}" class="apos-field-label">{{ __(field.label | d('')) }}</label>
+  <fieldset class="geop-field geop-field-{{ field.type | css }} geop-field-{{ field.name | css }} {{ field.classes }}" data-name="{{ field.name }}" {{ field.attributes }}>
+    <label for="{{ options.id }}" class="geop-field-label">{{ __(field.label | d('')) }}</label>
     {%- if field.help -%}
-      <div class="apos-field-help">{{ __(field.help) }}</div>
+      <div class="geop-field-help">{{ __(field.help) }}</div>
     {%- elif field.htmlHelp -%}
-      <div class="apos-field-help">{{ __(field.htmlHelp) | safe }}</div>
+      <div class="geop-field-help">{{ __(field.htmlHelp) | safe }}</div>
     {%- endif -%}
     {{ bodyMacro(field, options) }}
   </fieldset>

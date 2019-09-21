@@ -1,104 +1,104 @@
-.apos-dropdown
+.geop-dropdown
 {
 	position: relative;
 	display: inline-block;
-  .apos-no-select;
+  .geop-no-select;
 	& > * { position: relative; }
-	.apos-drop-shadow;
+	.geop-drop-shadow;
 }
 
-.apos-dropdown .apos-button
+.geop-dropdown .geop-button
 {
 	z-index: 5; // todo bo
-	.apos-transition--bounce;
-	.apos-drop-shadow(0, 0, 0, 0);
+	.geop-transition--bounce;
+	.geop-drop-shadow(0, 0, 0, 0);
 }
 
-.apos-dropdown.apos-active
+.geop-dropdown.geop-active
 {
-	.apos-button { z-index: @apos-z-index-7; }
+	.geop-button { z-index: @geop-z-index-7; }
 
-	.apos-dropdown-items
+	.geop-dropdown-items
   {
   	visibility: visible;
     opacity: 1;
     transform: translateX(0%);
     transition-delay: 0s;
-		z-index: @apos-z-index-6;
+		z-index: @geop-z-index-6;
   }
 }
 
-.apos-dropdown-items
+.geop-dropdown-items
 {
 	position: absolute;
 	left: 0;
 	display: inline-block;
-	color: @apos-dark;
+	color: @geop-dark;
 	min-width: 200px;
-	background-color: @apos-white;
-	// .apos-rounded;
-	.apos-drop-shadow;
+	background-color: @geop-white;
+	// .geop-rounded;
+	.geop-drop-shadow;
 	visibility: hidden;
   opacity: 0;
   transform: translateZ(0);
   transform: translateY(10%);
-  .apos-transition--bounce;
+  .geop-transition--bounce;
   z-index: 3; // todo bo
 }
 
-.apos-dropdown-item
+.geop-dropdown-item
 {
-	padding: @apos-padding-2;
-	// .apos-text-small;
+	padding: @geop-padding-2;
+	// .geop-text-small;
 	&:hover
 	{
 		cursor: pointer;
-		background-color: @apos-light;
+		background-color: @geop-light;
 	}
 }
 
-.apos-dropdown--down .apos-dropdown-items { top: 100%; }
-.apos-dropdown--up .apos-dropdown-items { bottom: 100%; }
+.geop-dropdown--down .geop-dropdown-items { top: 100%; }
+.geop-dropdown--up .geop-dropdown-items { bottom: 100%; }
 
-.apos-dropdown--down
+.geop-dropdown--down
 {
-	.apos-dropdown-items
+	.geop-dropdown-items
 	{
 		overflow: hidden;
 		height: 0;
-		.apos-rounded-bl;
-		.apos-rounded-br;
+		.geop-rounded-bl;
+		.geop-rounded-br;
 	}
 
-	&.apos-active .apos-dropdown-items {
+	&.geop-active .geop-dropdown-items {
 		overflow: auto;
 		height: auto;
 	}
 
-	&.apos-active>.apos-button
+	&.geop-active>.geop-button
 	{
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
 	}
 }
 
-.apos-dropdown--up
+.geop-dropdown--up
 {
-	.apos-dropdown-items
+	.geop-dropdown-items
 	{
-		.apos-rounded-tl;
-		.apos-rounded-tr;
+		.geop-rounded-tl;
+		.geop-rounded-tr;
 	}
-	&.apos-active>.apos-button
+	&.geop-active>.geop-button
 	{
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
 	}
 }
 
-.apos-dropdown--arrow-down
+.geop-dropdown--arrow-down
 {
-	.apos-button
+	.geop-button
 	{
 		&::after
 		{
@@ -107,8 +107,8 @@
 	    top: 10px;
 	    right: 0px;
 	    font-family: "FontAwesome";
-	    .apos-transition--bounce;
+	    .geop-transition--bounce;
 		}
 	}
-	&.apos-active .apos-button::after{ right: 18px;}
+	&.geop-active .geop-button::after{ right: 18px;}
 }

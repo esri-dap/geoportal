@@ -24,7 +24,7 @@ describe('Templates', function() {
       afterInit: function(callback) {
         assert(geop.push);
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);

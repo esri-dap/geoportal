@@ -2,8 +2,8 @@
 {% for item in data.choices %}
   {% set choice = item.item or item %}
   {% set relationship = item.relationship %}
-  <div class="apos-chooser-choice apos-chooser-choice--stacked" data-chooser-choice='{{ choice._id }}'>
-    <div class="apos-button apos-button--in-context apos-button--group apos-button--small apos-chooser-controls">
+  <div class="geop-chooser-choice geop-chooser-choice--stacked" data-chooser-choice='{{ choice._id }}'>
+    <div class="geop-button geop-button--in-context geop-button--group geop-button--small geop-chooser-controls">
       {{ buttons.inGroup('', { icon: 'arrows', tooltip: 'Sort', action: 'sort-item', value: choice._id}) }}
       {{ buttons.inGroup('', { icon: 'arrow-up', tooltip: 'Move Up', action: 'raise-item', value: choice._id}) }}
       {{ buttons.inGroup('', { icon: 'arrow-down', tooltip: 'Move Down', action: 'lower-item', value: choice._id }) }}
@@ -20,7 +20,7 @@
       {%- endif -%}
       {{ buttons.inGroup('', { icon: 'trash', tooltip: 'Remove', action: 'delete-item', value: choice._id }) }}
     </div>
-    <div class="apos-choose-choice-content">
+    <div class="geop-choose-choice-content">
       {% include data.choiceTemplate %}
     </div>
   </div>

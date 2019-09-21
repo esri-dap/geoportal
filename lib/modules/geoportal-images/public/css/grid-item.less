@@ -1,24 +1,24 @@
 // grid item
-.apos-ui .apos-manage-grid-view
-.apos-manage-grid-piece
+.geop-ui .geop-manage-grid-view
+.geop-manage-grid-piece
 {
   position: relative;
-  .apos-inline-block(top);
+  .geop-inline-block(top);
 
   margin: 2px 2px ~'calc(0.75em + 2px)';
   padding: 8px 8px 0;
-  background-color: @apos-light;
+  background-color: @geop-light;
   width: 100%;
   box-shadow: 0 2px 8px 0 rgba(21,22,22,0.0);
   overflow: hidden;
 
-  .apos-manage-grid-select
+  .geop-manage-grid-select
   {
-    .apos-inline-block(top);
+    .geop-inline-block(top);
   }
 
   // thumbnail
-  .apos-manage-grid-image
+  .geop-manage-grid-image
   {
     position: relative;
     width: 100%;
@@ -38,13 +38,13 @@
         width: auto;
         max-width: 100%;
         max-height: 120px;
-        @media @apos-breakpoint-desktop-xl {
+        @media @geop-breakpoint-desktop-xl {
           max-height: 200px;
         }
       }
     }
 
-    .apos-image-screen
+    .geop-image-screen
     {
       position: absolute;
       width: 100%;
@@ -53,37 +53,37 @@
       left: 0;
       background-color: rgba(0,0,0,0.5);
       opacity: 0;
-      .apos-transition(opacity);
+      .geop-transition(opacity);
     }
   }
   // label
-  .apos-manage-grid-piece-label
+  .geop-manage-grid-piece-label
   {
     display: block;
-    padding: @apos-padding-2 @apos-padding-2;
+    padding: @geop-padding-2 @geop-padding-2;
     padding-left: 28px;  // room for checkbox
-    background-color: @apos-light;
-    color: @apos-black;
+    background-color: @geop-light;
+    color: @geop-black;
     text-decoration: none;
     font-size: 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
-    .apos-transition();
+    .geop-transition();
   }
   // checkbox
-  .apos-field-input-checkbox-indicator
+  .geop-field-input-checkbox-indicator
   {
     position: absolute;
     bottom: 18px;
     left: 8px;
-    border-color: @apos-mid;
-    background-color: @apos-light;
+    border-color: @geop-mid;
+    background-color: @geop-light;
 
-    .apos-transition();
+    .geop-transition();
   }
-  input:checked + .apos-field-input-checkbox-indicator,
+  input:checked + .geop-field-input-checkbox-indicator,
   {
     border-width: 1;
   }
@@ -98,31 +98,31 @@
     height: ~'calc(100%)';
     border: 2px solid transparent;
     content: "";
-    .apos-transition();
+    .geop-transition();
   }
 
 
   // Controls
-  .apos-manage-grid-piece-controls
+  .geop-manage-grid-piece-controls
   {
-    .apos-center-vertical(absolute);
+    .geop-center-vertical(absolute);
 
     width: 100%;
     text-align: center;
     opacity: 0;
 
-    .apos-button
+    .geop-button
     {
-      padding: @apos-padding-1 @apos-padding-2*0.75;
+      padding: @geop-padding-1 @geop-padding-2*0.75;
 
       i
       {
-        color: @apos-green;
-        margin-left: @apos-margin-1;
+        color: @geop-green;
+        margin-left: @geop-margin-1;
       }
     }
 
-    .apos-transition;
+    .geop-transition;
   }
 
 
@@ -131,44 +131,44 @@
     cursor: pointer;
     box-shadow: 0 2px 8px 0 rgba(21,22,22,0.30);
 
-    .apos-manage-grid-piece-controls
+    .geop-manage-grid-piece-controls
     {
       opacity: 1;
     }
-    .apos-image-screen
+    .geop-image-screen
     {
       opacity: 0.5;
     }
     // border
     &::before
     {
-      border: 2px solid @apos-green;
+      border: 2px solid @geop-green;
     }
   }
 
   // Focused
-  &.apos-focus
+  &.geop-focus
   {
     &::before
     {
-      border: 2px solid @apos-green;
+      border: 2px solid @geop-green;
     }
 
-    .apos-field-input-checkbox-indicator
+    .geop-field-input-checkbox-indicator
     {
-      background: @apos-green;
-      border-color: @apos-green;
+      background: @geop-green;
+      border-color: @geop-green;
       border-width: 1;
     }
   }
 
-  .apos-transition();
+  .geop-transition();
 }
 
 // full state
-.apos-chooser-full .apos-manage-grid-piece:not(.apos-focus):hover
+.geop-chooser-full .geop-manage-grid-piece:not(.geop-focus):hover
 {
   cursor: not-allowed;
-  .apos-field-input-checkbox-indicator:hover { cursor: not-allowed; }
-  &::before { border: 2px solid @apos-gold; }
+  .geop-field-input-checkbox-indicator:hover { cursor: not-allowed; }
+  &::before { border: 2px solid @geop-gold; }
 }

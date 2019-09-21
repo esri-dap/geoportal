@@ -27,7 +27,7 @@ describe('Express', function() {
       afterInit: function(callback) {
         assert(geop.express);
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);
@@ -180,7 +180,7 @@ describe('Express', function() {
     });
   });
 
-  it('should be able to implement a route with apostrophe-module.route', function(done) {
+  it('should be able to implement a route with geoportal-module.route', function(done) {
     var csrfToken = getCsrfToken(jar);
     request({
       method: 'POST',
@@ -226,7 +226,7 @@ describe('Express', function() {
         assert(geop.prefix);
         assert(geop.prefix === '/prefix');
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);
@@ -282,7 +282,7 @@ describe('Express', function() {
         assert(geop.baseUrl);
         assert(geop.baseUrl === 'https://example.com');
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);
@@ -323,7 +323,7 @@ describe('Express', function() {
         assert(geop.baseUrl === 'https://example.com');
         assert(geop.prefix === '/subdir');
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);

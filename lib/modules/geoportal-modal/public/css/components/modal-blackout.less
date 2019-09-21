@@ -1,5 +1,5 @@
 // ===============================================================
-//    Apostrophe Modal-Blackout
+//    Geoportal Modal-Blackout
 //
 //    -  Opaque overlay which appears in between page and modals
 //
@@ -7,11 +7,11 @@
 
 
 // Variables  ===================================
-@apos-z-index-blackout: @apos-z-index-5;
+@geop-z-index-blackout: @geop-z-index-5;
 
 
 // Base Class ===================================
-.apos-modal-blackout
+.geop-modal-blackout
 {
 	position: fixed;
 
@@ -20,19 +20,19 @@
 	left: 0;
 	right: 0;
 
-	z-index: @apos-z-index-blackout;
+	z-index: @geop-z-index-blackout;
 
 	background-color: rgba(0, 0, 0, 0.5);
 	opacity: 1;
 
-	&.apos-modal-blackout-fade
+	&.geop-modal-blackout-fade
 	{
 		opacity: 0;
 	}
-	.apos-transition(opacity, @apos-modal-timing, @apos-modal-transition-curve);
+	.geop-transition(opacity, @geop-modal-timing, @geop-modal-transition-curve);
 }
 
-body.apos-active-blackout
+body.geop-active-blackout
 {
 	overflow: hidden;
 	width: 100%;

@@ -1,14 +1,14 @@
 // ===============================================================
-// Tables and Tabular Data in Apostrophe
+// Tables and Tabular Data in Geoportal
 // ===============================================================
-.apos-table
+.geop-table
 {
-  padding: 0 @apos-padding-3;
-  .apos-text-small;
+  padding: 0 @geop-padding-3;
+  .geop-text-small;
   max-width: 100%;
   border-collapse: collapse;
   text-align: left;
-  background-color: @apos-lighter;
+  background-color: @geop-lighter;
   @media screen and (max-width: 960px)
   {
     overflow: auto;
@@ -16,62 +16,62 @@
   }
 }
 
-.apos-manage-table
+.geop-manage-table
 {
   font-size: 13px;
-  @media @apos-breakpoint-desktop-xl { .apos-text-small; }
+  @media @geop-breakpoint-desktop-xl { .geop-text-small; }
 }
 
-.apos-table table
+.geop-table table
 {
   text-align: left;
   min-width: 900px;
   width: 100%;
 }
 
-.apos-table th,
-.apos-table td
+.geop-table th,
+.geop-table td
 {
-  padding: @apos-padding-1;
-  @media @apos-breakpoint-desktop-xl { padding: @apos-padding-2; }
+  padding: @geop-padding-1;
+  @media @geop-breakpoint-desktop-xl { padding: @geop-padding-2; }
 }
 
-.apos-table th,
-.apos-table td
+.geop-table th,
+.geop-table td
 {
   max-width: 300px;
   min-width: 25px;
   a
   {
     display: block;
-    color: @apos-dark;
+    color: @geop-dark;
     text-decoration: none;
-    .apos-transition;
-    &:hover { color: @apos-primary; }
+    .geop-transition;
+    &:hover { color: @geop-primary; }
   }
 }
-.apos-table td:first-child //check-box input
+.geop-table td:first-child //check-box input
 {
   width: 21px;
 }
 
 // The Head ===================================
-.apos-table thead
+.geop-table thead
 {
-  border-bottom: 1px solid @apos-dark;
+  border-bottom: 1px solid @geop-dark;
 
-  tr{ background-color: @apos-lighter; }
+  tr{ background-color: @geop-lighter; }
 }
 
 
 // The Body ===================================
-.apos-table tbody tr:nth-child(2n+1){ background-color: @apos-white; }
-.apos-table tbody tr:nth-child(2n){ background-color: @apos-lighter; }
+.geop-table tbody tr:nth-child(2n+1){ background-color: @geop-white; }
+.geop-table tbody tr:nth-child(2n){ background-color: @geop-lighter; }
 
 
 // Checkboxes ===================================
 
-.apos-table .apos-field-input-checkbox-indicator
+.geop-table .geop-field-input-checkbox-indicator
 {
   margin-left: 2px;
 }

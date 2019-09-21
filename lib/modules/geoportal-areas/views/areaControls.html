@@ -1,14 +1,14 @@
-<div class="apos-ui" data-apos-area-controls data-apos-area-controls-original>
-  <div class="apos-area-controls">
-    <div class="apos-dropdown apos-dropdown--area-controls apos-dropdown--down" data-apos-dropdown="{{ direction }}">
-      <div class="apos-button apos-button--major apos-button--circular apos-button--in-context" data-apos-add-content>
+<div class="geop-ui" data-geop-area-controls data-geop-area-controls-original>
+  <div class="geop-area-controls">
+    <div class="geop-dropdown geop-dropdown--area-controls geop-dropdown--down" data-geop-dropdown="{{ direction }}">
+      <div class="geop-button geop-button--major geop-button--circular geop-button--in-context" data-geop-add-content>
         <i class="fa fa-plus"></i>
       </div>
-      <ul class="apos-dropdown-items" data-apos-dropdown-items>
+      <ul class="geop-dropdown-items" data-geop-dropdown-items>
         {%- for name, options in data.options.widgets -%}
           {%- if data.widgetManagers[name] -%}
             {%- if not options.readOnly -%}
-              <li class="apos-dropdown-item" data-apos-add-item="{{ name }}">{{ options.addLabel or __(data.widgetManagers[name].label) }}</li>
+              <li class="geop-dropdown-item" data-geop-add-item="{{ name }}">{{ options.addLabel or __(data.widgetManagers[name].label) }}</li>
             {% endif %}
           {%- else -%}
             {{ geop.log("Your area contains a widget of type " + name + " but there is no manager for that type. Maybe you forgot to configure the " + name + "-widgets module?") }}
@@ -16,6 +16,6 @@
         {%- endfor -%}
       </ul>
     </div>
-    <div class="apos-area-divider"></div>
+    <div class="geop-area-divider"></div>
   </div>
 </div>

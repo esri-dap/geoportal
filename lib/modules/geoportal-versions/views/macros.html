@@ -1,6 +1,6 @@
 {% macro renderChanges(changes) %}
   {% if changes and changes.length %}
-    <div class="apos-changes{% if change.changes.length > 1 %} apos-multiple-changes{% endif %}">
+    <div class="geop-changes{% if change.changes.length > 1 %} geop-multiple-changes{% endif %}">
       {% for change in changes %}
         {{ renderChange(change) }}
       {% endfor %}
@@ -9,7 +9,7 @@
 {% endmacro %}
 
 {% macro renderChange(change) %}
-  <div class="apos-change apos-change-action-{{ change.action }}">
+  <div class="geop-change geop-change-action-{{ change.action }}">
     {# Render a change and its sub-changes recursively #}
     {% if change.text %}
       <h5 data-change-text>{{ change.text }}</h5>

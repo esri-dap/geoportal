@@ -9,21 +9,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:apostrophecms/apostrophe.git"
+    "url": "git@github.com:esri-dap/geoportal.git"
   },
   "keywords": [
     "geoportal",
     "geoportal-cms",
-    "apostrophecms",
+    "geoportalcms",
     "cms",
     "content management",
     "content management system",
-    "punkave"
+    "esri-dap"
   ],
-  "author": "P'unk Avenue LLC",
+  "author": "Denny Aprilio",
   "license": "MIT",
   "dependencies": {
-    "@apostrophecms/nunjucks": "^2.5.3",
+    "@geoportalcms/nunjucks": "^2.5.3",
     "@sailshq/lodash": "^3.10.4",
     "async": "^1.5.2",
     "bless": "^3.0.3",
@@ -83,7 +83,7 @@
   },
   "devDependencies": {
     "eslint": "^6.0.0",
-    "eslint-config-apostrophe": "^2.0.2",
+    "eslint-config-geoportal": "^2.0.2",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^6.0.1",

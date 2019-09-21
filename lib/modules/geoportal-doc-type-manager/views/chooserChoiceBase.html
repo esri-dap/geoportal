@@ -1,11 +1,11 @@
 {% import 'geoportal-schemas:macros.html' as schemas %}
 {# choice is the object. relationship contains any relationship properties. #}
-<div class="apos-text-meta">{% block meta %}{% endblock %}</div>
-<div class="apos-text-normal">{% block title %}{{ __(choice.title | d('') or "No title property" ) }}{% endblock %}</div>
+<div class="geop-text-meta">{% block meta %}{% endblock %}</div>
+<div class="geop-text-normal">{% block title %}{{ __(choice.title | d('') or "No title property" ) }}{% endblock %}</div>
 {%- block inline -%}
   {%- set inline = geop.utils.filterNonempty(data.relationship, 'inline') -%}
   {%- if inline.length -%}
-    <div data-relationship-inline="{{ choice._id }}" class="apos-relationship-inline">
+    <div data-relationship-inline="{{ choice._id }}" class="geop-relationship-inline">
       {% for field in inline %}
         {{ geop.schemas.field(field) }}
       {% endfor %}

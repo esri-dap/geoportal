@@ -1,42 +1,42 @@
-[data-apos-widget="geoportal-rich-text"]
+[data-geop-widget="geoportal-rich-text"]
 {
   // Specific positioning of widget controls for rich text widgets.
-  >.apos-ui
+  >.geop-ui
   {
-    >.apos-area-widget-controls--context
+    >.geop-area-widget-controls--context
     {
       top: auto;
       bottom: 100%;
     }
-    >.apos-area-widget-controls--data
+    >.geop-area-widget-controls--data
     {
       left: auto;
       bottom: auto;
       top: 0;
       transform: translateY(-50%);
-      right: @apos-padding-1;
+      right: @geop-padding-1;
     }
   }
   // When a rich text widget is active, we don't want to show any additional
-  // nested Apostrophe admin elements.
-  &.apos-active .apos-ui { display: none; }
+  // nested Geoportal admin elements.
+  &.geop-active .geop-ui { display: none; }
   // Rich texts have an empty state with a min-height and a background color.
-  &.apos-empty
+  &.geop-empty
   {
     min-height: 100px;
-    background-color: @apos-light;
-    .apos-area-widget-controls { opacity: 1; }
+    background-color: @geop-light;
+    .geop-area-widget-controls { opacity: 1; }
   }
   // A focus state for rich text widgets while editing.
   >[data-rich-text]:focus
   {
-    outline: @apos-green dashed 1px;
+    outline: @geop-green dashed 1px;
   }
 }
 
-[data-apos-widget-wrapper="geoportal-rich-text"]:hover { z-index: @apos-z-index-6; }
+[data-geop-widget-wrapper="geoportal-rich-text"]:hover { z-index: @geop-z-index-6; }
 
-.apos-modal-body [data-rich-text]
+.geop-modal-body [data-rich-text]
 {
   p {
     margin: 10px 0;

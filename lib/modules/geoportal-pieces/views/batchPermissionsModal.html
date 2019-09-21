@@ -4,7 +4,7 @@
 {%- import "geoportal-schemas:macros.html" as schemas -%}
 
 {%- block modalClass -%}
-  apos-pieces-batch-permissions-modal apos-ui-modal-no-sidebar
+  geop-pieces-batch-permissions-modal geop-ui-modal-no-sidebar
 {%- endblock -%}
 
 {%- block controls -%}
@@ -23,7 +23,7 @@
 {% endblock %}
 
 {%- block body -%}
-  <form class="apos-form" data-apos-form>
+  <form class="geop-form" data-geop-form>
     {{ schemas.fields(data.schema, { tabs: false }) }}
   </form>
 {%- endblock -%}

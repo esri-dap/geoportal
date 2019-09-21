@@ -37,7 +37,7 @@ describe('Utils', function() {
     });
 
     it('globalReplace: should replace multiple instances of a string', function(done) {
-      var s = geop.utils.globalReplace('apostrophe is for cool kids. therefore apostrophe is cool.', 'geoportal', 'comma');
+      var s = geop.utils.globalReplace('geoportal is for cool kids. therefore geoportal is cool.', 'geoportal', 'comma');
 
       assert(s.indexOf('geoportal') < 0);
       assert(s.split('comma').length === 3);
@@ -91,7 +91,7 @@ describe('Utils', function() {
     });
 
     it('camelName: should convert non digits or ASII characters to a capitalized version of the next character', function(done) {
-      var s = geop.utils.camelName('hello apostrophe');
+      var s = geop.utils.camelName('hello geoportal');
 
       assert(s.indexOf(' ') < 0 && s.indexOf('A') === 5);
       return done();

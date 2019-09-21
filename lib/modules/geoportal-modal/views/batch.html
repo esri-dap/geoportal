@@ -3,9 +3,9 @@
 {% import 'geoportal-ui:components/buttons.html' as buttons %}
 
 {%- macro operations(operations) -%}
-  <div data-batch class="apos-manage-batch-operations ">
-    <div class="apos-field-input-select-wrapper apos-field-input-select-wrapper--small">
-      <select name="batch-operation" class="apos-field-input apos-field-input--small apos-field-input-select apos-manage-batch-operations-select">
+  <div data-batch class="geop-manage-batch-operations ">
+    <div class="geop-field-input-select-wrapper geop-field-input-select-wrapper--small">
+      <select name="batch-operation" class="geop-field-input geop-field-input--small geop-field-input-select geop-manage-batch-operations-select">
         {% for operation in operations %}
           <option value="{{ operation.name }}">
             {{ __('%s Selected', operation.label) }} (0)
@@ -14,11 +14,11 @@
       </select>
     </div>
     {% if geop.utils.filterNonempty(operations, 'schema') %}
-      <div class="apos-manage-batch-operation-forms">
+      <div class="geop-manage-batch-operation-forms">
     {% endif %}
     {% for operation in operations %}
       {% if operation.schema %}
-        <div data-apos-batch-operation-form="{{ operation.name }}" class="apos-manage-batch-operation-form">
+        <div data-geop-batch-operation-form="{{ operation.name }}" class="geop-manage-batch-operation-form">
           {% for field in operation.schema %}
             {{ geop.schemas.field(field) }}
           {% endfor %}
@@ -28,7 +28,7 @@
     {% if geop.utils.filterNonempty(operations, 'schema') %}
       </div>
     {% endif %}
-    <div class="apos-manage-batch-operations-buttons">
+    <div class="geop-manage-batch-operations-buttons">
       {% for operation in operations %}
         {{ buttons.danger(__('Batch %s', operation.buttonLabel or operation.label), { action: 'batch-operation', value: operation.name }) }}
       {% endfor %}

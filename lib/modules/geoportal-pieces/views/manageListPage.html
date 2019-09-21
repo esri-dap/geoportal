@@ -3,9 +3,9 @@
   <tr data-piece="{{ piece._id }}">
     <td>{{fields.checkbox(data.options.name + '-select')}}</td>
     {% for column in data.columns %}
-      <td class="apos-manage-{{ data.options.name | css }}-{{ column.name | css }}">
+      <td class="geop-manage-{{ data.options.name | css }}-{{ column.name | css }}">
         {% set verb = 'rescue' if (piece.trash and not (data.canEditTrash)) else 'edit' %}
-        <span><a href="#" data-apos-{{ verb }}-{{ data.options.name | css }}="{{ piece._id }}">
+        <span><a href="#" data-geop-{{ verb }}-{{ data.options.name | css }}="{{ piece._id }}">
           {%- if column.partial -%}
             {{ column.partial(piece[column.name], piece) }}
           {%- else -%}

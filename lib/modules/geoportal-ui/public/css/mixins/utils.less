@@ -1,4 +1,4 @@
-.apos-add-font(@name, @url, @style: normal, @weight: normal)
+.geop-add-font(@name, @url, @style: normal, @weight: normal)
 {
   @font-face
   {
@@ -20,20 +20,20 @@
   }
 }
 
-.apos-inline-block(@align: top)
+.geop-inline-block(@align: top)
 {
   vertical-align: @align;
   display: inline-block;
 }
 
-.apos-transition(@what: all, @duration:0.15s, @ease: ease-in-out)
+.geop-transition(@what: all, @duration:0.15s, @ease: ease-in-out)
 {
   -webkit-transition: @what @duration @ease;
   -moz-transition: @what @duration @ease;
   -o-transition: @what @duration @ease;
   transition: @what @duration @ease;
 }
-.apos-transitions(@transitions)
+.geop-transitions(@transitions)
 {
   -webkit-transition: ~'@{transitions}';
   -moz-transition: ~'@{transitions}';
@@ -41,12 +41,12 @@
   transition: ~'@{transitions}';
 }
 
-.apos-transition--bounce
+.geop-transition--bounce
 {
-  .apos-transition(@ease: cubic-bezier(0.13, 0.63, 0.34, 1.58))
+  .geop-transition(@ease: cubic-bezier(0.13, 0.63, 0.34, 1.58))
 }
 
-.apos-transform(@string)
+.geop-transform(@string)
 {
   -webkit-transform:   ~'@{string}';
   -moz-transform:      ~'@{string}';
@@ -54,13 +54,13 @@
   -o-transform:        ~'@{string}';
 }
 
-.apos-animation(@props)
+.geop-animation(@props)
 {
 	-webkit-animation: ~'@{props}';
 	-moz-animation:    ~'@{props}';
 	animation:         ~'@{props}';
 }
-.apos-keyframes(@name; @arguments)
+.geop-keyframes(@name; @arguments)
 {
 	@-moz-keyframes @name { @arguments(); }
 	@-webkit-keyframes @name { @arguments(); }
@@ -68,7 +68,7 @@
 }
 
 // No Text Selection ===================================
-.apos-no-select
+.geop-no-select
 {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -79,7 +79,7 @@
 }
 
 // Center vertical ====================================
-.apos-center-vertical(@position: relative)
+.geop-center-vertical(@position: relative)
 {
   position: @position;
   top: 50%;
@@ -88,7 +88,7 @@
   transform: translate3d(0,-50%,0);
 }
 
-.apos-visually-hide
+.geop-visually-hide
 {
   // Per https://allyjs.io/tutorials/hiding-elements.html#how-to-hide-elements-visually
   // Hide it visually, taking up no space and not being clickable, but

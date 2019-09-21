@@ -3,7 +3,7 @@
 {%- import "geoportal-ui:components/buttons.html" as buttons with context -%}
 
 {%- block modalClass -%}
-  {{ 'tags-manager' | css }} apos-ui-modal-no-sidebar
+  {{ 'tags-manager' | css }} geop-ui-modal-no-sidebar
 {%- endblock -%}
 
 {%- block controls -%}
@@ -18,14 +18,14 @@
 {#  <p>
     {{ __('Create, edit, and remove tags.') }}
   </p>#}
-  <div class="apos-manage-tag-add-wrapper">
-    <input data-apos-tag-add-field type="text" class="apos-field-input apos-field-input-text" placeholder="{{ __('Find or add a tag...') }}"/>
-    <a href="#" data-apos-tag-add class="apos-manage-tag-add fa fa-plus"></a>
+  <div class="geop-manage-tag-add-wrapper">
+    <input data-geop-tag-add-field type="text" class="geop-field-input geop-field-input-text" placeholder="{{ __('Find or add a tag...') }}"/>
+    <a href="#" data-geop-tag-add class="geop-manage-tag-add fa fa-plus"></a>
   </div>
 {% endblock %}
 
 {%- block body -%}
-  <div class="apos-manage-tags-view" data-apos-tags-view>
+  <div class="geop-manage-tags-view" data-geop-tags-view>
     {# ajax populates me with either the grid view or the table view #}
   </div>
 {%- endblock -%}

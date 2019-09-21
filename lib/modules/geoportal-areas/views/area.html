@@ -4,16 +4,16 @@
 {%- set isSingleton = data.options.limit == 1 and data.options.type -%}
 
 {# data-doc-id is always present for introspection by modules like #}
-{# apostrophe-workflow that might need to compare it to a draft version #}
+{# geoportal-workflow that might need to compare it to a draft version #}
 {# that is editable after all #}
-<div class="apos-area{% if data.options.blockLevelControls %} apos-area--block-level-controls{% endif %}" {{ " data-apos-area-disabled-editing" if data.area._disabledEditing }} data-apos-area{% if canEdit %} data-apos-area-edit{% if not data.options.virtual %} data-autosave{% endif %}{% endif %}{% if canEdit or data.area._disabledEditing %} data-options='{{ geop.utils.omit(data.options, 'area') | jsonAttribute({ single: true }) }}' data-dot-path="{{ data.area._dotPath }}"{% endif %} data-doc-id="{{ data.area._docId }}">
+<div class="geop-area{% if data.options.blockLevelControls %} geop-area--block-level-controls{% endif %}" {{ " data-geop-area-disabled-editing" if data.area._disabledEditing }} data-geop-area{% if canEdit %} data-geop-area-edit{% if not data.options.virtual %} data-autosave{% endif %}{% endif %}{% if canEdit or data.area._disabledEditing %} data-options='{{ geop.utils.omit(data.options, 'area') | jsonAttribute({ single: true }) }}' data-dot-path="{{ data.area._dotPath }}"{% endif %} data-doc-id="{{ data.area._docId }}">
   {%- if canEdit -%}
     {%- if isSingleton -%}
       {% include "singletonControls.html" %}
     {%- else -%}
       {% include "areaControls.html" %}
     {%- endif -%}
-    <div class="apos-area-widgets" data-apos-widgets>
+    <div class="geop-area-widgets" data-geop-widgets>
   {%- endif -%}
   {%- for widget in data.area.items -%}
     {%- set widgetOptions = data.options.widgets[widget.type] or {} -%}

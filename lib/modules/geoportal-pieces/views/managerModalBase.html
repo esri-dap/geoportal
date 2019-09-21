@@ -6,7 +6,7 @@
 {%- import 'geoportal-modal:batch.html' as batch -%}
 
 {%- block modalClass -%}
-  {{ (data.options.name + '-manager') | css }} apos-ui-modal-no-sidebar apos-manager
+  {{ (data.options.name + '-manager') | css }} geop-ui-modal-no-sidebar geop-manager
 {%- endblock -%}
 
 {%- block controls -%}
@@ -19,7 +19,7 @@
 
 {%- block filters -%}
   {# ajax populates me #}
-  <div class="apos-clearfix apos-modal-filters-inner" data-filters>
+  <div class="geop-clearfix geop-modal-filters-inner" data-filters>
   </div>
 {%- endblock -%}
 
@@ -28,16 +28,16 @@
 {%- endblock -%}
 
 {%- block body -%}
-  <div class="apos-manage-view" data-apos-manage-view>
+  <div class="geop-manage-view" data-geop-manage-view>
     {# ajax populates me with either the grid view or the table view #}
   </div>
 {%- endblock -%}
 
 {%- block footer -%}
-  <div class="apos-modal-footer-inner">
+  <div class="geop-modal-footer-inner">
     {%- block batch -%}
       {{ batch.operations(data.options.batchOperations) }}
     {%- endblock -%}
-    <div class="apos-manage-pager" data-pager></div>
+    <div class="geop-manage-pager" data-pager></div>
   </div>
 {%- endblock -%}

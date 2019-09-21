@@ -31,7 +31,7 @@ describe('Oembed', function() {
         assert(geop.modules['geoportal-oembed']);
         assert(geop.oembed);
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);
@@ -58,7 +58,7 @@ describe('Oembed', function() {
   // });
 
   // it('Should deliver an oembed response for YouTube', function(done) {
-  //   return request('http://localhost:7900/modules/apostrophe-oembed/query?' + qs.stringify(
+  //   return request('http://localhost:7900/modules/geoportal-oembed/query?' + qs.stringify(
   //   {
   //     url: youtube
   //   }), function(err, response, body) {

@@ -1,7 +1,7 @@
 {% import 'geoportal-ui:components/buttons.html' as buttons with context %}
 
 {% macro menuItem(content, options) -%}
-  <li class="apos-dropdown-item" data-apos-{{ content.action }}{% if content.value %}="{{ content.value }}"{% endif %}>
+  <li class="geop-dropdown-item" data-geop-{{ content.action }}{% if content.value %}="{{ content.value }}"{% endif %}>
     {{ __(content.label | d('')) }}
   </li>
 {%- endmacro %}
@@ -13,7 +13,7 @@
     {%- set direction = 'up' -%}
   {%- endif -%}
 
-  <div class="apos-dropdown apos-dropdown--{{ type }} apos-dropdown--{{ direction }}{% if options.class %} apos-dropdown--{{ options.class}}{% endif %}"{%- if options.action -%} data-apos-{{ options.action }}{%- endif %} data-apos-dropdown="{{ direction }}" data-apos-dropdown-name="{{ menu.name }}" data-apos-actionable>
+  <div class="geop-dropdown geop-dropdown--{{ type }} geop-dropdown--{{ direction }}{% if options.class %} geop-dropdown--{{ options.class}}{% endif %}"{%- if options.action -%} data-geop-{{ options.action }}{%- endif %} data-geop-dropdown="{{ direction }}" data-geop-dropdown-name="{{ menu.name }}" data-geop-actionable>
     {%- if type == 'button' -%}
       {%- if options.buttonType -%}
         {{ buttons[options.buttonType](menu.label, geop.utils.merge({ action: 'dropdown-button-label' }, options) ) }}
@@ -22,11 +22,11 @@
       {%- endif -%}
     {%- elif type == 'admin' -%}
       {# TODO: is this dead code? adminBar.html appears to output its own #}
-      <div class="apos-admin-bar-item-inner">
+      <div class="geop-admin-bar-item-inner">
         {{ __(menu.label | d('')) }}
       </div>
     {%- endif -%}
-    <ul class="apos-dropdown-items" data-apos-dropdown-items>
+    <ul class="geop-dropdown-items" data-geop-dropdown-items>
       {%- if options.listMacro -%}
         {{ options.listMacro(menu.items) }}
       {%- else -%}

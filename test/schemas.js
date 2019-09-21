@@ -352,13 +352,13 @@ describe('Schemas', function() {
     });
     assert(schema.length === 1);
     var input = {
-      name: 'Apostrophe^CMS'
+      name: 'Geoportal^CMS'
     };
     var req = geop.tasks.getReq();
     var result = {};
     return geop.schemas.convert(req, schema, 'form', input, result, function(err) {
       assert(!err);
-      assert(result.name === 'Apostrophe^CMS');
+      assert(result.name === 'Geoportal^CMS');
       done();
     });
   });
@@ -1454,7 +1454,7 @@ describe('Schemas', function() {
       assert(!err);
       assert(_.keys(result).length === 1);
       // hashing is not the business of schemas, see the
-      // apostrophe-users module
+      // geoportal-users module
       assert(result.password === 'silly');
       done();
     });
@@ -1480,7 +1480,7 @@ describe('Schemas', function() {
       assert(!err);
       assert(_.keys(result).length === 1);
       // hashing is not the business of schemas, see the
-      // apostrophe-users module
+      // geoportal-users module
       assert(result.password === 'serious');
       done();
     });

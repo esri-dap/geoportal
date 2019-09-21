@@ -1,10 +1,10 @@
 {% import 'geoportal-ui:components/dropdowns.html' as dropdowns with context -%}
 {%- macro listMenu() -%}
-  <li href="#" class="apos-dropdown-item" data-apos-manage-tags>{{ __('Manage Tags') }}</li>
+  <li href="#" class="geop-dropdown-item" data-geop-manage-tags>{{ __('Manage Tags') }}</li>
 {%- endmacro -%}
 {%- if data.permissions.edit -%}
-  <div class="apos-admin-bar-item">
-    <div class="apos-admin-bar-item">
+  <div class="geop-admin-bar-item">
+    <div class="geop-admin-bar-item">
       {{ dropdowns.base({
         label: 'Tags',
         items: []}, 'admin', { direction: 'down', listMacro: listMenu }

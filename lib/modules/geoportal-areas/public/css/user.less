@@ -1,37 +1,37 @@
 
-@apos-translucent-opacity: 0.4;
+@geop-translucent-opacity: 0.4;
 
-.apos-area, .apos-area-widgets, .apos-area-widget { position: relative; }
+.geop-area, .geop-area-widgets, .geop-area-widget { position: relative; }
 
-.apos-area
+.geop-area
 {
   // When an area's limit is reached, it shouldn't display controls
   // to add more content. We use direct children selectors to in order
   // to support nested areas.
-  &.apos-limit-reached
+  &.geop-limit-reached
   {
-    >.apos-ui .apos-area-controls,
-    >[data-apos-widgets]>[data-apos-widget-wrapper]>.apos-ui .apos-area-controls { display: none !important; }
-    >[data-apos-widgets]>[data-apos-widget-wrapper]>[data-apos-widget]>.apos-ui [data-apos-clone-item] { display: none !important; }
+    >.geop-ui .geop-area-controls,
+    >[data-geop-widgets]>[data-geop-widget-wrapper]>.geop-ui .geop-area-controls { display: none !important; }
+    >[data-geop-widgets]>[data-geop-widget-wrapper]>[data-geop-widget]>.geop-ui [data-geop-clone-item] { display: none !important; }
   }
   // When we are dragging a widget, we want it to be at the forefront.
-  .apos-area-widget.ui-draggable-dragging { z-index: @apos-z-index-9; }
-  &.apos-empty
+  .geop-area-widget.ui-draggable-dragging { z-index: @geop-z-index-9; }
+  &.geop-empty
   {
     // When there aren't any widgets in an area, it should have a height
     // and a background color set by default.
     height: 130px;
-    background-color: @apos-light;
+    background-color: @geop-light;
     // When there aren't any widgets in an area, the add content controls
     // should appear absolutely positioned in the empty state.
-    >.apos-ui .apos-area-controls
+    >.geop-ui .geop-area-controls
     {
       position: absolute;
-      opacity: @apos-translucent-opacity;
+      opacity: @geop-translucent-opacity;
       display: block;
       top: 50%;
       transform: translateY(-50%);
-      .apos-button:after {
+      .geop-button:after {
         content: "";
         display: block;
         position: absolute;
@@ -40,124 +40,124 @@
         height: 60px;
         width: 100px;
       }
-      >.apos-ui .apos-area-controls.apos-active .apos-button:after {
+      >.geop-ui .geop-area-controls.geop-active .geop-button:after {
         height: 32px;
       }
-      .apos-area-divider { display: none; }
+      .geop-area-divider { display: none; }
     }
-    >.apos-ui .apos-area-controls--singleton
+    >.geop-ui .geop-area-controls--singleton
     {
       transform: none;
       top: auto;
-      bottom: @apos-padding-2;
-      left: @apos-padding-2;
+      bottom: @geop-padding-2;
+      left: @geop-padding-2;
       &:hover { opacity: 1; }
     }
   }
 }
 
 // disable menu interactions while some windows are open
-.apos-area-widget-controls--disabled {
+.geop-area-widget-controls--disabled {
   pointer-events: none;
 }
 
-.apos-area-widget-controls
+.geop-area-widget-controls
 {
   opacity: 0;
 }
 // Some helpers for general hide/show/peek editing controls
 
-.apos-hide { opacity: 0; }
-.apos-show { opacity: 1; }
-.apos-area .apos-peek { opacity: @apos-translucent-opacity; }
+.geop-hide { opacity: 0; }
+.geop-show { opacity: 1; }
+.geop-area .geop-peek { opacity: @geop-translucent-opacity; }
 
-.apos-area-widget {
-  &:hover .apos-peek { pointer-events: auto;}
-  >.apos-ui .apos-area-widget-controls:hover { opacity: 1; }
+.geop-area-widget {
+  &:hover .geop-peek { pointer-events: auto;}
+  >.geop-ui .geop-area-widget-controls:hover { opacity: 1; }
 
   // When an area has a limit of one, its children widgets shouldn't
   // display the arrow organization controls.
-  >.apos-ui.apos-limit-one [data-apos-move-item] { display: none; }
+  >.geop-ui.geop-limit-one [data-geop-move-item] { display: none; }
 }
 
 // Don't fight with the add content menu. -Tom
-.apos-area.apos-context-content-menu-active {
-  .apos-area-widget {
-    >.apos-ui .apos-area-widget-controls {
+.geop-area.geop-context-content-menu-active {
+  .geop-area-widget {
+    >.geop-ui .geop-area-widget-controls {
       display: none;
     }
   }
 }
 
 // Widget controls positioning
-.apos-area-widget-controls
+.geop-area-widget-controls
 {
   position: absolute;
-  z-index: @apos-z-index-5;
-  .apos-transition;
-  &:hover { z-index: @apos-z-index-6; }
+  z-index: @geop-z-index-5;
+  .geop-transition;
+  &:hover { z-index: @geop-z-index-6; }
 }
-.apos-area-widget-controls--context, .apos-area-widget-controls--top-left,
+.geop-area-widget-controls--context, .geop-area-widget-controls--top-left,
 {
-  top: @apos-padding-1;
-  left: @apos-padding-1;
+  top: @geop-padding-1;
+  left: @geop-padding-1;
 }
-.apos-area-widget-controls--data
+.geop-area-widget-controls--data
 {
-  bottom: @apos-padding-1;
-  left: @apos-padding-1;
+  bottom: @geop-padding-1;
+  left: @geop-padding-1;
 }
 
-.apos-area-widget-controls--top-right
+.geop-area-widget-controls--top-right
 {
-  right: @apos-padding-1;
+  right: @geop-padding-1;
   left: initial;
 }
 
-.apos-area-widget-controls--bottom-left
+.geop-area-widget-controls--bottom-left
 {
   top: initial;
-  bottom: @apos-padding-1;
+  bottom: @geop-padding-1;
 }
 
-.apos-area-widget-controls--bottom-right
+.geop-area-widget-controls--bottom-right
 {
   top: initial;
-  right: @apos-padding-1;
-  bottom: @apos-padding-1;
+  right: @geop-padding-1;
+  bottom: @geop-padding-1;
   left: initial;
 }
 
-.apos-area-widget--contextual>.apos-ui .apos-button-group--data { display: none; }
+.geop-area-widget--contextual>.geop-ui .geop-button-group--data { display: none; }
 
 // Styles for the drag-target separator between widgets.
-.apos-area-item-separator
+.geop-area-item-separator
 {
   opacity: 0;
   padding: 0;
   margin: 0;
-  border: 0px dashed @apos-base;
-  &.apos-hover { background-color: fade(@apos-base, 50%); }
-  .apos-transition;
+  border: 0px dashed @geop-base;
+  &.geop-hover { background-color: fade(@geop-base, 50%); }
+  .geop-transition;
 }
 
 // .ui-draggable-dragging { position: absolute !important; }
 
-.apos-dragging .apos-area-item-separator
+.geop-dragging .geop-area-item-separator
 {
   border-width: 1px;
   opacity: 1;
-  padding: @apos-padding-1;
-  margin: @apos-margin-1/2 0;
+  padding: @geop-padding-1;
+  margin: @geop-margin-1/2 0;
 }
 
-.apos-dragging .apos-empty .apos-area-widgets
+.geop-dragging .geop-empty .geop-area-widgets
 {
   display: block;
   height: 100%;
 }
 
-.apos-dragging.apos-empty .apos-area-item-separator
+.geop-dragging.geop-empty .geop-area-item-separator
 {
   display: block;
   height: 100px;
@@ -165,31 +165,31 @@
   margin: 0;
 }
 
-.apos-dragging.apos-empty .apos-area-widgets {
+.geop-dragging.geop-empty .geop-area-widgets {
   width: 100%;
   height: 100%;
 }
 
-.apos-empty .apos-area-item-separator
+.geop-empty .geop-area-item-separator
 {
   height: 100%;
   width: 100%;
   padding: 0;
 }
 
-// [data-apos-area-controls] .apos-area-controls { opacity: 1 !important;}
-.apos-ui .apos-dropdown.apos-dropdown--area-controls
+// [data-geop-area-controls] .geop-area-controls { opacity: 1 !important;}
+.geop-ui .geop-dropdown.geop-dropdown--area-controls
 {
   height: 5px;
   display: inherit;
-  .apos-drop-shadow(0, 0, 0, 0);
-  >.apos-button
+  .geop-drop-shadow(0, 0, 0, 0);
+  >.geop-button
   {
     position: relative;
     top: -7px;
-    border: 2px solid @apos-white;
-    .apos-rounded(@apos-padding-3);
-    .apos-drop-shadow();
+    border: 2px solid @geop-white;
+    .geop-rounded(@geop-padding-3);
+    .geop-drop-shadow();
     &:after {
       content: "";
       display: block;
@@ -200,7 +200,7 @@
       width: 100px;
     }
   }
-  >.apos-dropdown-items
+  >.geop-dropdown-items
   {
     text-align: left;
     left: 0;
@@ -209,30 +209,30 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 200px;
-    .apos-rounded;
+    .geop-rounded;
   }
 }
 
-.apos-ui .apos-dropdown.apos-dropdown--area-controls
+.geop-ui .geop-dropdown.geop-dropdown--area-controls
 {
-  &.apos-active
+  &.geop-active
   {
-    >.apos-button>i { transform: translateX(-50%) rotate(45deg); margin-left: -0.2px; }
-    // >.apos-dropdown-items { transform: translate(-46%, -10px); }
+    >.geop-button>i { transform: translateX(-50%) rotate(45deg); margin-left: -0.2px; }
+    // >.geop-dropdown-items { transform: translate(-46%, -10px); }
   }
 }
 
-.apos-area-controls
+.geop-area-controls
 {
-  .apos-transition;
+  .geop-transition;
   position: absolute;
   width: 100%;
   text-align: center;
   opacity: 0;
   padding: 20px 0;
-  z-index: @apos-z-index-1;
+  z-index: @geop-z-index-1;
 
-  &.apos-area-controls--singleton
+  &.geop-area-controls--singleton
   {
     display: block;
     opacity: 1;
@@ -240,87 +240,87 @@
   }
 }
 
-[data-apos-area-controls-original] .apos-area-controls
+[data-geop-area-controls-original] .geop-area-controls
 {
   top: 0;
   transform: translateY(-50%);
 }
 
-.apos-area-widget-wrapper>.apos-ui>.apos-area-controls
+.geop-area-widget-wrapper>.geop-ui>.geop-area-controls
 {
   bottom: 0;
   // transform: translateY(50%);
   height: 5px;
-  .apos-transition;
+  .geop-transition;
 }
 
 // We only want to show area add content controls for the actively hovered area,
 // which is determined in area's editor.js.
-.apos-area.apos-hover
+.geop-area.geop-hover
 {
-  >[data-apos-area-controls-original]>.apos-area-controls,
-  >.apos-area-widgets>.apos-area-widget-wrapper:hover>.apos-ui>.apos-area-controls
+  >[data-geop-area-controls-original]>.geop-area-controls,
+  >.geop-area-widgets>.geop-area-widget-wrapper:hover>.geop-ui>.geop-area-controls
   {
     display: block;
-    opacity: @apos-translucent-opacity;
-    z-index: @apos-z-index-2;
+    opacity: @geop-translucent-opacity;
+    z-index: @geop-z-index-2;
     &:hover { opacity: 1; }
   }
 }
 // The horizontal line under the add content button which divides areas
-.apos-area-controls .apos-area-divider
+.geop-area-controls .geop-area-divider
 {
   width: 100%;
   height: 2px;
   transform: translateY(-2px);
-  background-color: @apos-base;
-  .apos-glow;
+  background-color: @geop-base;
+  .geop-glow;
   z-index: 0;
 }
 // TODO figure out how to select these specifically enough that !important isn't necessary
 //
-// z-index-8 puts this above the apostrophe-workflow controls so widgets can always be added at the
+// z-index-8 puts this above the geoportal-workflow controls so widgets can always be added at the
 // bottom of the window, please consider when changing
-.apos-area-controls.apos-active { opacity: 1 !important; display: block; z-index: @apos-z-index-8; }
-.apos-dragging .apos-area-controls { opacity: 0 !important; }
-.apos-rich-text-active .apos-area-controls { display: none !important; }
+.geop-area-controls.geop-active { opacity: 1 !important; display: block; z-index: @geop-z-index-8; }
+.geop-dragging .geop-area-controls { opacity: 0 !important; }
+.geop-rich-text-active .geop-area-controls { display: none !important; }
 
 // Special consideration for 'block-like' areas
-.apos-area--block-level-controls
+.geop-area--block-level-controls
 {
-  &:not(.apos-empty) > .apos-ui
+  &:not(.geop-empty) > .geop-ui
   {
     display: block;
     position: relative;
   }
-  & > .apos-ui .apos-area-controls,
-  & > .apos-area-widgets > .apos-area-widget-wrapper > .apos-ui .apos-area-controls
+  & > .geop-ui .geop-area-controls,
+  & > .geop-area-widgets > .geop-area-widget-wrapper > .geop-ui .geop-area-controls
   {
     top: auto;
     padding: 10px 0;
     transform: none;
     position: relative;
-    .apos-area-divider
+    .geop-area-divider
     {
-      .apos-glow(@apos-secondary);
-      background-color: @apos-secondary;
+      .geop-glow(@geop-secondary);
+      background-color: @geop-secondary;
     }
-    .apos-button--circular { background-color: @apos-secondary; }
+    .geop-button--circular { background-color: @geop-secondary; }
   }
 
   // color contextual controls as well
-  & > .apos-area-widgets > .apos-area-widget-wrapper > .apos-area-widget > .apos-ui .apos-buttons
+  & > .geop-area-widgets > .geop-area-widget-wrapper > .geop-area-widget > .geop-ui .geop-buttons
   {
-    .apos-glow(@apos-secondary);
-    border: 2px solid @apos-secondary;
-    .apos-button:hover { color: @apos-secondary; }
-    .apos-button[data-apos-trash-item]:hover { color: darken(@apos-red, 20%); }
+    .geop-glow(@geop-secondary);
+    border: 2px solid @geop-secondary;
+    .geop-button:hover { color: @geop-secondary; }
+    .geop-button[data-geop-trash-item]:hover { color: darken(@geop-red, 20%); }
   }
 }
-.apos-area-inline-undo__label {
+.geop-area-inline-undo__label {
   margin-right: 5px;
 }
-.apos-area-inline-undo {
+.geop-area-inline-undo {
   display: flex;
   border: 0;
   cursor: pointer;
@@ -329,23 +329,23 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  .apos-rounded;
-  padding: @apos-padding-1;
-  background-color: @apos-blue;
-  color: @apos-white;
+  .geop-rounded;
+  padding: @geop-padding-1;
+  background-color: @geop-blue;
+  color: @geop-white;
   font-size: 13px;
   margin-bottom: 1rem;
   transition: all 0.3s ease;
   &:hover {
-    background-color: darken(@apos-blue, 10%)
+    background-color: darken(@geop-blue, 10%)
   }
-  .apos-area-inline-undo__undo {
+  .geop-area-inline-undo__undo {
     text-decoration: underline;
     margin-left: 5px;
   }
 }
 
-.apos-ui .apos-select {
+.geop-ui .geop-select {
   height: 34px;
   margin: 0 10px;
 }

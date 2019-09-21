@@ -60,7 +60,7 @@ describe('Attachment', function() {
       afterInit: function(callback) {
         assert(geop.attachments);
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);
@@ -224,7 +224,7 @@ describe('Attachment', function() {
       assert(url === '/uploads/attachments/test-test.pdf');
     });
 
-    it('should save and track docIds properly as part of an apostrophe-image', function() {
+    it('should save and track docIds properly as part of an geoportal-image', function() {
       var image = geop.images.newInstance();
       var req = geop.tasks.getReq();
       return geop.attachments.insert(geop.tasks.getReq(), {

@@ -1,51 +1,51 @@
 // Base + Non-Slideable ============================
-.apos-ui.apos-modal
-.apos-modal-header
+.geop-ui.geop-modal
+.geop-modal-header
 {
   position: relative;
   width: 100%;
-  padding: @apos-padding-2 @apos-padding-3 @apos-padding-2;
-  background-color: @apos-white;
+  padding: @geop-padding-2 @geop-padding-3 @geop-padding-2;
+  background-color: @geop-white;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  border-bottom: 2px solid @apos-mid;
+  border-bottom: 2px solid @geop-mid;
 
-  .apos-dropdown-items
+  .geop-dropdown-items
   {
     text-align: left;
   }
 
-  .apos-dropdown
+  .geop-dropdown
   {
     vertical-align: top;
     box-shadow: none;
-    .apos-rounded;
-    &:hover, &.apos-active { .apos-drop-shadow; }
-    .apos-dropdown-items{ min-width: 100px; }
-    .apos-button { border-width: 0; &:hover { box-shadow: none; } }
+    .geop-rounded;
+    &:hover, &.geop-active { .geop-drop-shadow; }
+    .geop-dropdown-items{ min-width: 100px; }
+    .geop-button { border-width: 0; &:hover { box-shadow: none; } }
   }
 
-  .apos-modal-title
+  .geop-modal-title
   {
-    .apos-inline-block(top);
+    .geop-inline-block(top);
     max-width: 30%;
     margin-right: 2%;
 
     font-weight: 600;
     font-size: 32px;
-    color: @apos-dark;
+    color: @geop-dark;
     line-height: 32px;
     letter-spacing: -1px;
   }
 
-  .apos-modal-instructions
+  .geop-modal-instructions
   {
-    .apos-inline-block(bottom);
+    .geop-inline-block(bottom);
     width: 27%;
     margin-right: 1%;
     font-size: 14px;
     line-height: 19px;
-    @media @apos-breakpoint-desktop-xl
+    @media @geop-breakpoint-desktop-xl
     {
       font-size: 16px;
       line-height: 18px;
@@ -53,10 +53,10 @@
     letter-spacing: 0px;
   }
 
-  .apos-modal-controls
+  .geop-modal-controls
   {
     position: relative;
-    .apos-inline-block(top);
+    .geop-inline-block(top);
     max-width: 100%;
     float: right;
     white-space: nowrap;
@@ -65,20 +65,20 @@
     // Too many buttons here right now.
     // Halfing the left/right padding on these "minor"
     // buttons for now.  -Matt C
-    .apos-button.apos-button--minor
+    .geop-button.geop-button--minor
     {
-      padding: @apos-padding-1 @apos-padding-2;
+      padding: @geop-padding-1 @geop-padding-2;
     }
-    .apos-button.apos-button--minor + .apos-button.apos-button--major,
-    .apos-button.apos-button--minor + .apos-button:last-of-type
+    .geop-button.geop-button--minor + .geop-button.geop-button--major,
+    .geop-button.geop-button--minor + .geop-button:last-of-type
     {
-      margin-left: @apos-padding-1;
-      @media @apos-breakpoint-desktop-xl { margin-left: @apos-padding-2; }
+      margin-left: @geop-padding-1;
+      @media @geop-breakpoint-desktop-xl { margin-left: @geop-padding-2; }
     }
-    .apos-dropdown
+    .geop-dropdown
     {
-      margin-right: @apos-padding-1;
-      @media @apos-breakpoint-desktop-xl { margin-right: @apos-padding-2; }
+      margin-right: @geop-padding-1;
+      @media @geop-breakpoint-desktop-xl { margin-right: @geop-padding-2; }
     }
   }
 }

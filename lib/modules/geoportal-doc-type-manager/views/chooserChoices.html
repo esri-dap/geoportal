@@ -5,9 +5,9 @@
   {# item.relationship. -Tom #}
   {% set choice = item.item or item %}
   {% set relationship = item.relationship %}
-  <div class="apos-chooser-choice{{ ' apos-chooser-choice--removed' if item.__removed }}" data-chooser-choice='{{ choice._id }}' >
+  <div class="geop-chooser-choice{{ ' geop-chooser-choice--removed' if item.__removed }}" data-chooser-choice='{{ choice._id }}' >
     {% if not item.readOnly %}
-      <div class="apos-button apos-button--in-context apos-button--group apos-button--inline apos-chooser-controls">
+      <div class="geop-button geop-button--in-context geop-button--group geop-button--inline geop-chooser-controls">
         {# By default you can change the order, #}
         {# sometimes this has no meaningful effect #}
         {%- if not geop.utils.isFalse(data.field.sortable) -%}
@@ -28,7 +28,7 @@
         {{ buttons.inGroup('', { icon: 'trash', action: 'delete-item', value: choice._id, tooltip: 'Remove'}) }}
       </div>
     {% endif %}
-    <div class="apos-choose-choice-content">
+    <div class="geop-choose-choice-content">
       {% include data.choiceTemplate %}
     </div>
   </div>

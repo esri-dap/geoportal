@@ -3,13 +3,13 @@
 //
 // Use on a psudo element like so:
 //
-//   .apos-elem.apos-busy:after
+//   .geop-elem.geop-busy:after
 //   {
-//     .apos-busy-spinner();
+//     .geop-busy-spinner();
 //   }
 //
 
-.apos-busy-spinner(@top: 50%, @size: 24px)
+.geop-busy-spinner(@top: 50%, @size: 24px)
 {
   position: absolute;
   left: ~'calc(50% - 12px)';
@@ -17,11 +17,11 @@
   width: @size;
   height: @size;
 
-  color: @apos-green;
+  color: @geop-green;
   .fa;
   font-size: @size;
   content: '\f110';
   opacity: 0;
   line-height: @size;
-  .apos-transition();
+  .geop-transition();
 }

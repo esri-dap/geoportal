@@ -1,32 +1,32 @@
-.apos-modal.apos-versions-modal
-.apos-versions
+.geop-modal.geop-versions-modal
+.geop-versions
 {
   margin: 0 auto;
   width: 50%;
   min-width: 400px;
 
-  .apos-version
+  .geop-version
   {
     display: block;
     width: 100%;
     margin: 1em 0 3em;
 
-    .apos-author
+    .geop-author
     {
       width: 60px;
-      .apos-inline-block(top);
-      .apos-avatar-wrapper
+      .geop-inline-block(top);
+      .geop-avatar-wrapper
       {
         width: 46px;
         height: 46px;
-        background: @apos-mid;
+        background: @geop-mid;
         border-radius: 100%;
       }
     }
-    .apos-changes-meta
+    .geop-changes-meta
     {
       width: ~'calc(100% - 225px)';
-      .apos-inline-block(top);
+      .geop-inline-block(top);
     }
 
     // date
@@ -34,26 +34,26 @@
     {
       font-size: 16px;
       font-weight: bold;
-      .apos-inline-block(top);
+      .geop-inline-block(top);
     }
     cite
     {
       margin-right: 0.2em;
       font-weight: bold;
-      .apos-inline-block(top);
+      .geop-inline-block(top);
     }
-    a[data-apos-revert]
+    a[data-geop-revert]
     {
       float: right;
-      .apos-inline-block(top);
+      .geop-inline-block(top);
       margin-right: 1em;
     }
     h5[data-open-changes]
     {
-      .apos-inline-block(top);
+      .geop-inline-block(top);
       margin-top: 0.5em;
       margin-bottom: 1em;
-      color: @apos-gold;
+      color: @geop-gold;
 
       &:hover
       {
@@ -65,8 +65,8 @@
   }
 
   // Current revision disabled button
-  .apos-version-current .apos-button.apos-button--disabled {
-    color: @apos-primary;
+  .geop-version-current .geop-button.geop-button--disabled {
+    color: @geop-primary;
     cursor: default;
     font-size: 16px;
     padding: 1em 3em;
@@ -77,44 +77,44 @@
 }
 
 // Changes Diff Container
-.apos-modal.apos-versions-modal
-.apos-versions .apos-version >
-.apos-changes
+.geop-modal.geop-versions-modal
+.geop-versions .geop-version >
+.geop-changes
 {
   width: 100%;
   padding-left: 60px;
 }
 
 // Each Change, can be multiple per version
-.apos-modal.apos-versions-modal
-.apos-versions
-.apos-change
+.geop-modal.geop-versions-modal
+.geop-versions
+.geop-change
 {
   display: block;
-  &.apos-change-action-change h5 {
-    color: @apos-blue;
+  &.geop-change-action-change h5 {
+    color: @geop-blue;
   }
-  &.apos-change-action-add h5 {
+  &.geop-change-action-add h5 {
     margin-left: 1.5em;
-    color: @apos-green;
+    color: @geop-green;
   }
-  &.apos-change-action-remove h5 {
+  &.geop-change-action-remove h5 {
     margin-left: 1.5em;
-    color: @apos-red;
+    color: @geop-red;
     text-decoration: line-through;
   }
   h5 {
-    .apos-inline-block(top);
+    .geop-inline-block(top);
     margin: 0;
     margin-bottom: 2px;
   }
   h6 {
-    .apos-inline-block(top);
+    .geop-inline-block(top);
   }
-  // &.apos-change-action-move-up::before {
+  // &.geop-change-action-move-up::before {
   //   content: "▲ ";
   // }
-  // &.apos-change-action-move-down::before {
+  // &.geop-change-action-move-down::before {
   //   content: "▼ ";
   // }
 }

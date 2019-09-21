@@ -1,24 +1,24 @@
 // Bright Brand Colors =============================
-@apos-green: #00BF9A;
-@apos-red: #EA433A;
-@apos-blue: #6666FF;
-@apos-purple: #B327BF;
-@apos-gold: #CC9300;
+@geop-green: #00BF9A;
+@geop-red: #EA433A;
+@geop-blue: #6666FF;
+@geop-purple: #B327BF;
+@geop-gold: #CC9300;
 
 // Grayscale Colors ================================
-@apos-white: #ffffff;
-@apos-light: #EEEEEE;
-@apos-mid: #D8D8D8;
-@apos-dark: #363B3B;
-@apos-black: #151616;
+@geop-white: #ffffff;
+@geop-light: #EEEEEE;
+@geop-mid: #D8D8D8;
+@geop-dark: #363B3B;
+@geop-black: #151616;
 
-@apos-base: @apos-green;
+@geop-base: @geop-green;
 
-@apos-darken: darken(@apos-base, 20%);
-@apos-disabled: fade(@apos-base, 50%);
+@geop-darken: darken(@geop-base, 20%);
+@geop-disabled: fade(@geop-base, 50%);
 
-.apos-bg {
-  background-color: @apos-base;
+.geop-bg {
+  background-color: @geop-base;
 }
 
 /*
@@ -89,23 +89,23 @@ For licensing,  see LICENSE.md or http://ckeditor.com/license
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
   box-shadow: 0 0 3px rgba(0, 0, 0, .15);
 }
-// .apos-button--in-group
+// .geop-button--in-group
 // {
-//   padding: @apos-padding-1;
+//   padding: @geop-padding-1;
 //   background-color: transparent;
 //   border: none;
 //   &:hover
 //   {
-//     background-color: @apos-light;
+//     background-color: @geop-light;
 //   }
 // }
 .cke_inner {
   padding: 0 10px;
   border-radius: 4px;
-  border: 2px solid @apos-base;
-  box-shadow: 0px 0px 7px 2px fade(@apos-base, 50%);
-  background-color: @apos-white;
-  color: @apos-dark;
+  border: 2px solid @geop-base;
+  box-shadow: 0px 0px 7px 2px fade(@geop-base, 50%);
+  background-color: @geop-white;
+  color: @geop-dark;
   cursor: pointer;
   text-decoration: none;
   display: block;
@@ -198,7 +198,7 @@ For licensing,  see LICENSE.md or http://ckeditor.com/license
   width: 120px;
   height: 100px;
   overflow: hidden;
-  background-color: @apos-white;
+  background-color: @geop-white;
   border: 1px solid #b6b6b6;
   border-bottom-color: #999;
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
@@ -241,7 +241,7 @@ For licensing,  see LICENSE.md or http://ckeditor.com/license
 .cke_panel_listItem a {
   padding: 3px 4px;
   display: block;
-  border: 1px solid @apos-white;
+  border: 1px solid @geop-white;
   color: inherit!important;
   text-decoration: none;
   overflow: hidden;
@@ -400,7 +400,7 @@ a.cke_button {
   opacity: .5;
 }
 a.cke_button:hover, a.cke_button:focus, a.cke_button:active {
-  background-color: @apos-light;
+  background-color: @geop-light;
 }
 .cke_button_icon {
   cursor: inherit;
@@ -700,7 +700,7 @@ a.cke_button:hover, a.cke_button:focus, a.cke_button:active {
   overflow: hidden;
   float: left;
   cursor: default;
-  color: @apos-dark;
+  color: @geop-dark;
   width: 60px;
 }
 .cke_rtl .cke_combo_text {
@@ -810,7 +810,7 @@ legend.cke_voice_label {
 
 
 ////////////////////
-///// Custom Apostrophe skin
+///// Custom Geoportal skin
 ////////////////////
 .icon
 {
@@ -835,12 +835,12 @@ legend.cke_voice_label {
 
 .cke_combo_button
 {
- background-color: @apos-white;
- color: @apos-dark;
+ background-color: @geop-white;
+ color: @geop-dark;
 }
 .cke_combo_text
 {
-  color: @apos-dark;
+  color: @geop-dark;
 }
 a.cke_button
 {
@@ -850,7 +850,7 @@ a.cke_button
   &:last-child{ border-right: 0;}
   &::before
   {
-    color: @apos-dark;
+    color: @geop-dark;
     font-size: 12px;
     padding: 4px 5px;
   }
@@ -863,7 +863,7 @@ a.cke_combo_button:focus,
 .cke_combo_off a.cke_combo_button:hover,
 .cke_combo_off a.cke_combo_button:focus
 {
-  background-color: @apos-light, 10%;
+  background-color: @geop-light, 10%;
  &::before
   {
     opacity: 1;
@@ -871,7 +871,7 @@ a.cke_combo_button:focus,
 }
 
 a.cke_button_on::before {
-  color: @apos-base;
+  color: @geop-base;
 }
 
 .icon-bold { &::before {content: "\f032";} }

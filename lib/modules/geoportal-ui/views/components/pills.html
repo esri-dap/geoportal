@@ -1,12 +1,12 @@
 {% macro base(items, choice) -%}
-  <div class="apos-pill">
+  <div class="geop-pill">
     {%- for item in items -%}
       {%- if not choice and item.default -%}
-        {{ buttons.base(item.label, { action: item.action, value: item.value }, 'apos-button--pill') }}
+        {{ buttons.base(item.label, { action: item.action, value: item.value }, 'geop-button--pill') }}
       {%- elif item.value == choice -%}
-        {{ buttons.base(item.label, { action: item.action, value: item.value }, 'apos-button--pill') }}
+        {{ buttons.base(item.label, { action: item.action, value: item.value }, 'geop-button--pill') }}
       {%- else -%}
-        {{ buttons.base(item.label, { action: item.action, value: item.value }, 'apos-button--pill apos-button--pill-inactive ') }}
+        {{ buttons.base(item.label, { action: item.action, value: item.value }, 'geop-button--pill geop-button--pill-inactive ') }}
       {%- endif -%}
     {%- endfor -%}
   </div>

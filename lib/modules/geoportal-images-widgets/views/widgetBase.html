@@ -1,4 +1,4 @@
-<div class="apos-slideshow{% if data.options.aspectRatio %} apos-slideshow--aspect-ratio{% endif %}{% block outerClass %}{% endblock %}" data-slideshow>
+<div class="geop-slideshow{% if data.options.aspectRatio %} geop-slideshow--aspect-ratio{% endif %}{% block outerClass %}{% endblock %}" data-slideshow>
   <div data-slideshow-items>
     {%- block items -%}
       {%- for entry in data.widget._pieces -%}
@@ -7,7 +7,7 @@
         {%- set image = entry.item or entry -%}
         {%- set relationship = entry.relationship -%}
         <div data-slideshow-item
-          class="apos-slideshow-item{% if loop.first %} apos-current{% endif %}{% block itemClass %}{% endblock %} apos-slideshow-item--{{ image.attachment.extension }}"
+          class="geop-slideshow-item{% if loop.first %} geop-current{% endif %}{% block itemClass %}{% endblock %} geop-slideshow-item--{{ image.attachment.extension }}"
           style="background-image:
             url({{ geop.attachments.url(image.attachment, { size: data.options.size, crop: relationship }) }})
             {%- if geop.attachments.hasFocalPoint(relationship) -%}
@@ -17,7 +17,7 @@
               ; width: 100%; padding-bottom: {{ 100 * data.options.aspectRatio[1] / data.options.aspectRatio[0] }}%; background-size: contain
             {%- endif -%}
           ">
-          {%- block title -%}<h4 class="apos-image-widget-image-title">{{ image.title }}</h4>{%- endblock -%}
+          {%- block title -%}<h4 class="geop-image-widget-image-title">{{ image.title }}</h4>{%- endblock -%}
           <img alt="{% block imgAlt %}{{ image.title }}{% endblock %}" data-image src="{% block imgSrc %}{{ geop.attachments.url(image.attachment, { size: data.options.size, crop: relationship }) }}{% endblock %}" />
           {%- block credit -%}
             {%- if image.credit -%}
@@ -42,7 +42,7 @@
 </div>
 {% block arrows %}
   {% if data.widget._pieces.length > 1 %}
-    <a href="#" data-next class="apos-slideshow-button apos-slideshow-next default-style"><i class="fa fa-angle-right"></i></a>
-    <a href="#" data-previous class="apos-slideshow-button apos-slideshow-prev default-style"><i class="fa fa-angle-left"></i></a>
+    <a href="#" data-next class="geop-slideshow-button geop-slideshow-next default-style"><i class="fa fa-angle-right"></i></a>
+    <a href="#" data-previous class="geop-slideshow-button geop-slideshow-prev default-style"><i class="fa fa-angle-left"></i></a>
   {% endif %}
 {% endblock %}

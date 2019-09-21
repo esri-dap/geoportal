@@ -1,41 +1,41 @@
 // ===============================================================
-// Apostrophe default form fields
+// Geoportal default form fields
 // ===============================================================
 
 // General Styles ===================================
 
-.apos-field
+.geop-field
 {
-  margin-bottom: @apos-margin-4;
+  margin-bottom: @geop-margin-4;
   width: 100%;
   max-width: 540px;
 }
 
-.apos-field-label
+.geop-field-label
 {
   display: block;
-  margin-bottom: @apos-margin-1;
-  .apos-text-instruction;
+  margin-bottom: @geop-margin-1;
+  .geop-text-instruction;
 }
 
-.apos-field-input
+.geop-field-input
 {
   display: block;
-  padding: @apos-padding-2;
-  background-color: @apos-light;
+  padding: @geop-padding-2;
+  background-color: @geop-light;
   width: 100%;
   border: none;
-  .apos-text-normal;
-  .apos-transition;
+  .geop-text-normal;
+  .geop-transition;
 }
 
-.apos-field-input--small {
-  padding: @apos-padding-1 @apos-padding-2;
+.geop-field-input--small {
+  padding: @geop-padding-1 @geop-padding-2;
 }
 
 // Select Specific ============================
 
-.apos-field-input-select-wrapper
+.geop-field-input-select-wrapper
 {
   position: relative;
   display: flex;
@@ -44,16 +44,16 @@
   {
     content: "\f0d7";
     position: absolute;
-    right: @apos-padding-3;
+    right: @geop-padding-3;
     .fa;
     pointer-events: none;
   }
 }
 
-.apos-field-input-select-wrapper--small:after {
+.geop-field-input-select-wrapper--small:after {
 }
 
-.apos-field-input-select
+.geop-field-input-select
 {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -63,52 +63,52 @@
   &:hover { cursor: pointer; }
 }
 
-.apos-field-input-text,
-.apos-field-input-select,
-.apos-field-input-textarea
+.geop-field-input-text,
+.geop-field-input-select,
+.geop-field-input-textarea
 {
   &:focus
   {
     outline:none;
-    .apos-glow;
+    .geop-glow;
   }
 }
 
 // Checkbox (singular) ===================================
-.apos-field-input-checkbox-indicator
+.geop-field-input-checkbox-indicator
 {
   display: inline-block;
   vertical-align: top;
   height: 21px;
   width: 21px;
-  border: 1px solid @apos-dark;
-  .apos-transition(all, .1s, ease-in-out);
-  .apos-no-select;
+  border: 1px solid @geop-dark;
+  .geop-transition(all, .1s, ease-in-out);
+  .geop-no-select;
 
   &:hover{ cursor: pointer; }
 }
 
-.apos-field-input-checkbox:checked + .apos-field-input-checkbox-indicator
+.geop-field-input-checkbox:checked + .geop-field-input-checkbox-indicator
 {
-  background: @apos-primary;
-  border-color: @apos-primary;
+  background: @geop-primary;
+  border-color: @geop-primary;
   border-width: 6px;
 
 }
 
-.apos-field-input-checkbox
+.geop-field-input-checkbox
 {
   display: inline;
   max-width: 21px; //Match it to our indicator box;
   visibility: hidden;
   position: absolute;
-  //&:checked + .apos-field-input-checkbox-indicator
+  //&:checked + .geop-field-input-checkbox-indicator
 
 }
 
 // Checkboxes (collection) ===================================
 
-.apos-checkbox-choice
+.geop-checkbox-choice
 {
   label {
     width: 200px;
@@ -117,19 +117,19 @@
   }
 }
 
-.apos-form-checkbox
+.geop-form-checkbox
 {
   position: relative;
-  padding: @apos-padding-2 0 @apos-padding-2 @apos-padding-2;
+  padding: @geop-padding-2 0 @geop-padding-2 @geop-padding-2;
 
   &:nth-child(even)
   {
-    background-color: @apos-lighter;
+    background-color: @geop-lighter;
   }
 
   &-label
   {
-    color: @apos-dark;
+    color: @geop-dark;
 
     &:hover
     {
@@ -139,14 +139,14 @@
 
   &-input
   {
-    margin-right: @apos-margin-2;
+    margin-right: @geop-margin-2;
     opacity: 0;
     z-index: -1;
 
-    &:checked ~ .apos-form-checkbox-indicator
+    &:checked ~ .geop-form-checkbox-indicator
     {
-      background: @apos-primary;
-      border-color: @apos-primary;
+      background: @geop-primary;
+      border-color: @geop-primary;
       border-width: 6px;
     }
   }
@@ -159,46 +159,46 @@
     height: 21px;
     width: 21px;
     left: 0;
-    margin-left: @apos-margin-2;
-    border: 1px solid @apos-dark;
-    .apos-transition(all, .1s, ease-in-out);
-    .apos-no-select;
+    margin-left: @geop-margin-2;
+    border: 1px solid @geop-dark;
+    .geop-transition(all, .1s, ease-in-out);
+    .geop-no-select;
 
     &:hover { cursor: pointer; }
   }
 }
 
 // Tags ========================================
-.apos-field-tags .apos-tags
+.geop-field-tags .geop-tags
 {
   position: relative;
-  .apos-field-input { position: relative; }
-  .apos-tag-add
+  .geop-field-input { position: relative; }
+  .geop-tag-add
   {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: @apos-padding-2;
-    color: @apos-dark;
+    padding: @geop-padding-2;
+    color: @geop-dark;
     text-decoration: none;
     line-height: 28px;
-    &:hover { color: @apos-primary; }
+    &:hover { color: @geop-primary; }
   }
-  .apos-tag-remove
+  .geop-tag-remove
   {
-    color: @apos-mid;
+    color: @geop-mid;
     text-decoration: none;
-    &:hover { color: @apos-delete; }
+    &:hover { color: @geop-delete; }
   }
-  .apos-tag-list
+  .geop-tag-list
   {
     position: relative;
-    padding: @apos-padding-1 @apos-padding-2;
-    background-color: fade(@apos-light, 50%);
-    &.apos-empty { display: none; }
+    padding: @geop-padding-1 @geop-padding-2;
+    background-color: fade(@geop-light, 50%);
+    &.geop-empty { display: none; }
     &.ui-sortable
     {
-      .apos-tag-list-item
+      .geop-tag-list-item
       {
         cursor: -webkit-grab;
         cursor: grab;
@@ -214,31 +214,31 @@
         height: 38px;
         width: 100px;
         display: inline-block;
-        border: 1px dashed @apos-base;
-        background-color: fade(@apos-base, 50%);
+        border: 1px dashed @geop-base;
+        background-color: fade(@geop-base, 50%);
         transform: translateY(30%);
       }
     }
   }
-  .apos-tag-list-item
+  .geop-tag-list-item
   {
-    // .apos-inline-block;
+    // .geop-inline-block;
     display: inline;
     margin-top: 6px;
     &:not(:first-of-type) { margin-left: 10px; }
   }
-  .apos-tag-entry
+  .geop-tag-entry
   {
-    .apos-text-normal;
+    .geop-text-normal;
     line-height: 38px;
     text-transform: capitalize;
     padding-bottom: 6px;
-    border-bottom: 1px dashed @apos-primary;
+    border-bottom: 1px dashed @geop-primary;
   }
 }
 
 // Colorpicker ===================================
-.apos-field-color {
+.geop-field-color {
   position: relative;
   max-width: 229px;
 
@@ -251,23 +251,23 @@
   }
 }
 
-.apos-field-input-color-value {
+.geop-field-input-color-value {
   float: left;
   margin: 20px 0px 0 20px
 }
 
-.apos-field-input-color-preview {
+.geop-field-input-color-preview {
   float: left;
   width: 50px;
   height: 50px;
   border: 1px solid black;
 }
 
-.apos-field-input-color-preview--empty {
+.geop-field-input-color-preview--empty {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVQYV2NMKL/ty4ADMIIkF3SqbsYmP+gkAayXGgfe8HOVAAAAAElFTkSuQmCC);
 }
 
-.apos-field-input-color {
+.geop-field-input-color {
   width: 70px;
   padding: 15px;
   height: 60px;
@@ -279,32 +279,32 @@
 
 // Range ===================================
 
-.apos-field-input-range {
+.geop-field-input-range {
   padding-left: 0;
   padding-right: 0;
 }
 
-.apos-field-input-range-value {
+.geop-field-input-range-value {
   display: inline-block;
   margin-left: 10px;
 }
 
-.apos-field-range .apos-field-label {
+.geop-field-range .geop-field-label {
   display: inline-block;
 }
 
 // Browse and autocomplete combo
-.apos-browse-and-autocomplete {
+.geop-browse-and-autocomplete {
   display: flex;
   position: relative;
   align-items: center;
-  .apos-button {
+  .geop-button {
     position: absolute;
     right: 10px;
   }
 }
 
 // Browse only
-.apos-browse {
+.geop-browse {
   margin-bottom: 16px;
 }

@@ -24,7 +24,7 @@ describe('Nested Modules', function() {
       },
       afterInit: function(callback) {
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);
@@ -36,7 +36,7 @@ describe('Nested Modules', function() {
     });
   });
 
-  it('should have both apostrophe-test-module and nested-module-1', function() {
+  it('should have both geoportal-test-module and nested-module-1', function() {
     assert(geop.modules['geoportal-test-module']);
     assert(geop.modules['geoportal-test-module'].color === 'red');
     // Option from modules.js

@@ -54,7 +54,7 @@
     {{ buttons.minor('Cancel', { action: 'cancel' }) }}
     {# "New" is less ambiguous than "Add" when you're already *choosing* things. -Tom #}
     {% if data.options.insertViaUpload %}
-      <input type="file" multiple name="files" style="display:none" data-apos-uploader-{{ data.options.name }} />
+      <input type="file" multiple name="files" style="display:none" data-geop-uploader-{{ data.options.name }} />
       {{ buttons.major('New ' + data.options.label, { action: 'upload-' + data.options.name }) }}
     {% else %}
       {{ buttons.major('New ' + data.options.label, { action: 'create-' + data.options.name }) }}
@@ -65,7 +65,7 @@
     {# when you're just managing stuff. There is no risk of losing work. -Tom #}
     {{ buttons.minor('Finished', { action: 'cancel' }) }}
     {% if data.options.insertViaUpload %}
-      <input type="file" multiple name="files" style="display:none" data-apos-uploader-{{ data.options.name }} />
+      <input type="file" multiple name="files" style="display:none" data-geop-uploader-{{ data.options.name }} />
       {{ buttons.major('Add ' + data.options.label, { action: 'upload-' + data.options.name }) }}
     {% else %}
       {{ buttons.major('Add ' + data.options.label, { action: 'create-' + data.options.name }) }}
@@ -78,18 +78,18 @@
   {#
     Normal cursor-driven filters
   #}
-  <div class="apos-modal-filters-toggles">
-    <div class="apos-modal-filters-wrapper apos-modal-filters-wrapper--left">
-      <span class="apos-modal-filter apos-modal-filter--padded">
+  <div class="geop-modal-filters-toggles">
+    <div class="geop-modal-filters-wrapper geop-modal-filters-wrapper--left">
+      <span class="geop-modal-filter geop-modal-filter--padded">
         {{ fields.checkbox('select-all') }}
       </span>
       {%- for filter in filters.options -%}
-      <span class="apos-modal-filter">
+      <span class="geop-modal-filter">
         {%- if not geop.utils.isFalse(filter.label) -%}
         <label for="{{ filter.name }}">{{ filter.label or geop.utils.startCase(filter.name) }}</label>
         {%- endif -%} {%- if filter.multiple -%} {%- for chosen in filters.choices[filter.name] -%} {% set id = geop.utils.generateId()
         %}
-        <label class="apos-modal-filter-selection" for="{{ id }}">
+        <label class="geop-modal-filter-selection" for="{{ id }}">
           <input type="checkbox" id="{{ id }}" name="{{ filter.name }}" value="{{ chosen }}" checked /> {{ geop.utils.find(filter.choices, 'value', chosen).label }}</label>
         {%- endfor -%} {{ fields.select(filter.name, geop.utils.concat([ { label: 'Choose One', value: '**CHOOSE**' } ], geop.utils.difference(filter.choices,
         filters.choices[filter.name], 'value')), '**CHOOSE**') }} {%- else -%} {{ fields.select(filter.name, geop.utils.concat([
@@ -97,9 +97,9 @@
       </span>
       {%- endfor -%}
     </div>
-      <div class="apos-modal-filters-wrapper apos-modal-filters-wrapper--right">
+      <div class="geop-modal-filters-wrapper geop-modal-filters-wrapper--right">
       {# Search #}
-      <div class="apos-modal-filters-search">
+      <div class="geop-modal-filters-search">
         {# we need data.options.label & pluralLabel #} {{ fields.string('search-' + data.options.name, 'Search ' + data.options.pluralLabel
         + '...', filters.q or '' ) }}
       </div>

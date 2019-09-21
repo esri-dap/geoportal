@@ -9,7 +9,7 @@ describe('Express', function() {
 
   before(function() {
     // Create and bind a server on port 3000. This way
-    // when Apostrophe starts up we are guaranteed it won't
+    // when Geoportal starts up we are guaranteed it won't
     // randomly be assigned this port, nor be confused by
     // the falsiness of port 0 and use the default value.
     temporaryServer = require('http').createServer();

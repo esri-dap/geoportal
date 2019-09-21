@@ -1,8 +1,8 @@
 {% macro base(label, options, classes) -%}
   {%- if options.url -%}
-    <a href="{{ options.url }}" class="apos-button {{ classes }}" {% if options.tooltip %}data-apos-tooltip="{{ options.tooltip }}"{% endif %} {{ options.attributes }} data-apos-{{ options.action | css }}{% if options.value %}='{{ options.value }}'{% endif %}><span class="apos-button-label">{{ __(label | d('')) }}</span>{% if options.icon %}<i class="fa fa-{{ options.icon }}"></i>{% endif %}</a>
+    <a href="{{ options.url }}" class="geop-button {{ classes }}" {% if options.tooltip %}data-geop-tooltip="{{ options.tooltip }}"{% endif %} {{ options.attributes }} data-geop-{{ options.action | css }}{% if options.value %}='{{ options.value }}'{% endif %}><span class="geop-button-label">{{ __(label | d('')) }}</span>{% if options.icon %}<i class="fa fa-{{ options.icon }}"></i>{% endif %}</a>
   {%- else -%}
-    <button class="apos-button {{ classes }}" type="button" {% if options.tooltip %}data-apos-tooltip="{{ options.tooltip }}"{% endif %} {{ options.attributes }} data-apos-{{ options.action | css }}{% if options.value %}='{{ options.value }}'{% endif %}><span class="apos-button-label">{{ __(label | d('')) }}</span>{% if options.icon %}<i class="fa fa-{{ options.icon }}"></i>{% endif %}</button>
+    <button class="geop-button {{ classes }}" type="button" {% if options.tooltip %}data-geop-tooltip="{{ options.tooltip }}"{% endif %} {{ options.attributes }} data-geop-{{ options.action | css }}{% if options.value %}='{{ options.value }}'{% endif %}><span class="geop-button-label">{{ __(label | d('')) }}</span>{% if options.icon %}<i class="fa fa-{{ options.icon }}"></i>{% endif %}</button>
   {%- endif -%}
 {%- endmacro %}
 
@@ -11,37 +11,37 @@
 {%- endmacro %}
 
 {% macro disabled(label, options) -%}
-  {{ base(label, options, 'apos-button--disabled') }}
+  {{ base(label, options, 'geop-button--disabled') }}
 {%- endmacro %}
 
 {% macro inContext(label, options) -%}
-  {{ base(label, options, 'apos-button--in-context') }}
+  {{ base(label, options, 'geop-button--in-context') }}
 {%- endmacro %}
 
 {% macro more(label, options) -%}
-  {{ base(label, options, 'apos-button--more') }}
+  {{ base(label, options, 'geop-button--more') }}
 {%- endmacro %}
 
 {% macro action(label, options) -%}
-  {{ base(label, options, 'apos-button--action') }}
+  {{ base(label, options, 'geop-button--action') }}
 {%- endmacro %}
 
 {% macro global(label, options) -%}
-  {{ base(label, options, 'apos-button--global') }}
+  {{ base(label, options, 'geop-button--global') }}
 {%- endmacro %}
 
 {% macro major(label, options) -%}
-  {{ base(label, options, 'apos-button--major') }}
+  {{ base(label, options, 'geop-button--major') }}
 {%- endmacro %}
 
 {% macro minor(label, options) -%}
-  {{ base(label, options, 'apos-button--minor') }}
+  {{ base(label, options, 'geop-button--minor') }}
 {%- endmacro %}
 
 {% macro danger(label, options) -%}
-  {{ base(label, options, 'apos-button--danger') }}
+  {{ base(label, options, 'geop-button--danger') }}
 {%- endmacro %}
 
 {% macro inGroup(label, options) -%}
-  {{ base(label, options, 'apos-button--in-group') }}
+  {{ base(label, options, 'geop-button--in-group') }}
 {%- endmacro %}

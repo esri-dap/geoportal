@@ -26,9 +26,9 @@ module.exports = function(options) {
 
   // The core must have a reference to itself in order to use the
   // promise event emitter code
-  self.apos = self;
+  self.geop = self;
 
-  require('./lib/modules/apostrophe-module/lib/events.js')(self, options);
+  require('./lib/modules/geoportal-module/lib/events.js')(self, options);
 
   try {
     // Determine root module and root directory
@@ -82,7 +82,7 @@ module.exports = function(options) {
     if (self.argv._.length) {
       self.emit('runTask');
     } else {
-      // The apostrophe-express module adds this method
+      // The geoportal-express module adds this method
       self.listen();
     }
   });
@@ -91,12 +91,12 @@ module.exports = function(options) {
   //
   // geop.emit(eventName, /* arg1, arg2, arg3... */)
   //
-  // Emit an Apostrophe legacy event. All handlers that have been set
+  // Emit an Geoportal legacy event. All handlers that have been set
   // with geop.on for the same eventName will be invoked. Any additional
   // arguments are received by the handler functions as arguments.
   //
   // See the `self.on` and `self.emit` methods of all modules
-  // (via the `apostrophe-module`) base class for a better,
+  // (via the `geoportal-module`) base class for a better,
   // promisified event system.
 
   self.emit = function(eventName /* ,arg1, arg2, arg3... */) {
@@ -111,19 +111,19 @@ module.exports = function(options) {
     }
   };
 
-  // Install an Apostrophe legacy event handler. The handler will be called
+  // Install an Geoportal legacy event handler. The handler will be called
   // when geop.emit is invoked with the same eventName. The handler
   // will receive any additional arguments passed to geop.emit.
   //
   // See the `self.on` and `self.emit` methods of all modules
-  // (via the `apostrophe-module`) base class for a better,
+  // (via the `geoportal-module`) base class for a better,
   // promisified event system.
 
   self.on = function(eventName, fn) {
     self.handlers[eventName] = (self.handlers[eventName] || []).concat([ fn ]);
   };
 
-  // Remove an Apostrophe event handler. If fn is not supplied, all
+  // Remove an Geoportal event handler. If fn is not supplied, all
   // handlers for the given eventName are removed.
   self.off = function(eventName, fn) {
     if (!fn) {
@@ -170,21 +170,21 @@ module.exports = function(options) {
     return invoke(moduleName, method, extraArgs, callback);
   };
 
-  // Destroys the Apostrophe object, freeing resources such as
+  // Destroys the Geoportal object, freeing resources such as
   // HTTP server ports and database connections. Does **not**
   // delete any data; the persistent database and media files
   // remain available for the next startup. Invokes
-  // the `apostropheDestroy` methods of all modules that
+  // the `geoportalDestroy` methods of all modules that
   // provide one, and also emits the `destroy` promise event on
-  // the `apostrophe` module; use this mechanism to free your own
+  // the `geoportal` module; use this mechanism to free your own
   // server-side resources that could prevent garbage
   // collection by the JavaScript engine, such as timers
   // and intervals.
   self.destroy = function(callback) {
-    return self.callAllAndEmit('apostropheDestroy', 'destroy', callback);
+    return self.callAllAndEmit('geoportalDestroy', 'destroy', callback);
   };
 
-  // Returns true if Apostrophe is running as a command line task
+  // Returns true if Geoportal is running as a command line task
   // rather than as a server
   self.isTask = function() {
     return !!self.argv._.length;
@@ -194,7 +194,7 @@ module.exports = function(options) {
   // module name, i.e. they are of that type or they extend it.
   // For instance, `geop.instancesOf('geoportal-pieces')` returns
   // an array of active modules in your project that extend
-  // pieces, such as `apostrophe-users`, `apostrophe-groups` and
+  // pieces, such as `geoportal-users`, `geoportal-groups` and
   // your own piece types
 
   self.instancesOf = function(name) {
@@ -274,7 +274,7 @@ module.exports = function(options) {
       try {
         _.merge(self.options.modules, require(config));
       } catch (e) {
-        console.error('When nestedModuleSubdirs is active, any modules.js file beneath ' + self.moogOptions.localModules + '\nmust export an object containing configuration for Apostrophe modules.\nThe file ' + config + ' did not parse.');
+        console.error('When nestedModuleSubdirs is active, any modules.js file beneath ' + self.moogOptions.localModules + '\nmust export an object containing configuration for Geoportal modules.\nThe file ' + config + ' did not parse.');
         throw e;
       }
     });
@@ -339,12 +339,12 @@ module.exports = function(options) {
     self.prefix = self.options.prefix || '';
   }
 
-  // Tweak the Apostrophe environment suitably for
+  // Tweak the Geoportal environment suitably for
   // unit testing a separate npm module that extends
-  // Apostrophe, like apostrophe-workflow. For instance,
+  // Geoportal, like geoportal-workflow. For instance,
   // a node_modules subdirectory with a symlink to the
   // module itself is created so that the module can
-  // be found by Apostrophe during testing. Invoked
+  // be found by Geoportal during testing. Invoked
   // when options.testModule is true. There must be a
   // test/ or tests/ subdir of the module containing
   // a test.js file that runs under mocha via devDependencies.
@@ -502,15 +502,15 @@ module.exports = function(options) {
     traceStartup('lintModules');
     _.each(self.modules, function(module, name) {
       if (module.options.extends && ((typeof module.options.extends) === 'string')) {
-        lint('The module ' + name + ' contains an "extends" option. This is probably a\nmistake. In Apostrophe "extend" is used to extend other modules.');
+        lint('The module ' + name + ' contains an "extends" option. This is probably a\nmistake. In Geoportal "extend" is used to extend other modules.');
       }
       if (module.options.singletonWarningIfNot && (name !== module.options.singletonWarningIfNot)) {
-        lint('The module ' + name + ' extends ' + module.options.singletonWarningIfNot + ', which is normally\na singleton (Apostrophe creates only one instance of it). Two competing\ninstances will lead to problems. If you are adding project-level code to it,\njust use lib/modules/' + module.options.singletonWarningIfNot + '/index.js and do not use "extend".\nIf you are improving it via an npm module, use "improve" rather than "extend".\nIf neither situation applies you should probably just make a new module that does\nnot extend anything.\n\nIf you are sure you know what you are doing, you can set the\nsingletonWarningIfNot: false option for this module.');
+        lint('The module ' + name + ' extends ' + module.options.singletonWarningIfNot + ', which is normally\na singleton (Geoportal creates only one instance of it). Two competing\ninstances will lead to problems. If you are adding project-level code to it,\njust use lib/modules/' + module.options.singletonWarningIfNot + '/index.js and do not use "extend".\nIf you are improving it via an npm module, use "improve" rather than "extend".\nIf neither situation applies you should probably just make a new module that does\nnot extend anything.\n\nIf you are sure you know what you are doing, you can set the\nsingletonWarningIfNot: false option for this module.');
       }
       if (name.match(/-widgets$/) && (!extending(module)) && (!module.options.ignoreNoExtendWarning)) {
-        lint('The module ' + name + ' does not extend anything.\n\nA `-widgets` module usually extends `apostrophe-widgets` or\n`apostrophe-pieces-widgets`. Or possibly you forgot to npm install something.\n\nIf you are sure you are doing the right thing, set the\n`ignoreNoExtendWarning` option to `true` for this module.');
+        lint('The module ' + name + ' does not extend anything.\n\nA `-widgets` module usually extends `geoportal-widgets` or\n`geoportal-pieces-widgets`. Or possibly you forgot to npm install something.\n\nIf you are sure you are doing the right thing, set the\n`ignoreNoExtendWarning` option to `true` for this module.');
       } else if (name.match(/-pages$/) && (name !== 'geoportal-pages') && (!extending(module)) && (!module.options.ignoreNoExtendWarning)) {
-        lint('The module ' + name + ' does not extend anything.\n\nA `-pages` module usually extends `apostrophe-custom-pages` or\n`apostrophe-pieces-pages`. Or possibly you forgot to npm install something.\n\nIf you are sure you are doing the right thing, set the\n`ignoreNoExtendWarning` option to `true` for this module.');
+        lint('The module ' + name + ' does not extend anything.\n\nA `-pages` module usually extends `geoportal-custom-pages` or\n`geoportal-pieces-pages`. Or possibly you forgot to npm install something.\n\nIf you are sure you are doing the right thing, set the\n`ignoreNoExtendWarning` option to `true` for this module.');
       } else if ((!extending(module)) && (!hasConstruct(name)) && (!isMoogBundle(name)) && (!module.options.ignoreNoCodeWarning)) {
         lint('The module ' + name + ' does not extend anything and does not have a\n`beforeConstruct`, `construct` or `afterConstruct` function. This usually means that you:\n\n1. Forgot to `extend` another module\n2. Configured a module that comes from npm without npm installing it\n3. Simply haven\'t written your `index.js` yet\n\nIf you really want a module with no code, set the `ignoreNoCodeWarning` option\nto `true` for this module.');
       }
@@ -527,7 +527,7 @@ module.exports = function(options) {
       }
       // If we got to the base class of all modules, the module
       // has no construct of its own
-      if (d.__meta.name.match(/apostrophe-module$/)) {
+      if (d.__meta.name.match(/geoportal-module$/)) {
         return false;
       }
       return d.beforeConstruct || d.construct || d.afterConstruct;
@@ -539,8 +539,8 @@ module.exports = function(options) {
     function extending(module) {
       // If the module extends no other module, then it will
       // have up to four entries in its inheritance chain:
-      // project level self, npm level self, `apostrophe-modules`
-      // project-level and `apostrophe-modules` npm level.
+      // project level self, npm level self, `geoportal-modules`
+      // project-level and `geoportal-modules` npm level.
       return module.__meta.chain.length > 4;
     }
     return callback(null);
@@ -555,14 +555,14 @@ module.exports = function(options) {
     }
     // Allow the migrate-at-startup behavior to be complete shut off, including
     // parked page checks, etc. In this case you are obligated to run the
-    // apostrophe-migrations:migrate task during deployment before launching
+    // geoportal-migrations:migrate task during deployment before launching
     // with new versions of the code
     if (process.env.APOS_NO_MIGRATE || (self.options.migrate === false)) {
       return callback(null);
     }
     // Carry out all migrations and consistency checks of the database that are
     // still pending before proceeding to listen for connections or run tasks
-    // that assume a sane environment. If `apostrophe-migrations:migrate` has
+    // that assume a sane environment. If `geoportal-migrations:migrate` has
     // already been run then this will typically find no work to do, although
     // the consistency checks can take time on a very large distributed database
     // (see the options above).

@@ -120,7 +120,7 @@ Other Changes:
 	* [IE11] Fixed: `Unable to get property type of undefined or null reference` error in the browser console when SCAYT is disabled/enabled.
 	* [#46](https://github.com/WebSpellChecker/ckeditor-plugin-wsc/issues/46): Fixed: Editing is blocked when remote spell checker server is offline.
 	* Fixed: User Dictionary cannot be created in WSC due to `You already have the dictionary` error.
-	* Fixed: Words with apostrophe `'` on the replacement make the WSC dialog inaccessible.
+	* Fixed: Words with geoportal `'` on the replacement make the WSC dialog inaccessible.
 	* Fixed: SCAYT/WSC causes the `Uncaught TypeError` error in the browser console.
 * [#1337](https://github.com/ckeditor/ckeditor-dev/issues/1337): Updated the samples layout with the new CKEditor 4 logo and color scheme.
 * [#1591](https://github.com/ckeditor/ckeditor-dev/issues/1591): CKBuilder and language tools are now downloaded over HTTPS. Thanks to [August Detlefsen](https://github.com/augustd)!

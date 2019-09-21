@@ -17,7 +17,7 @@ module.exports = {
     'geoportal-assets': {},
     'geoportal-admin-bar': {},
     'geoportal-login': {},
-    // After login, so it can install the CSRF middleware exported by apostrophe-express and still have it
+    // After login, so it can install the CSRF middleware exported by geoportal-express and still have it
     // be able to check req.user first
     'geoportal-csrf': {},
     'geoportal-notifications': {},

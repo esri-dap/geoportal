@@ -1,33 +1,33 @@
 {% extends data.outerLayout %}
 {% block title %}{{ __("Login") }}{% endblock %}
 
-{% block bodyClass %}apos-login-page{% endblock %}
+{% block bodyClass %}geop-login-page{% endblock %}
 
 {% block main %}
-  <div class="apos-login-wrapper">
-    <div class="apos-login-content">
-      <div class="apos-login-logo">{% block logo %}{% include "geoportal-admin-bar:logo.html" %}{% endblock %}</div>
-      <div class="apos-ui apos-login">
-        <div class="apos-login-title apos-text-title">{% block subHeading %}{{ __('Login') }}{% endblock %}</div>
+  <div class="geop-login-wrapper">
+    <div class="geop-login-content">
+      <div class="geop-login-logo">{% block logo %}{% include "geoportal-admin-bar:logo.html" %}{% endblock %}</div>
+      <div class="geop-ui geop-login">
+        <div class="geop-login-title geop-text-title">{% block subHeading %}{{ __('Login') }}{% endblock %}</div>
         {% block form %}
           <form action="{% block action %}{{ geop.prefix }}/login{% endblock %}" method="post">
-            {% if data.message %}<div class="apos-login-warning">{{ __(data.message) }}</div>{% endif %}
+            {% if data.message %}<div class="geop-login-warning">{{ __(data.message) }}</div>{% endif %}
             {% block fields %}
-              <div class="apos-field apos-login-username">
-                <label class="apos-field-label" for="username">{{ __('Username or Email') }} {% block usernameHint %}{% endblock %}</label>
-                <input class="apos-field-input apos-field-input-text" type="text" name="username" id="username" autofocus />
+              <div class="geop-field geop-login-username">
+                <label class="geop-field-label" for="username">{{ __('Username or Email') }} {% block usernameHint %}{% endblock %}</label>
+                <input class="geop-field-input geop-field-input-text" type="text" name="username" id="username" autofocus />
               </div>
-              <div class="apos-field apos-login-password">
-                <label class="apos-field-label" for="password">{{ __('Password') }} {% block passwordHint %}{% endblock %}</label>
-                <input class="apos-field-input apos-field-input-text" type="password" name="password" id="password" />
+              <div class="geop-field geop-login-password">
+                <label class="geop-field-label" for="password">{{ __('Password') }} {% block passwordHint %}{% endblock %}</label>
+                <input class="geop-field-input geop-field-input-text" type="password" name="password" id="password" />
               </div>
             {% endblock %}
-            <div class="apos-login-submit">
-              <input type="submit" class="apos-button apos-button--major" value="{% block buttonLabel %}{{ __('Log In') }}{% endblock %}" />
+            <div class="geop-login-submit">
+              <input type="submit" class="geop-button geop-button--major" value="{% block buttonLabel %}{{ __('Log In') }}{% endblock %}" />
             </div>
             {% block passwordReset %}
               {% if data.passwordReset %}
-                <div class="apos-login-reset">
+                <div class="geop-login-reset">
                   <a href="{{ geop.prefix }}/password-reset-request">{{ __('Reset My Password') }}</a>
                 </div>
               {% endif %}

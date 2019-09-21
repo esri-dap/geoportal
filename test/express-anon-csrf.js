@@ -36,7 +36,7 @@ describe('Express', function() {
           construct: function(self, options) {
             self.on('geoportal-pages:beforeSend', 'verifyEmptySession', function(req) {
               // The session should be empty as the only thing in
-              // default Apostrophe that forces a session to exist
+              // default Geoportal that forces a session to exist
               // when logged out is the csrf token we disabled above
               if (sessionShouldBeEmpty) {
                 assert(Object.keys(req.session).length === 0);
@@ -50,7 +50,7 @@ describe('Express', function() {
       afterInit: function(callback) {
         assert(geop.express);
         // In tests this will be the name of the test file,
-        // so override that in order to get apostrophe to
+        // so override that in order to get geoportal to
         // listen normally and not try to run a task. -Tom
         geop.argv._ = [];
         return callback(null);
