@@ -4,6 +4,6 @@ module.exports = {
     self.color = 'red';
 
     // Attach to apos
-    self.apos.test = self;
+    self.geop.test = self;
   }
 };

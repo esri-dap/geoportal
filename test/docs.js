@@ -20,12 +20,12 @@ describe('Docs', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900
         },
         'test-people': {
-          extend: 'apostrophe-doc-type-manager',
+          extend: 'geoportal-doc-type-manager',
           name: 'test-person',
           addFields: [
             {
@@ -39,8 +39,8 @@ describe('Docs', function() {
         }
       },
       afterInit: function(callback) {
-        assert(apos.docs);
-        apos.argv._ = [];
+        assert(geop.docs);
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -51,7 +51,7 @@ describe('Docs', function() {
   });
 
   it('should have a db property', function() {
-    assert(apos.docs.db);
+    assert(geop.docs.db);
   });
 
   /// ///
@@ -62,7 +62,7 @@ describe('Docs', function() {
     var expectedIndexes = ['type', 'slug', 'titleSortified', 'tags', 'published'];
     var actualIndexes = [];
 
-    apos.docs.db.indexInformation(function(err, info) {
+    geop.docs.db.indexInformation(function(err, info) {
       assert(!err);
 
       // Extract the actual index info we care about
@@ -83,10 +83,10 @@ describe('Docs', function() {
 
   it('should make sure there is no test data hanging around from last time', function(done) {
     // Attempt to purge the entire aposDocs collection
-    apos.docs.db.remove({}, function(err) {
+    geop.docs.db.remove({}, function(err) {
       assert(!err);
       // Make sure it went away
-      apos.docs.db.findWithProjection({ slug: 'larry' }).toArray(function(err, docs) {
+      geop.docs.db.findWithProjection({ slug: 'larry' }).toArray(function(err, docs) {
         assert(!err);
         assert(docs.length === 0);
         done();
@@ -129,7 +129,7 @@ describe('Docs', function() {
       }
     ];
 
-    apos.docs.db.insert(testItems, function(err) {
+    geop.docs.db.insert(testItems, function(err) {
       assert(!err);
       done();
     });
@@ -137,13 +137,13 @@ describe('Docs', function() {
 
   it('should be able to carry out schema joins', function(done) {
 
-    var manager = apos.docs.getManager('test-person');
+    var manager = geop.docs.getManager('test-person');
 
     assert(manager);
     assert(manager.find);
     assert(manager.schema);
 
-    var cursor = manager.find(apos.tasks.getAnonReq(), { slug: 'carl' });
+    var cursor = manager.find(geop.tasks.getAnonReq(), { slug: 'carl' });
     assert(cursor);
     cursor.toObject(function(err, person) {
       assert(!err);
@@ -160,7 +160,7 @@ describe('Docs', function() {
   /// ///
 
   it('should fail if you try to insert a document with the same unique key twice', function(done) {
-    apos.docs.db.insert([
+    geop.docs.db.insert([
       {
         type: 'test-person',
         published: false,
@@ -184,12 +184,12 @@ describe('Docs', function() {
   /// ///
 
   it('should have a find method on docs that returns a cursor', function() {
-    var cursor = apos.docs.find(apos.tasks.getAnonReq());
+    var cursor = geop.docs.find(geop.tasks.getAnonReq());
     assert(cursor);
   });
 
   it('should be able to find all PUBLISHED test documents and output them as an array', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getAnonReq(), { type: 'test-person' });
+    var cursor = geop.docs.find(geop.tasks.getAnonReq(), { type: 'test-person' });
 
     cursor.toArray(function(err, docs) {
       assert(!err);
@@ -202,7 +202,7 @@ describe('Docs', function() {
   });
 
   it('same thing, but with promises', function(done) {
-    apos.docs.find(apos.tasks.getAnonReq(), { type: 'test-person' }).toArray().then(function(docs) {
+    geop.docs.find(geop.tasks.getAnonReq(), { type: 'test-person' }).toArray().then(function(docs) {
       // There should be only 3 results.
       assert(docs.length === 3);
       // They should all have a type of test-person
@@ -218,7 +218,7 @@ describe('Docs', function() {
   /// ///
 
   it('should be able to specify which fields to get by passing a projection object', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getAnonReq(), { type: 'test-person' }, { age: 1 });
+    var cursor = geop.docs.find(geop.tasks.getAnonReq(), { type: 'test-person' }, { age: 1 });
     cursor.toArray(function(err, docs) {
 
       assert(!err);
@@ -236,7 +236,7 @@ describe('Docs', function() {
   /// ///
 
   it('should be that non-admins DO NOT get unpublished docs by default', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getAnonReq(), { type: 'test-person' });
+    var cursor = geop.docs.find(geop.tasks.getAnonReq(), { type: 'test-person' });
     cursor.toArray(function(err, docs) {
       assert(!err);
       _.each(docs, function(doc) {
@@ -249,7 +249,7 @@ describe('Docs', function() {
   });
 
   it('should be that non-admins do not get unpublished docs, even if they ask for them', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getAnonReq(), { type: 'test-person' }).published(false);
+    var cursor = geop.docs.find(geop.tasks.getAnonReq(), { type: 'test-person' }).published(false);
     cursor.toArray(function(err, docs) {
       assert(!err);
       assert(docs.length === 0);
@@ -258,7 +258,7 @@ describe('Docs', function() {
   });
 
   it('should be that admins can get unpublished docs if they ask for them', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getReq(), { type: 'test-person' }).published(false);
+    var cursor = geop.docs.find(geop.tasks.getReq(), { type: 'test-person' }).published(false);
     cursor.toArray(function(err, docs) {
       assert(!err);
       assert(!docs[0].published);
@@ -267,7 +267,7 @@ describe('Docs', function() {
   });
 
   it('should be that admins can get a mixture of unpublished docs and published docs if they ask', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getReq(), { type: 'test-person' }).published(null);
+    var cursor = geop.docs.find(geop.tasks.getReq(), { type: 'test-person' }).published(null);
     cursor.toArray(function(err, docs) {
       assert(!err);
       assert(docs.length === 4);
@@ -280,7 +280,7 @@ describe('Docs', function() {
   /// ///
 
   it('should be able to sort', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getAnonReq(), { type: 'test-person' }).sort({ age: 1 });
+    var cursor = geop.docs.find(geop.tasks.getAnonReq(), { type: 'test-person' }).sort({ age: 1 });
     cursor.toArray(function(err, docs) {
       assert(!err);
       assert(docs[0].slug === 'larry');
@@ -289,7 +289,7 @@ describe('Docs', function() {
   });
 
   it('should be able to sort by multiple keys', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getAnonReq(), { type: 'test-person' }).sort({ firstName: 1, age: 1 });
+    var cursor = geop.docs.find(geop.tasks.getAnonReq(), { type: 'test-person' }).sort({ firstName: 1, age: 1 });
     cursor.toArray(function(err, docs) {
       assert(!err);
       assert(docs[0].slug === 'carl');
@@ -313,7 +313,7 @@ describe('Docs', function() {
       alive: true
     };
 
-    apos.docs.insert(apos.tasks.getReq(), object, function(err, object) {
+    geop.docs.insert(geop.tasks.getReq(), object, function(err, object) {
       assert(!err);
       assert(object);
       assert(object._id);
@@ -322,7 +322,7 @@ describe('Docs', function() {
   });
 
   it('should be able to insert a new object into the docs collection in the database', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getReq(), { type: 'test-person', slug: 'one' });
+    var cursor = geop.docs.find(geop.tasks.getReq(), { type: 'test-person', slug: 'one' });
     cursor.toArray(function(err, docs) {
       assert(!err);
       assert(docs[0].slug === 'one');
@@ -341,7 +341,7 @@ describe('Docs', function() {
       alive: true
     };
 
-    apos.docs.insert(apos.tasks.getReq(), object, function(err, object) {
+    geop.docs.insert(geop.tasks.getReq(), object, function(err, object) {
       assert(!err);
       assert(object);
       assert(object.slug.match(/^one\d+$/));
@@ -360,7 +360,7 @@ describe('Docs', function() {
       alive: true
     };
 
-    apos.docs.insert(apos.tasks.getAnonReq(), object, function(err, object) {
+    geop.docs.insert(geop.tasks.getAnonReq(), object, function(err, object) {
       // did it return an error?
       assert(err);
       done();
@@ -372,7 +372,7 @@ describe('Docs', function() {
   /// ///
 
   it('should have an "update" method on docs that updates an existing database object based on the "_id" porperty', function(done) {
-    apos.docs.find(apos.tasks.getReq(), { slug: 'one' }).toArray(function(err, docs) {
+    geop.docs.find(geop.tasks.getReq(), { slug: 'one' }).toArray(function(err, docs) {
       assert(!err);
       // we should have a document
       assert(docs);
@@ -384,7 +384,7 @@ describe('Docs', function() {
       // we want update the alive property
       object.alive = false;
 
-      apos.docs.update(apos.tasks.getReq(), object, function(err, object) {
+      geop.docs.update(geop.tasks.getReq(), object, function(err, object) {
         assert(!err);
         assert(object);
         // has the property been updated?
@@ -396,14 +396,14 @@ describe('Docs', function() {
 
   it('should append an updated slug with a numeral if the updated slug already exists', function(done) {
 
-    var cursor = apos.docs.find(apos.tasks.getReq(), { type: 'test-person', slug: 'one' });
+    var cursor = geop.docs.find(geop.tasks.getReq(), { type: 'test-person', slug: 'one' });
     cursor.toObject(function(err, doc) {
       assert(!err);
       assert(doc);
 
       doc.slug = 'peter';
 
-      apos.docs.update(apos.tasks.getReq(), doc, function(err, doc) {
+      geop.docs.update(geop.tasks.getReq(), doc, function(err, doc) {
         assert(!err);
         assert(doc);
         // has the updated slug been appended?
@@ -426,18 +426,18 @@ describe('Docs', function() {
       alive: true
     };
 
-    apos.docs.insert(apos.tasks.getReq(), object)
+    geop.docs.insert(geop.tasks.getReq(), object)
       .then(function(doc) {
         var cursor;
         assert(doc);
         assert(doc._id);
-        cursor = apos.docs.find(apos.tasks.getReq(), { type: 'test-person', slug: 'two' });
+        cursor = geop.docs.find(geop.tasks.getReq(), { type: 'test-person', slug: 'two' });
         return cursor.toObject();
       })
       .then(function(doc) {
         assert(doc);
         doc.slug = 'peter';
-        return apos.docs.update(apos.tasks.getReq(), doc);
+        return geop.docs.update(geop.tasks.getReq(), doc);
       })
       .then(function(doc) {
         assert(doc);
@@ -451,7 +451,7 @@ describe('Docs', function() {
   });
 
   it('should be able to fetch all unique firstNames with toDistinct', function() {
-    return apos.docs.find(apos.tasks.getReq(), { type: 'test-person' }).toDistinct('firstName')
+    return geop.docs.find(geop.tasks.getReq(), { type: 'test-person' }).toDistinct('firstName')
       .then(function(firstNames) {
         assert(Array.isArray(firstNames));
         assert(firstNames.length === 5);
@@ -460,7 +460,7 @@ describe('Docs', function() {
   });
 
   it('should be able to fetch all unique firstNames and their counts with toDistinct and distinctCounts', function() {
-    var cursor = apos.docs.find(apos.tasks.getReq(), { type: 'test-person' }).distinctCounts(true);
+    var cursor = geop.docs.find(geop.tasks.getReq(), { type: 'test-person' }).distinctCounts(true);
     return cursor.toDistinct('firstName')
       .then(function(firstNames) {
         assert(Array.isArray(firstNames));
@@ -473,14 +473,14 @@ describe('Docs', function() {
   });
 
   it('should not allow you to call the update method if you are not an admin', function(done) {
-    var cursor = apos.docs.find(apos.tasks.getAnonReq(), { type: 'test-person', slug: 'lori' });
+    var cursor = geop.docs.find(geop.tasks.getAnonReq(), { type: 'test-person', slug: 'lori' });
     cursor.toObject(function(err, doc) {
       assert(!err);
       assert(doc);
 
       doc.slug = 'laurie';
 
-      apos.docs.update(apos.tasks.getAnonReq(), doc, function(err, doc) {
+      geop.docs.update(geop.tasks.getAnonReq(), doc, function(err, doc) {
         // did it return an error?
         assert(err);
         done();
@@ -493,14 +493,14 @@ describe('Docs', function() {
   /// ///
 
   it('should have a "trash" method on docs', function(done) {
-    apos.docs.trash(apos.tasks.getReq(), { slug: 'carl' }, function(err) {
+    geop.docs.trash(geop.tasks.getReq(), { slug: 'carl' }, function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should not be able to find the trashed object', function(done) {
-    apos.docs.find(apos.tasks.getReq(), { slug: 'carl' }).toObject(function(err, doc) {
+    geop.docs.find(geop.tasks.getReq(), { slug: 'carl' }).toObject(function(err, doc) {
       assert(!err);
       // we should not have a document
       assert(!doc);
@@ -509,14 +509,14 @@ describe('Docs', function() {
   });
 
   it('should not allow you to call the trash method if you are not an admin', function(done) {
-    apos.docs.trash(apos.tasks.getAnonReq(), { slug: 'lori' }, function(err) {
+    geop.docs.trash(geop.tasks.getAnonReq(), { slug: 'lori' }, function(err) {
       assert(err);
       done();
     });
   });
 
   it('should be able to find the trashed object when using the "trash" method on find()', function(done) {
-    apos.docs.find(apos.tasks.getReq(), { slug: 'carl' }).trash(true).toObject(function(err, doc) {
+    geop.docs.find(geop.tasks.getReq(), { slug: 'carl' }).trash(true).toObject(function(err, doc) {
       assert(!err);
       // we should have a document
       assert(doc);
@@ -529,9 +529,9 @@ describe('Docs', function() {
   /// ///
 
   it('should have a "rescue" method on docs that removes the "trash" property from an object', function(done) {
-    apos.docs.rescue(apos.tasks.getReq(), { slug: 'carl' }, function(err) {
+    geop.docs.rescue(geop.tasks.getReq(), { slug: 'carl' }, function(err) {
       assert(!err);
-      apos.docs.find(apos.tasks.getReq(), { slug: 'carl' }).toObject(function(err, doc) {
+      geop.docs.find(geop.tasks.getReq(), { slug: 'carl' }).toObject(function(err, doc) {
         assert(!err);
         // we should have a document
         assert(doc);
@@ -541,7 +541,7 @@ describe('Docs', function() {
   });
 
   it('should not allow you to call the rescue method if you are not an admin', function(done) {
-    apos.docs.rescue(apos.tasks.getAnonReq(), { slug: 'carl' }, function(err) {
+    geop.docs.rescue(geop.tasks.getAnonReq(), { slug: 'carl' }, function(err) {
       // was there an error?
       assert(err);
       done();
@@ -556,19 +556,19 @@ describe('Docs', function() {
 
     return async.series({
       trashCarl: function(callback) {
-        return apos.docs.trash(apos.tasks.getReq(), { slug: 'carl' }, function(err) {
+        return geop.docs.trash(geop.tasks.getReq(), { slug: 'carl' }, function(err) {
           assert(!err);
           return callback(null);
         });
       },
       deleteFromTrash: function(callback) {
-        return apos.docs.deleteFromTrash(apos.tasks.getReq(), {}, function(err) {
+        return geop.docs.deleteFromTrash(geop.tasks.getReq(), {}, function(err) {
           assert(!err);
           return callback(null);
         });
       },
       find: function(callback) {
-        return apos.docs.find(apos.tasks.getReq(), { slug: 'carl' }).trash(true).toObject(function(err, doc) {
+        return geop.docs.find(geop.tasks.getReq(), { slug: 'carl' }).trash(true).toObject(function(err, doc) {
           assert(!err);
           // we should not have a document
           assert(!doc);
@@ -581,19 +581,19 @@ describe('Docs', function() {
   it('should not allow you to call the deleteFromTrash method if you are not an admin', function(done) {
     return async.series({
       trashLarry: function(callback) {
-        return apos.docs.trash(apos.tasks.getReq(), { slug: 'larry' }, function(err) {
+        return geop.docs.trash(geop.tasks.getReq(), { slug: 'larry' }, function(err) {
           assert(!err);
           return callback(null);
         });
       },
       deleteFromTrash: function(callback) {
-        apos.docs.deleteFromTrash(apos.tasks.getAnonReq(), {}, function(err) {
+        geop.docs.deleteFromTrash(geop.tasks.getAnonReq(), {}, function(err) {
           assert(!err);
           return callback(null);
         });
       },
       find: function(callback) {
-        return apos.docs.find(apos.tasks.getReq(), { slug: 'larry' }).trash(true).toObject(function(err, doc) {
+        return geop.docs.find(geop.tasks.getReq(), { slug: 'larry' }).trash(true).toObject(function(err, doc) {
           assert(!err);
           // we should have a document
           assert(doc);
@@ -606,7 +606,7 @@ describe('Docs', function() {
   it('should throw an exception on find() if you fail to pass req as the first argument', function() {
     var exception;
     try {
-      apos.docs.find({ slug: 'larry' });
+      geop.docs.find({ slug: 'larry' });
     } catch (e) {
       exception = e;
     }
@@ -627,9 +627,9 @@ describe('Docs', function() {
       });
     }
 
-    return apos.docs.db.insert(testItems, function(err) {
+    return geop.docs.db.insert(testItems, function(err) {
       assert(!err);
-      return apos.docs.find(apos.tasks.getAnonReq(), {}).explicitOrder([ 'i7', 'i3', 'i27', 'i9' ]).toArray(function(err, docs) {
+      return geop.docs.find(geop.tasks.getAnonReq(), {}).explicitOrder([ 'i7', 'i3', 'i27', 'i9' ]).toArray(function(err, docs) {
         assert(!err);
         assert(docs[0]._id === 'i7');
         assert(docs[1]._id === 'i3');
@@ -645,7 +645,7 @@ describe('Docs', function() {
   it('should respect explicitOrder with skip and limit', function(done) {
 
     // Relies on test data of previous test
-    return apos.docs.find(apos.tasks.getAnonReq(), {}).explicitOrder([ 'i7', 'i3', 'i27', 'i9' ]).skip(2).limit(2).toArray(function(err, docs) {
+    return geop.docs.find(geop.tasks.getAnonReq(), {}).explicitOrder([ 'i7', 'i3', 'i27', 'i9' ]).skip(2).limit(2).toArray(function(err, docs) {
       assert(!err);
       assert(docs[0]._id === 'i27');
       assert(docs[1]._id === 'i9');
@@ -656,16 +656,16 @@ describe('Docs', function() {
   });
 
   it('should be able to lock a document', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.lock(req, 'i27', 'abc', function(err) {
+    var req = geop.tasks.getReq();
+    geop.docs.lock(req, 'i27', 'abc', function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should not be able to lock a document with a different contextId', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.lock(req, 'i27', 'def', function(err) {
+    var req = geop.tasks.getReq();
+    geop.docs.lock(req, 'i27', 'def', function(err) {
       assert(err);
       assert(err === 'locked');
       done();
@@ -673,38 +673,38 @@ describe('Docs', function() {
   });
 
   it('should be able to unlock a document', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.unlock(req, 'i27', 'abc', function(err) {
+    var req = geop.tasks.getReq();
+    geop.docs.unlock(req, 'i27', 'abc', function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should be able to re-lock an unlocked document', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.lock(req, 'i27', 'def', function(err) {
+    var req = geop.tasks.getReq();
+    geop.docs.lock(req, 'i27', 'def', function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should be able to lock a locked document with force: true', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.lock(req, 'i27', 'abc', { force: true }, function(err) {
+    var req = geop.tasks.getReq();
+    geop.docs.lock(req, 'i27', 'abc', { force: true }, function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should be able to unlock all documents locked with the same contextId', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.lock(req, 'i26', 'abc', function(err) {
+    var req = geop.tasks.getReq();
+    geop.docs.lock(req, 'i26', 'abc', function(err) {
       assert(!err);
-      apos.docs.lock(req, 'i25', 'abc', function(err) {
+      geop.docs.lock(req, 'i25', 'abc', function(err) {
         assert(!err);
-        apos.docs.unlockAll(req, 'abc', function(err) {
+        geop.docs.unlockAll(req, 'abc', function(err) {
           assert(!err);
-          apos.docs.lock(req, 'i26', 'def', function(err) {
+          geop.docs.lock(req, 'i26', 'def', function(err) {
             assert(!err);
             done();
           });

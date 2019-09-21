@@ -18,11 +18,11 @@ describe('Soft Redirects', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7900,
           secret: 'test'
         },
-        'apostrophe-pages': {
+        'geoportal-pages': {
           park: [
             {
               parkedId: 'child',
@@ -35,8 +35,8 @@ describe('Soft Redirects', function() {
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-soft-redirects']);
-        apos.argv._ = [];
+        assert(geop.modules['geoportal-soft-redirects']);
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -58,7 +58,7 @@ describe('Soft Redirects', function() {
   });
 
   it('should be able to change the URL via db', function() {
-    return apos.docs.db.update({ slug: '/child' }, { $set: { slug: '/child-moved' } });
+    return geop.docs.db.update({ slug: '/child' }, { $set: { slug: '/child-moved' } });
   });
 
   it('should be able to serve the page at its new URL', function(done) {
@@ -102,11 +102,11 @@ describe('Soft Redirects - with `statusCode` option', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7900,
           secret: 'test'
         },
-        'apostrophe-pages': {
+        'geoportal-pages': {
           park: [
             {
               parkedId: 'child',
@@ -117,14 +117,14 @@ describe('Soft Redirects - with `statusCode` option', function() {
             }
           ]
         },
-        'apostrophe-soft-redirects': {
+        'geoportal-soft-redirects': {
           statusCode: 301
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-soft-redirects']);
-        assert.equal(apos.modules['apostrophe-soft-redirects'].options.statusCode, 301);
-        apos.argv._ = [];
+        assert(geop.modules['geoportal-soft-redirects']);
+        assert.equal(geop.modules['geoportal-soft-redirects'].options.statusCode, 301);
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -146,7 +146,7 @@ describe('Soft Redirects - with `statusCode` option', function() {
   });
 
   it('should be able to change the URL via db', function() {
-    return apos.docs.db.update({ slug: '/child' }, { $set: { slug: '/child-moved' } });
+    return geop.docs.db.update({ slug: '/child' }, { $set: { slug: '/child-moved' } });
   });
 
   it('should be able to serve the page at its old URL too, via redirect', function(done) {

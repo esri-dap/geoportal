@@ -19,17 +19,17 @@ describe('Login', function() {
       root: module,
       shortName: 'test',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7901,
           csrf: false
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-login']);
-        apos.argv._ = [];
-        assert(apos.users.safe.remove);
-        return apos.users.safe.remove({}, callback);
+        assert(geop.modules['geoportal-login']);
+        geop.argv._ = [];
+        assert(geop.users.safe.remove);
+        return geop.users.safe.remove({}, callback);
         // return callback(null);
       },
       afterListen: function(err) {
@@ -43,8 +43,8 @@ describe('Login', function() {
   });
 
   it('should be able to insert test user', function(done) {
-    assert(apos.users.newInstance);
-    var user = apos.users.newInstance();
+    assert(geop.users.newInstance);
+    var user = geop.users.newInstance();
     assert(user);
 
     user.firstName = 'Harry';
@@ -54,9 +54,9 @@ describe('Login', function() {
     user.password = 'crookshanks';
     user.email = 'hputter@aol.com';
 
-    assert(user.type === 'apostrophe-user');
-    assert(apos.users.insert);
-    apos.users.insert(apos.tasks.getReq(), user, function(err) {
+    assert(user.type === 'geoportal-user');
+    assert(geop.users.insert);
+    geop.users.insert(geop.tasks.getReq(), user, function(err) {
       assert(!err);
       done();
     });

@@ -17,8 +17,8 @@ describe('Caches', function() {
       shortName: 'test',
 
       afterInit: function(callback) {
-        assert(apos.caches);
-        apos.argv._ = [];
+        assert(geop.caches);
+        geop.argv._ = [];
         return callback(null);
       },
 
@@ -30,7 +30,7 @@ describe('Caches', function() {
     });
   });
   it('should give us a cache object', function() {
-    cache = apos.caches.get('testMonkeys');
+    cache = geop.caches.get('testMonkeys');
   });
   it('should not crash on clear', function(done) {
     cache.clear(done);

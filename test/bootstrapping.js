@@ -2,7 +2,7 @@ var t = require('../test-lib/test.js');
 var assert = require('assert');
 var _ = require('@sailshq/lodash');
 
-describe('Apostrophe', function() {
+describe('Geoportal', function() {
 
   this.timeout(t.timeout);
 
@@ -24,7 +24,7 @@ describe('Apostrophe', function() {
         modules: {}
       },
       afterInit: function(callback) {
-        assert(apos.options.overrideTest === 'foo');
+        assert(geop.options.overrideTest === 'foo');
         return t.destroy(apos, done);
       }
     });
@@ -41,7 +41,7 @@ describe('Apostrophe', function() {
         modules: {}
       },
       afterInit: function(callback) {
-        assert(apos.options.overrideTest === 'foo');
+        assert(geop.options.overrideTest === 'foo');
         return t.destroy(apos, done);
       }
     });
@@ -58,7 +58,7 @@ describe('Apostrophe', function() {
         modules: {}
       },
       afterInit: function(callback) {
-        assert(apos.options.overrideTest === 'test-foo');
+        assert(geop.options.overrideTest === 'test-foo');
         return t.destroy(apos, done);
       }
     });
@@ -71,11 +71,11 @@ describe('Apostrophe', function() {
 
       __testDefaults: {
         modules: {
-          'apostrophe-test-module': {}
+          'geoportal-test-module': {}
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-test-module']);
+        assert(geop.modules['geoportal-test-module']);
         return t.destroy(apos, done);
       }
     });
@@ -87,11 +87,11 @@ describe('Apostrophe', function() {
       shortName: 'test',
       __testDefaults: {
         modules: {
-          'apostrophe-test-module': {}
+          'geoportal-test-module': {}
         }
       },
       afterInit: function(callback) {
-        assert(apos.test && apos.test.color === 'red');
+        assert(geop.test && geop.test.color === 'red');
         return t.destroy(apos, done);
       }
     });
@@ -106,9 +106,9 @@ describe('Apostrophe', function() {
 
       afterInit: function(callback) {
         // color = blue is inherited from our implicit subclass of the base module
-        assert(apos.assets && apos.assets.color === 'blue');
+        assert(geop.assets && geop.assets.color === 'blue');
         // make sure that our modules match what is specifed in defaults.js
-        assert(_.difference(_.keys(defaultModules), _.keys(apos.modules)).length === 0);
+        assert(_.difference(_.keys(defaultModules), _.keys(geop.modules)).length === 0);
         return t.destroy(apos, done);
       }
     });

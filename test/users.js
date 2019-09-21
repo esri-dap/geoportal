@@ -21,16 +21,16 @@ describe('Users', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-users']);
-        apos.argv._ = [];
-        assert(apos.users.safe.remove);
-        return apos.users.safe.remove({}, callback);
+        assert(geop.modules['geoportal-users']);
+        geop.argv._ = [];
+        assert(geop.users.safe.remove);
+        return geop.users.safe.remove({}, callback);
         // return callback(null);
       },
       afterListen: function(err) {
@@ -44,8 +44,8 @@ describe('Users', function() {
 
   // Test pieces.newInstance()
   it('should be able to insert a new user', function(done) {
-    assert(apos.users.newInstance);
-    var user = apos.users.newInstance();
+    assert(geop.users.newInstance);
+    var user = geop.users.newInstance();
     assert(user);
 
     user.firstName = 'Jane';
@@ -55,9 +55,9 @@ describe('Users', function() {
     user.password = '123password';
     user.email = 'jane@aol.com';
 
-    assert(user.type === 'apostrophe-user');
-    assert(apos.users.insert);
-    apos.users.insert(apos.tasks.getReq(), user, function(err) {
+    assert(user.type === 'geoportal-user');
+    assert(geop.users.insert);
+    geop.users.insert(geop.tasks.getReq(), user, function(err) {
       assert(!err);
       janeOne = user;
       done();
@@ -75,7 +75,7 @@ describe('Users', function() {
 
   // retrieve a user by their username
   it('should be able to retrieve a user by their username', function(done) {
-    apos.users.find(apos.tasks.getReq(), { username: 'JaneD' })
+    geop.users.find(geop.tasks.getReq(), { username: 'JaneD' })
       .toObject(function(err, user) {
         assert(!err);
         assert(user);
@@ -86,13 +86,13 @@ describe('Users', function() {
   });
 
   it('should verify a user password', function(done) {
-    apos.users.find(apos.tasks.getReq(), { username: 'JaneD' })
+    geop.users.find(geop.tasks.getReq(), { username: 'JaneD' })
       .toObject(function(err, user) {
         assert(!err);
         assert(user);
         assert(user.username === 'JaneD');
 
-        apos.users.verifyPassword(user, '123password', function(err) {
+        geop.users.verifyPassword(user, '123password', function(err) {
           assert(!err);
           done();
         });
@@ -100,13 +100,13 @@ describe('Users', function() {
   });
 
   it('should not verify an incorrect user password', function(done) {
-    apos.users.find(apos.tasks.getReq(), { username: 'JaneD' })
+    geop.users.find(geop.tasks.getReq(), { username: 'JaneD' })
       .toObject(function(err, user) {
         assert(!err);
         assert(user);
         assert(user.username === 'JaneD');
 
-        apos.users.verifyPassword(user, '321password', function(err) {
+        geop.users.verifyPassword(user, '321password', function(err) {
           assert(err);
           done();
         });
@@ -114,8 +114,8 @@ describe('Users', function() {
   });
 
   it('should not be able to insert a new user if their email already exists', function(done) {
-    assert(apos.users.newInstance);
-    var user = apos.users.newInstance();
+    assert(geop.users.newInstance);
+    var user = geop.users.newInstance();
     assert(user);
 
     user.firstName = 'Dane';
@@ -124,19 +124,19 @@ describe('Users', function() {
     user.username = 'DaneJ';
     user.password = '321password';
     user.email = 'jane@aol.com';
-    assert(user.type === 'apostrophe-user');
+    assert(user.type === 'geoportal-user');
 
-    assert(apos.users.insert);
-    apos.users.insert(apos.tasks.getReq(), user, function(err) {
+    assert(geop.users.insert);
+    geop.users.insert(geop.tasks.getReq(), user, function(err) {
       assert(err);
       done();
     });
   });
 
   it('should be able to move a user to the trash', function(done) {
-    apos.users.trash(apos.tasks.getReq(), janeOne._id, function(err) {
+    geop.users.trash(geop.tasks.getReq(), janeOne._id, function(err) {
       assert(!err);
-      return apos.docs.db.findOne({_id: janeOne._id, trash: true}, function(err, doc) {
+      return geop.docs.db.findOne({_id: janeOne._id, trash: true}, function(err, doc) {
         assert(!err);
         assert(doc);
         done();
@@ -145,7 +145,7 @@ describe('Users', function() {
   });
 
   it('should be able to insert a user with a previously used email if the other is in the trash', function(done) {
-    var user = apos.users.newInstance();
+    var user = geop.users.newInstance();
 
     user.firstName = 'Dane';
     user.lastName = 'Joe';
@@ -153,16 +153,16 @@ describe('Users', function() {
     user.username = 'DaneJ';
     user.password = '321password';
     user.email = 'jane@aol.com';
-    apos.users.insert(apos.tasks.getReq(), user, function(err) {
+    geop.users.insert(geop.tasks.getReq(), user, function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should be able to rescue the first user from the trash and the email should be deduplicated', function(done) {
-    apos.users.rescue(apos.tasks.getReq(), janeOne._id, function(err) {
+    geop.users.rescue(geop.tasks.getReq(), janeOne._id, function(err) {
       assert(!err);
-      return apos.docs.db.findOne({ _id: janeOne._id, trash: { $ne: true } }, function(err, doc) {
+      return geop.docs.db.findOne({ _id: janeOne._id, trash: { $ne: true } }, function(err, doc) {
         assert(!err);
         assert(doc);
         assert(doc.email.match(/deduplicate.*jane/));
@@ -172,7 +172,7 @@ describe('Users', function() {
   });
 
   it('there should be two users in the safe at this point and neither with a null username', function(done) {
-    apos.users.safe.find({}).toArray(function(err, docs) {
+    geop.users.safe.find({}).toArray(function(err, docs) {
       assert(!err);
       assert(docs.length === 2);
       _.each(docs, function(doc) {
@@ -183,9 +183,9 @@ describe('Users', function() {
   });
 
   it('should be able to move a user to the trash', function(done) {
-    apos.users.trash(apos.tasks.getReq(), janeOne._id, function(err) {
+    geop.users.trash(geop.tasks.getReq(), janeOne._id, function(err) {
       assert(!err);
-      return apos.docs.db.findOne({_id: janeOne._id, trash: true}, function(err, doc) {
+      return geop.docs.db.findOne({_id: janeOne._id, trash: true}, function(err, doc) {
         assert(!err);
         assert(doc);
         done();
@@ -194,7 +194,7 @@ describe('Users', function() {
   });
 
   it('should be able to insert a user with a previously used username if the other is in the trash', function(done) {
-    var user = apos.users.newInstance();
+    var user = geop.users.newInstance();
 
     user.firstName = 'Jane';
     user.lastName = 'Doe';
@@ -202,16 +202,16 @@ describe('Users', function() {
     user.username = 'JaneD';
     user.password = '321password';
     user.email = 'somethingelse@aol.com';
-    apos.users.insert(apos.tasks.getReq(), user, function(err) {
+    geop.users.insert(geop.tasks.getReq(), user, function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should be able to rescue the first user from the trash and the username should be deduplicated', function(done) {
-    apos.users.rescue(apos.tasks.getReq(), janeOne._id, function(err) {
+    geop.users.rescue(geop.tasks.getReq(), janeOne._id, function(err) {
       assert(!err);
-      return apos.docs.db.findOne({ _id: janeOne._id, trash: { $ne: true } }, function(err, doc) {
+      return geop.docs.db.findOne({ _id: janeOne._id, trash: { $ne: true } }, function(err, doc) {
         assert(!err);
         assert(doc);
         assert(doc.username.match(/deduplicate.*JaneD/));
@@ -221,7 +221,7 @@ describe('Users', function() {
   });
 
   it('there should be three users in the safe at this point and none with a null username', function(done) {
-    apos.users.safe.find({}).toArray(function(err, docs) {
+    geop.users.safe.find({}).toArray(function(err, docs) {
       assert(!err);
       assert(docs.length === 3);
       _.each(docs, function(doc) {
@@ -232,15 +232,15 @@ describe('Users', function() {
   });
 
   it('should succeed in updating a users property', function(done) {
-    apos.users.find(apos.tasks.getReq(), { username: 'JaneD' })
+    geop.users.find(geop.tasks.getReq(), { username: 'JaneD' })
       .toObject(function(err, user) {
         assert(!err);
         assert(user);
         assert(user.username === 'JaneD');
         user.firstName = 'Jill';
-        apos.users.update(apos.tasks.getReq(), user, function(err) {
+        geop.users.update(geop.tasks.getReq(), user, function(err) {
           assert(!err);
-          apos.users.find(apos.tasks.getReq(), { _id: user._id })
+          geop.users.find(geop.tasks.getReq(), { _id: user._id })
             .toObject(function(err, user) {
               assert(!err);
               assert(user);
@@ -252,13 +252,13 @@ describe('Users', function() {
   });
 
   it('should verify a user password after their info has been updated', function(done) {
-    apos.users.find(apos.tasks.getReq(), { username: 'JaneD' })
+    geop.users.find(geop.tasks.getReq(), { username: 'JaneD' })
       .toObject(function(err, user) {
         assert(!err);
         assert(user);
         assert(user.username === 'JaneD');
 
-        apos.users.verifyPassword(user, '321password', function(err) {
+        geop.users.verifyPassword(user, '321password', function(err) {
           assert(!err);
           done();
         });
@@ -267,20 +267,20 @@ describe('Users', function() {
 
   // change an existing user's password and verify the new password
   it('should change an existing user password and verify the new password', function(done) {
-    apos.users.find(apos.tasks.getReq(), { username: 'JaneD' })
+    geop.users.find(geop.tasks.getReq(), { username: 'JaneD' })
       .toObject(function(err, user) {
         assert(!err);
         assert(user);
         assert(user.username === 'JaneD');
         assert(!user.password);
         user.password = 'password123';
-        apos.users.update(apos.tasks.getReq(), user, function(err) {
+        geop.users.update(geop.tasks.getReq(), user, function(err) {
           assert(!err);
-          apos.users.find(apos.tasks.getReq(), { username: 'JaneD' })
+          geop.users.find(geop.tasks.getReq(), { username: 'JaneD' })
             .toObject(function(err, user) {
               assert(!err);
               assert(user);
-              apos.users.verifyPassword(user, 'password123', function(err) {
+              geop.users.verifyPassword(user, 'password123', function(err) {
                 assert(!err);
                 done();
               });

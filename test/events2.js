@@ -21,7 +21,7 @@ describe('Promisified Events: apostrophe-docs:beforeInses', function() {
         'test1': {
           alias: 'test1',
           construct: function(self, options) {
-            self.on('apostrophe-docs:beforeInsert', 'beforeInsertReverseTitle', function(req, doc, options) {
+            self.on('geoportal-docs:beforeInsert', 'beforeInsertReverseTitle', function(req, doc, options) {
               if (doc.type === 'default') {
                 return Promise.delay(50).then(function() {
                   doc.title = doc.title.split('').reverse().join('');
@@ -38,7 +38,7 @@ describe('Promisified Events: apostrophe-docs:beforeInses', function() {
             };
           }
         },
-        'apostrophe-pages': {
+        'geoportal-pages': {
           park: [
             {
               type: 'default',
@@ -51,14 +51,14 @@ describe('Promisified Events: apostrophe-docs:beforeInses', function() {
         }
       },
       afterInit: function(callback) {
-        apos.argv._ = [];
+        geop.argv._ = [];
         done();
       }
     });
   });
 
   it('should find the results', function(done) {
-    return apos.docs.db.findOne({ findMeAgain: true }, function(err, doc) {
+    return geop.docs.db.findOne({ findMeAgain: true }, function(err, doc) {
       assert(!err);
       assert(doc);
       assert(doc.title === 'tseT');

@@ -12,7 +12,7 @@ describe('Express', function() {
       root: module,
       shortName: 'test',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900
         },
@@ -25,11 +25,11 @@ describe('Express', function() {
         }
       },
       afterInit: function(callback) {
-        assert(apos.express);
+        assert(geop.express);
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -40,15 +40,15 @@ describe('Express', function() {
   });
 
   it('app should exist on the apos object', function() {
-    assert(apos.app);
+    assert(geop.app);
   });
 
   it('baseApp should exist on the apos object', function() {
-    assert(apos.baseApp);
+    assert(geop.baseApp);
   });
 
   it('app and baseApp should be the same in the absence of a prefix', function() {
-    assert(apos.baseApp === apos.app);
+    assert(geop.baseApp === geop.app);
   });
 
   var request = require('request');
@@ -56,7 +56,7 @@ describe('Express', function() {
   var jar;
 
   function getCsrfToken(jar) {
-    var csrfCookie = _.find(jar.getCookies('http://localhost:7900/'), { key: apos.csrfCookieName });
+    var csrfCookie = _.find(jar.getCookies('http://localhost:7900/'), { key: geop.csrfCookieName });
     if (!csrfCookie) {
       return null;
     }
@@ -210,7 +210,7 @@ describe('Express', function() {
       shortName: 'test',
       prefix: '/prefix',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7900,
           csrf: false
         },
@@ -223,12 +223,12 @@ describe('Express', function() {
         }
       },
       afterInit: function(callback) {
-        assert(apos.prefix);
-        assert(apos.prefix === '/prefix');
+        assert(geop.prefix);
+        assert(geop.prefix === '/prefix');
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -239,7 +239,7 @@ describe('Express', function() {
   });
 
   it('should have different baseApp and app properties with a prefix', function() {
-    assert(apos.app !== apos.baseApp);
+    assert(geop.app !== geop.baseApp);
   });
 
   it('should take same requests at the prefix', function(done) {
@@ -266,7 +266,7 @@ describe('Express', function() {
       shortName: 'test',
       baseUrl: 'https://example.com',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7900,
           csrf: false
         },
@@ -279,17 +279,17 @@ describe('Express', function() {
         }
       },
       afterInit: function(callback) {
-        assert(apos.baseUrl);
-        assert(apos.baseUrl === 'https://example.com');
+        assert(geop.baseUrl);
+        assert(geop.baseUrl === 'https://example.com');
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
         assert(!err);
-        var req = apos.tasks.getReq({ url: '/test' });
+        var req = geop.tasks.getReq({ url: '/test' });
         assert(req.baseUrl === 'https://example.com');
         assert(req.absoluteUrl === 'https://example.com/test');
         // Last one before a new apos object
@@ -306,7 +306,7 @@ describe('Express', function() {
       baseUrl: 'https://example.com',
       prefix: '/subdir',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7900,
           csrf: false
         },
@@ -319,18 +319,18 @@ describe('Express', function() {
         }
       },
       afterInit: function(callback) {
-        assert(apos.baseUrl);
-        assert(apos.baseUrl === 'https://example.com');
-        assert(apos.prefix === '/subdir');
+        assert(geop.baseUrl);
+        assert(geop.baseUrl === 'https://example.com');
+        assert(geop.prefix === '/subdir');
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
         assert(!err);
-        var req = apos.tasks.getReq({ url: '/test' });
+        var req = geop.tasks.getReq({ url: '/test' });
         assert(req.baseUrl === 'https://example.com');
         assert(req.baseUrlWithPrefix === 'https://example.com/subdir');
         assert(req.absoluteUrl === 'https://example.com/subdir/test');

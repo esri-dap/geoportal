@@ -18,15 +18,15 @@ describe('Docs Advisory Lock Timeout', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900
         },
-        'apostrophe-docs': {
+        'geoportal-docs': {
           advisoryLockTimeout: 2
         },
         'test-people': {
-          extend: 'apostrophe-doc-type-manager',
+          extend: 'geoportal-doc-type-manager',
           name: 'test-person',
           addFields: [
             {
@@ -40,8 +40,8 @@ describe('Docs Advisory Lock Timeout', function() {
         }
       },
       afterInit: function(callback) {
-        assert(apos.docs);
-        apos.argv._ = [];
+        assert(geop.docs);
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -86,23 +86,23 @@ describe('Docs Advisory Lock Timeout', function() {
       }
     ];
 
-    apos.docs.db.insert(testItems, function(err) {
+    geop.docs.db.insert(testItems, function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should be able to lock a document', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.lock(req, 'lori', 'abc', function(err) {
+    var req = geop.tasks.getReq();
+    geop.docs.lock(req, 'lori', 'abc', function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should not be able to lock a document with a different contextId right away', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.lock(req, 'lori', 'def', function(err) {
+    var req = geop.tasks.getReq();
+    geop.docs.lock(req, 'lori', 'def', function(err) {
       assert(err);
       assert(err === 'locked');
       done();
@@ -110,10 +110,10 @@ describe('Docs Advisory Lock Timeout', function() {
   });
 
   it('should be able to lock a document with a different contextId after 3 seconds with a timeout of 2', function(done) {
-    var req = apos.tasks.getReq();
+    var req = geop.tasks.getReq();
     setTimeout(attempt, 3000);
     function attempt() {
-      apos.docs.lock(req, 'lori', 'def', function(err) {
+      geop.docs.lock(req, 'lori', 'def', function(err) {
         assert(!err);
         done();
       });
@@ -123,11 +123,11 @@ describe('Docs Advisory Lock Timeout', function() {
   // Now `def` has the lock
 
   it('should not be able to lock a document with a different contextId after 3 seconds with a timeout of 2 if there is a refresh each second', function(done) {
-    var req = apos.tasks.getReq();
+    var req = geop.tasks.getReq();
     var interval = setInterval(refresh, 1000);
     setTimeout(attempt, 3000);
     function attempt() {
-      apos.docs.lock(req, 'lori', 'ghi', function(err) {
+      geop.docs.lock(req, 'lori', 'ghi', function(err) {
         assert(err);
         assert(err === 'locked');
         clearInterval(interval);
@@ -135,7 +135,7 @@ describe('Docs Advisory Lock Timeout', function() {
       });
     }
     function refresh() {
-      apos.docs.verifyLock(req, 'lori', 'def', function(err) {
+      geop.docs.verifyLock(req, 'lori', 'def', function(err) {
         assert(!err);
       });
     }

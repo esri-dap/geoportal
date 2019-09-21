@@ -7,6 +7,6 @@ module.exports = {
     self.pushAsset('stylesheet', 'test', { when: 'always' });
 
     // Attach to apos
-    self.apos.test = self;
+    self.geop.test = self;
   }
 };

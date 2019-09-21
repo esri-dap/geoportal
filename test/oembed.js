@@ -21,19 +21,19 @@ describe('Oembed', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900,
           csrf: false
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-oembed']);
-        assert(apos.oembed);
+        assert(geop.modules['geoportal-oembed']);
+        assert(geop.oembed);
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {

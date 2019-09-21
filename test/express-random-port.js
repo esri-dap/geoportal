@@ -34,13 +34,13 @@ describe('Express', function() {
       root: module,
       shortName: 'test',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 0
         }
       },
       afterInit: function(callback) {
-        assert(apos.express);
+        assert(geop.express);
         return callback(null);
       },
       afterListen: function(err) {
@@ -51,7 +51,7 @@ describe('Express', function() {
   });
 
   it('should bind the server to a random port when given port 0', function(done) {
-    var server = apos.modules['apostrophe-express'].server;
+    var server = geop.modules['geoportal-express'].server;
     assert(server.address().port !== 3000);
     done();
   });

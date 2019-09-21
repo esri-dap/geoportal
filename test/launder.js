@@ -16,7 +16,7 @@ describe('Launder', function() {
       root: module,
       shortName: 'test',
       afterInit: function(callback) {
-        assert(apos.launder);
+        assert(geop.launder);
         return done();
       }
     });
@@ -27,6 +27,6 @@ describe('Launder', function() {
   // hooked up to launder.
 
   it('should launder a number to a string', function() {
-    assert(apos.launder.string(5) === '5');
+    assert(geop.launder.string(5) === '5');
   });
 });

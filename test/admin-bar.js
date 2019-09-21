@@ -16,42 +16,42 @@ describe('Admin bar', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900,
           csrf: false
         },
-        'apostrophe-admin-bar': {
+        'geoportal-admin-bar': {
           addGroups: [
             {
               label: 'Media',
               items: [
-                'apostrophe-images',
-                'apostrophe-files'
+                'geoportal-images',
+                'geoportal-files'
               ]
             },
             {
               label: 'Content',
               items: [
-                'apostrophe-login-logout',
-                'apostrophe-files',
-                'apostrophe-images'
+                'geoportal-login-logout',
+                'geoportal-files',
+                'geoportal-images'
               ]
             }
           ]
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-admin-bar']);
-        assert(apos.adminBar);
-        assert(apos.adminBar.items.length === 8);
-        assert(apos.adminBar.items[5].name === 'apostrophe-login-logout');
-        assert(apos.adminBar.items[6].name === 'apostrophe-files');
-        assert(apos.adminBar.items[7].name === 'apostrophe-images');
+        assert(geop.modules['geoportal-admin-bar']);
+        assert(geop.adminBar);
+        assert(geop.adminBar.items.length === 8);
+        assert(geop.adminBar.items[5].name === 'geoportal-login-logout');
+        assert(geop.adminBar.items[6].name === 'geoportal-files');
+        assert(geop.adminBar.items[7].name === 'geoportal-images');
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -67,42 +67,42 @@ describe('Admin bar', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900,
           csrf: false
         },
-        'apostrophe-admin-bar': {
+        'geoportal-admin-bar': {
           addGroups: [
             {
               label: 'Media',
               items: [
-                'apostrophe-images',
-                'apostrophe-files'
+                'geoportal-images',
+                'geoportal-files'
               ]
             },
             {
               label: 'Content',
               items: [
-                'apostrophe-files',
-                'apostrophe-images',
-                'apostrophe-login-logout'
+                'geoportal-files',
+                'geoportal-images',
+                'geoportal-login-logout'
               ]
             }
           ]
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-admin-bar']);
-        assert(apos.adminBar);
-        assert(apos.adminBar.items.length === 8);
-        assert(apos.adminBar.items[5].name === 'apostrophe-files');
-        assert(apos.adminBar.items[6].name === 'apostrophe-images');
-        assert(apos.adminBar.items[7].name === 'apostrophe-login-logout');
+        assert(geop.modules['geoportal-admin-bar']);
+        assert(geop.adminBar);
+        assert(geop.adminBar.items.length === 8);
+        assert(geop.adminBar.items[5].name === 'geoportal-files');
+        assert(geop.adminBar.items[6].name === 'geoportal-images');
+        assert(geop.adminBar.items[7].name === 'geoportal-login-logout');
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {

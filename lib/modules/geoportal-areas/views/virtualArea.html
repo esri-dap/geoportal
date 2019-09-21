@@ -1,0 +1,6 @@
+{# This is a shim #}
+{%- if data.options.type -%}
+  {{ geop.singleton(data.options) }}
+{%- else -%}
+  {{ geop.area(data.options) }}
+{%- endif -%}

@@ -20,7 +20,7 @@ module.exports = function(options) {
   // to participate as a promise event emitter
   var self = {
     __meta: {
-      name: 'apostrophe'
+      name: 'geoportal'
     }
   };
 
@@ -89,10 +89,10 @@ module.exports = function(options) {
 
   // EVENT HANDLING (legacy events)
   //
-  // apos.emit(eventName, /* arg1, arg2, arg3... */)
+  // geop.emit(eventName, /* arg1, arg2, arg3... */)
   //
   // Emit an Apostrophe legacy event. All handlers that have been set
-  // with apos.on for the same eventName will be invoked. Any additional
+  // with geop.on for the same eventName will be invoked. Any additional
   // arguments are received by the handler functions as arguments.
   //
   // See the `self.on` and `self.emit` methods of all modules
@@ -112,8 +112,8 @@ module.exports = function(options) {
   };
 
   // Install an Apostrophe legacy event handler. The handler will be called
-  // when apos.emit is invoked with the same eventName. The handler
-  // will receive any additional arguments passed to apos.emit.
+  // when geop.emit is invoked with the same eventName. The handler
+  // will receive any additional arguments passed to geop.emit.
   //
   // See the `self.on` and `self.emit` methods of all modules
   // (via the `apostrophe-module`) base class for a better,
@@ -192,7 +192,7 @@ module.exports = function(options) {
 
   // Returns an array of modules that are instances of the given
   // module name, i.e. they are of that type or they extend it.
-  // For instance, `apos.instancesOf('apostrophe-pieces')` returns
+  // For instance, `geop.instancesOf('geoportal-pieces')` returns
   // an array of active modules in your project that extend
   // pieces, such as `apostrophe-users`, `apostrophe-groups` and
   // your own piece types
@@ -205,7 +205,7 @@ module.exports = function(options) {
 
   // Returns true if the object is an instance of the given
   // moog type name or a subclass thereof. A convenience wrapper
-  // for `apos.synth.instanceOf`
+  // for `geop.synth.instanceOf`
 
   self.instanceOf = function(object, name) {
     return self.synth.instanceOf(object, name);
@@ -358,9 +358,9 @@ module.exports = function(options) {
     }
     defaults = _.cloneDeep(defaults);
     _.defaults(defaults, {
-      'apostrophe-express': {}
+      'geoportal-express': {}
     });
-    _.defaults(defaults['apostrophe-express'], {
+    _.defaults(defaults['geoportal-express'], {
       port: 7900,
       secret: 'irrelevant'
     });
@@ -438,9 +438,9 @@ module.exports = function(options) {
 
     self.moogOptions = {
       root: self.root,
-      bundles: [ 'apostrophe' ].concat(self.options.bundles || []),
+      bundles: [ 'geoportal' ].concat(self.options.bundles || []),
       localModules: self.options.modulesSubdir || self.options.__testLocalModules || (self.rootDir + '/lib/modules'),
-      defaultBaseClass: 'apostrophe-module',
+      defaultBaseClass: 'geoportal-module',
       nestedModuleSubdirs: self.options.nestedModuleSubdirs
     };
     var synth = require('moog-require')(self.moogOptions);
@@ -448,7 +448,7 @@ module.exports = function(options) {
     self.synth = synth;
 
     // Just like on the browser side, we can
-    // call apos.define rather than apos.synth.define
+    // call geop.define rather than geop.synth.define
     self.define = self.synth.define;
     self.redefine = self.synth.redefine;
     self.create = self.synth.create;
@@ -509,7 +509,7 @@ module.exports = function(options) {
       }
       if (name.match(/-widgets$/) && (!extending(module)) && (!module.options.ignoreNoExtendWarning)) {
         lint('The module ' + name + ' does not extend anything.\n\nA `-widgets` module usually extends `apostrophe-widgets` or\n`apostrophe-pieces-widgets`. Or possibly you forgot to npm install something.\n\nIf you are sure you are doing the right thing, set the\n`ignoreNoExtendWarning` option to `true` for this module.');
-      } else if (name.match(/-pages$/) && (name !== 'apostrophe-pages') && (!extending(module)) && (!module.options.ignoreNoExtendWarning)) {
+      } else if (name.match(/-pages$/) && (name !== 'geoportal-pages') && (!extending(module)) && (!module.options.ignoreNoExtendWarning)) {
         lint('The module ' + name + ' does not extend anything.\n\nA `-pages` module usually extends `apostrophe-custom-pages` or\n`apostrophe-pieces-pages`. Or possibly you forgot to npm install something.\n\nIf you are sure you are doing the right thing, set the\n`ignoreNoExtendWarning` option to `true` for this module.');
       } else if ((!extending(module)) && (!hasConstruct(name)) && (!isMoogBundle(name)) && (!module.options.ignoreNoCodeWarning)) {
         lint('The module ' + name + ' does not extend anything and does not have a\n`beforeConstruct`, `construct` or `afterConstruct` function. This usually means that you:\n\n1. Forgot to `extend` another module\n2. Configured a module that comes from npm without npm installing it\n3. Simply haven\'t written your `index.js` yet\n\nIf you really want a module with no code, set the `ignoreNoCodeWarning` option\nto `true` for this module.');
@@ -548,7 +548,7 @@ module.exports = function(options) {
 
   function migrate(callback) {
     traceStartup('migrate');
-    if (self.argv._[0] === 'apostrophe-migrations:migrate') {
+    if (self.argv._[0] === 'geoportal-migrations:migrate') {
       // Migration task will do this later with custom arguments to
       // the event
       return callback(null);
@@ -611,7 +611,7 @@ module.exports = function(options) {
 
 };
 
-var abstractClasses = [ 'apostrophe-module', 'apostrophe-widgets', 'apostrophe-custom-pages', 'apostrophe-pieces', 'apostrophe-pieces-pages', 'apostrophe-pieces-widgets', 'apostrophe-doc-type-manager' ];
+var abstractClasses = [ 'geoportal-module', 'geoportal-widgets', 'geoportal-custom-pages', 'geoportal-pieces', 'geoportal-pieces-pages', 'geoportal-pieces-widgets', 'geoportal-doc-type-manager' ];
 
 module.exports.moogBundle = {
   modules: abstractClasses.concat(_.keys(defaults.modules)),

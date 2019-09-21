@@ -19,10 +19,10 @@ describe('Email', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7900
         },
-        'apostrophe-email': {
+        'geoportal-email': {
           nodemailer: {
             streamTransport: true,
             buffer: true,
@@ -32,11 +32,11 @@ describe('Email', function() {
         'email-test': {}
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-email']);
+        assert(geop.modules['geoportal-email']);
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -47,7 +47,7 @@ describe('Email', function() {
   });
 
   it('can send email on behalf of a module', function(done) {
-    apos.modules['email-test'].email(apos.tasks.getReq(),
+    geop.modules['email-test'].email(geop.tasks.getReq(),
       'welcome',
       {
         name: 'Fred Astaire'
@@ -71,7 +71,7 @@ describe('Email', function() {
     );
   });
   it('can do it with promises', function() {
-    return apos.modules['email-test'].email(apos.tasks.getReq(),
+    return geop.modules['email-test'].email(geop.tasks.getReq(),
       'welcome',
       {
         name: 'Fred Astaire'

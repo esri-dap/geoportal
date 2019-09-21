@@ -7,7 +7,7 @@ var apos;
 
 var mockImages = [
   {
-    type: 'apostrophe-image',
+    type: 'geoportal-image',
     slug: 'image-1',
     published: true,
     attachment: {
@@ -17,7 +17,7 @@ var mockImages = [
     }
   },
   {
-    type: 'apostrophe-image',
+    type: 'geoportal-image',
     slug: 'image-2',
     published: true,
     attachment: {
@@ -27,7 +27,7 @@ var mockImages = [
     }
   },
   {
-    type: 'apostrophe-image',
+    type: 'geoportal-image',
     slug: 'image-3',
     published: true,
     attachment: {
@@ -37,7 +37,7 @@ var mockImages = [
     }
   },
   {
-    type: 'apostrophe-image',
+    type: 'geoportal-image',
     slug: 'image-4',
     published: true,
     attachment: {
@@ -62,16 +62,16 @@ describe('Images', function() {
       root: module,
       shortName: 'test',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7900
         }
       },
       afterInit: function(callback) {
-        assert(apos.images);
+        assert(geop.images);
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -85,16 +85,16 @@ describe('Images', function() {
   it('should clean up any existing images for testing', function(done) {
     // Newer mongo returns a promise from remove even if there's a callback,
     // which in turn confuses mocha if we use a return statement here. So don't. -Tom
-    apos.docs.db.remove({ type: 'apostrophe-image' }, function(err) {
+    geop.docs.db.remove({ type: 'geoportal-image' }, function(err) {
       assert(!err);
       done();
     });
   });
 
   it('should add images for testing', function(done) {
-    assert(apos.images.insert);
+    assert(geop.images.insert);
     return async.each(mockImages, function(image, callback) {
-      return apos.images.insert(apos.tasks.getReq(), image, callback);
+      return geop.images.insert(geop.tasks.getReq(), image, callback);
     }, function(err) {
       assert(!err);
       done();
@@ -102,8 +102,8 @@ describe('Images', function() {
   });
 
   it('should respect minSize filter (svg is always OK)', function(done) {
-    var req = apos.tasks.getAnonReq();
-    return apos.images.find(req).minSize([ 200, 200 ]).toArray(function(err, images) {
+    var req = geop.tasks.getAnonReq();
+    return geop.images.find(req).minSize([ 200, 200 ]).toArray(function(err, images) {
       assert(!err);
       assert(images.length === 3);
       return done();
@@ -111,8 +111,8 @@ describe('Images', function() {
   });
 
   it('should respect minSize filter in toCount, which uses a cloned cursor', function(done) {
-    var req = apos.tasks.getAnonReq();
-    return apos.images.find(req).minSize([ 200, 200 ]).toCount(function(err, count) {
+    var req = geop.tasks.getAnonReq();
+    return geop.images.find(req).minSize([ 200, 200 ]).toCount(function(err, count) {
       assert(!err);
       assert(count === 3);
       return done();
@@ -120,7 +120,7 @@ describe('Images', function() {
   });
 
   it('should generate a srcset string for an image', function() {
-    var srcset = apos.images.srcset({
+    var srcset = geop.images.srcset({
       name: 'test',
       _id: 'test',
       extension: 'jpg',
@@ -136,7 +136,7 @@ describe('Images', function() {
   });
 
   it('should not generate a srcset string for an SVG image', function() {
-    var srcset = apos.images.srcset({
+    var srcset = geop.images.srcset({
       name: 'test',
       _id: 'test',
       extension: 'svg',

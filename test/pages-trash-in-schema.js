@@ -19,14 +19,14 @@ describe('Pages', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900
         },
-        'apostrophe-docs': {
+        'geoportal-docs': {
           trashInSchema: true
         },
-        'apostrophe-pages': {
+        'geoportal-pages': {
           park: [],
           types: [
             {
@@ -41,8 +41,8 @@ describe('Pages', function() {
         }
       },
       afterInit: function(callback) {
-        assert(apos.pages);
-        apos.argv._ = [];
+        assert(geop.pages);
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -53,7 +53,7 @@ describe('Pages', function() {
   });
 
   it('parked homepage exists', function(done) {
-    return apos.pages.find(apos.tasks.getAnonReq(), { level: 0 }).toObject(function(err, home) {
+    return geop.pages.find(geop.tasks.getAnonReq(), { level: 0 }).toObject(function(err, home) {
       assert(!err);
       assert(home);
       assert(home.slug === '/');
@@ -87,7 +87,7 @@ describe('Pages', function() {
       }
     ];
 
-    apos.docs.db.insert(testItems, function(err) {
+    geop.docs.db.insert(testItems, function(err) {
       assert(!err);
       done();
     });
@@ -95,12 +95,12 @@ describe('Pages', function() {
   });
 
   it('should be able to move second page above first page in tree without changing its trash status', function(done) {
-    apos.pages.move(apos.tasks.getReq(), 'two', 'one', 'before', function(err) {
+    geop.pages.move(geop.tasks.getReq(), 'two', 'one', 'before', function(err) {
       if (err) {
         console.log(err);
       }
       assert(!err);
-      var cursor = apos.pages.find(apos.tasks.getAnonReq(), { _id: 'two' }).trash(true);
+      var cursor = geop.pages.find(geop.tasks.getAnonReq(), { _id: 'two' }).trash(true);
       cursor.toObject(function(err, page) {
         if (err) {
           console.log(err);

@@ -20,7 +20,7 @@ describe('Tags', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900,
           csrf: {
@@ -29,13 +29,13 @@ describe('Tags', function() {
           }
         },
         'events': {
-          extend: 'apostrophe-pieces',
+          extend: 'geoportal-pieces',
           name: 'event'
         }
       },
       afterInit: function(callback) {
-        assert(apos.tags);
-        apos.argv._ = [];
+        assert(geop.tags);
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -71,7 +71,7 @@ describe('Tags', function() {
     ];
 
     return async.eachSeries(testDocs, function(doc, callback) {
-      apos.docs.insert(apos.tasks.getReq(), doc, callback);
+      geop.docs.insert(geop.tasks.getReq(), doc, callback);
     }, function(err) {
       assert(!err);
       done();
@@ -79,7 +79,7 @@ describe('Tags', function() {
   });
 
   it('should have a listTags method that returns a list of tags', function(done) {
-    return apos.tags.listTags(apos.tasks.getReq(), {}, function(err, tags) {
+    return geop.tags.listTags(geop.tasks.getReq(), {}, function(err, tags) {
       assert(!err);
       assert(tags);
       assert(Array.isArray(tags));
@@ -88,7 +88,7 @@ describe('Tags', function() {
   });
 
   it('should have a prefix option on the get method that filters the tags', function(done) {
-    return apos.tags.listTags(apos.tasks.getReq(), { prefix: 'tag' }, function(err, tags) {
+    return geop.tags.listTags(geop.tasks.getReq(), { prefix: 'tag' }, function(err, tags) {
       assert(!err);
       assert(_.contains(tags, 'tag1', 'tag2', 'tag3', 'tag4'));
       assert(!_.contains(tags, 'agressive'));
@@ -97,7 +97,7 @@ describe('Tags', function() {
   });
 
   it('should have a contains option on the get method that filters the tags', function(done) {
-    return apos.tags.listTags(apos.tasks.getReq(), { contains: 'ag' }, function(err, tags) {
+    return geop.tags.listTags(geop.tasks.getReq(), { contains: 'ag' }, function(err, tags) {
       assert(!err);
       assert(_.contains(tags, 'agressive', 'tag1', 'tag2', 'tag3', 'tag4'));
       done();
@@ -105,7 +105,7 @@ describe('Tags', function() {
   });
 
   it('should return an empty array if a prefix or contains option does not match', function(done) {
-    return apos.tags.listTags(apos.tasks.getReq(), { contains: '9046gobbledygook1678' }, function(err, tags) {
+    return geop.tags.listTags(geop.tasks.getReq(), { contains: '9046gobbledygook1678' }, function(err, tags) {
       assert(!err);
       assert(tags.length === 0);
       done();

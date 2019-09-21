@@ -20,19 +20,19 @@ describe('Search', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900
         },
         'events': {
-          extend: 'apostrophe-pieces',
+          extend: 'geoportal-pieces',
           name: 'event',
           label: 'Event'
         }
       },
       afterInit: function(callback) {
-        assert(apos.search);
-        apos.argv._ = [];
+        assert(geop.search);
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -43,8 +43,8 @@ describe('Search', function() {
   });
 
   it('should add highSearchText, highSearchWords, lowSearchText, searchSummary to all docs on insert', function(done) {
-    var req = apos.tasks.getReq();
-    apos.docs.insert(req, {
+    var req = geop.tasks.getReq();
+    geop.docs.insert(req, {
       title: 'Testing Search Event',
       type: 'event',
       tags: ['search', 'test', 'pizza'],
@@ -53,7 +53,7 @@ describe('Search', function() {
     }, function(err) {
       assert(!err);
 
-      apos.docs.find(req, { slug: 'search-test-event' }).toObject(function(err, doc) {
+      geop.docs.find(req, { slug: 'search-test-event' }).toObject(function(err, doc) {
         assert(!err);
         assert(doc.highSearchText);
         assert(doc.highSearchWords);

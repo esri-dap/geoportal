@@ -34,7 +34,7 @@ describe('Attachment', function() {
       }
     }
 
-    apos.db.collection(collectionName, function(err, collection) {
+    geop.db.collection(collectionName, function(err, collection) {
       assert(!err);
       assert(collection);
       collection.remove({}, callback);
@@ -53,16 +53,16 @@ describe('Attachment', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7900
         }
       },
       afterInit: function(callback) {
-        assert(apos.attachments);
+        assert(geop.attachments);
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -83,7 +83,7 @@ describe('Attachment', function() {
   describe('accept', function() {
 
     function accept(filename, callback) {
-      return apos.attachments.insert(apos.tasks.getReq(), {
+      return geop.attachments.insert(geop.tasks.getReq(), {
         name: filename,
         path: uploadSource + filename
       }, function(err, info) {
@@ -93,7 +93,7 @@ describe('Attachment', function() {
         assert(fs.existsSync(t));
 
         // make sure it exists in mongo
-        apos.db.collection(collectionName).findOne({
+        geop.db.collection(collectionName).findOne({
           _id: info._id
         }, function(err, result) {
           assert(!err);
@@ -119,7 +119,7 @@ describe('Attachment', function() {
     it('should not upload an exe file', function(done) {
       var filename = 'bad_file.exe';
 
-      return apos.attachments.insert(apos.tasks.getReq(), {
+      return geop.attachments.insert(geop.tasks.getReq(), {
         name: filename,
         path: uploadSource + filename
       }, function(err, info) {
@@ -133,15 +133,15 @@ describe('Attachment', function() {
       return accept('crop_image.png', function(result) {
         var crop = { top: 10, left: 10, width: 80, height: 80 };
 
-        return apos.attachments.crop(
-          apos.tasks.getReq(),
+        return geop.attachments.crop(
+          geop.tasks.getReq(),
           result._id,
           crop,
           function(err) {
             assert(!err);
 
             // make sure it exists in mongo
-            apos.db.collection(collectionName).findOne({
+            geop.db.collection(collectionName).findOne({
               _id: result._id
             }, function(err, result) {
               assert(!err);
@@ -161,12 +161,12 @@ describe('Attachment', function() {
     it('should clone an attachment', function(done) {
       return accept('clone.txt', function(result) {
 
-        return apos.attachments.clone(apos.tasks.getReq(), result, function(err, targetInfo) {
+        return geop.attachments.clone(geop.tasks.getReq(), result, function(err, targetInfo) {
           assert(!err);
           assert(targetInfo._id !== result._id);
 
           // make sure it exists in mongo
-          apos.db.collection(collectionName).findOne({
+          geop.db.collection(collectionName).findOne({
             _id: result._id
           }, function(err, result) {
             assert(!err);
@@ -181,7 +181,7 @@ describe('Attachment', function() {
     });
 
     it('should generate the "full" URL when no size specified for image', function() {
-      var url = apos.attachments.url({
+      var url = geop.attachments.url({
         group: 'images',
         name: 'test',
         extension: 'jpg',
@@ -191,7 +191,7 @@ describe('Attachment', function() {
     });
 
     it('should generate the "one-half" URL when one-half size specified for image', function() {
-      var url = apos.attachments.url({
+      var url = geop.attachments.url({
         group: 'images',
         name: 'test',
         extension: 'jpg',
@@ -203,7 +203,7 @@ describe('Attachment', function() {
     });
 
     it('should generate the original URL when "original" size specified for image', function() {
-      var url = apos.attachments.url({
+      var url = geop.attachments.url({
         group: 'images',
         name: 'test',
         extension: 'jpg',
@@ -215,7 +215,7 @@ describe('Attachment', function() {
     });
 
     it('should generate the original URL when no size specified for pdf', function() {
-      var url = apos.attachments.url({
+      var url = geop.attachments.url({
         group: 'office',
         name: 'test',
         extension: 'pdf',
@@ -225,9 +225,9 @@ describe('Attachment', function() {
     });
 
     it('should save and track docIds properly as part of an apostrophe-image', function() {
-      var image = apos.images.newInstance();
-      var req = apos.tasks.getReq();
-      return apos.attachments.insert(apos.tasks.getReq(), {
+      var image = geop.images.newInstance();
+      var req = geop.tasks.getReq();
+      return geop.attachments.insert(geop.tasks.getReq(), {
         name: 'upload_image.png',
         path: uploadSource + 'upload_image.png'
       })
@@ -235,11 +235,11 @@ describe('Attachment', function() {
           assert(attachment);
           image.title = 'Test Image';
           image.attachment = attachment;
-          return apos.images.insert(req, image);
+          return geop.images.insert(req, image);
         })
         .then(function(image) {
           assert(image);
-          return apos.attachments.db.findOne({ _id: image.attachment._id });
+          return geop.attachments.db.findOne({ _id: image.attachment._id });
         })
         .then(function(attachment) {
           assert(attachment.trash === false);
@@ -249,40 +249,40 @@ describe('Attachment', function() {
           assert(attachment.trashDocIds);
           assert(attachment.trashDocIds.length === 0);
           try {
-            var fd = fs.openSync(apos.rootDir + '/public' + apos.attachments.url(attachment, { size: 'original' }), 'r');
+            var fd = fs.openSync(geop.rootDir + '/public' + geop.attachments.url(attachment, { size: 'original' }), 'r');
             assert(fd);
             fs.closeSync(fd);
           } catch (e) {
             assert(false);
           }
-          return apos.images.trash(req, image._id);
+          return geop.images.trash(req, image._id);
         })
         .then(function() {
-          return apos.attachments.db.findOne({ _id: image.attachment._id });
+          return geop.attachments.db.findOne({ _id: image.attachment._id });
         })
         .then(function(attachment) {
           assert(attachment.trash);
           assert(attachment.docIds.length === 0);
           assert(attachment.trashDocIds.length === 1);
           try {
-            fs.openSync(apos.rootDir + '/public' + apos.attachments.url(attachment, { size: 'original' }), 'r');
+            fs.openSync(geop.rootDir + '/public' + geop.attachments.url(attachment, { size: 'original' }), 'r');
           } catch (e) {
             return true;
           }
           throw new Error('should not have been accessible');
         })
         .then(function() {
-          return apos.images.rescue(req, image._id);
+          return geop.images.rescue(req, image._id);
         })
         .then(function() {
-          return apos.attachments.db.findOne({ _id: image.attachment._id });
+          return geop.attachments.db.findOne({ _id: image.attachment._id });
         })
         .then(function(attachment) {
           assert(!attachment.trash);
           assert(attachment.docIds.length === 1);
           assert(attachment.trashDocIds.length === 0);
           try {
-            var fd = fs.openSync(apos.rootDir + '/public' + apos.attachments.url(attachment, { size: 'original' }), 'r');
+            var fd = fs.openSync(geop.rootDir + '/public' + geop.attachments.url(attachment, { size: 'original' }), 'r');
             assert(fd);
             fs.closeSync(fd);
           } catch (e) {

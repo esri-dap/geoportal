@@ -18,21 +18,21 @@ describe('Base Module', function() {
 
       modules: {
         // will push an asset for us to look for later
-        'apostrophe-test-module-push': {},
+        'geoportal-test-module-push': {},
         // test the getOption method of modules
         'test-get-option': {}
       },
       afterInit: function(callback) {
-        assert(apos.test && apos.test.color === 'red');
+        assert(geop.test && geop.test.color === 'red');
         return done();
       }
     });
   });
 
-  it('should provide apos.assets with the right context for pushing assets', function(done) {
+  it('should provide geop.assets with the right context for pushing assets', function(done) {
     var found = false;
-    for (var i = apos.assets.pushed.stylesheets.length - 1; i >= 0; i--) {
-      if (apos.assets.pushed.stylesheets[i].file === __dirname + '/lib/modules/apostrophe-test-module-push/public/css/test.css') {
+    for (var i = geop.assets.pushed.stylesheets.length - 1; i >= 0; i--) {
+      if (geop.assets.pushed.stylesheets[i].file === __dirname + '/lib/modules/apostrophe-test-module-push/public/css/test.css') {
         found = true;
         break;
       }
@@ -42,8 +42,8 @@ describe('Base Module', function() {
   });
 
   it('should produce correct responses via the getOption method', function() {
-    var mod = apos.modules['test-get-option'];
-    var req = apos.tasks.getReq();
+    var mod = geop.modules['test-get-option'];
+    var req = geop.tasks.getReq();
     assert.equal(mod.getOption(req, 'flavors.grape.sweetness'), 20);
     assert.equal(mod.getOption(req, 'flavors.cheese.swarthiness'), undefined);
     assert.equal(mod.getOption(req, 'flavors.grape.ingredients.0'), 'chemicals');

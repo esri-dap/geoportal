@@ -21,26 +21,26 @@ describe('Areas', function() {
       shortName: 'test',
 
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900,
           csrf: false
         },
         'monkeys': {
-          extend: 'apostrophe-pieces',
+          extend: 'geoportal-pieces',
           name: 'monkey'
         },
         'monkeys-widgets': {
-          extend: 'apostrophe-pieces-widgets'
+          extend: 'geoportal-pieces-widgets'
         }
       },
       afterInit: function(callback) {
-        assert(apos.modules['apostrophe-areas']);
-        assert(apos.areas);
+        assert(geop.modules['geoportal-areas']);
+        assert(geop.areas);
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -51,11 +51,11 @@ describe('Areas', function() {
   });
 
   it('returns the rich text of an area via the richText method', function() {
-    assert(apos.areas.richText({
+    assert(geop.areas.richText({
       type: 'area',
       items: [
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>So cool</h2>'
         },
         {
@@ -63,16 +63,16 @@ describe('Areas', function() {
           content: '<h3>Do not return me</h3>'
         },
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>Something else cool</h2>'
         }
       ]
     }) === '<h2>So cool</h2>\n<h2>Something else cool</h2>');
-    assert(apos.areas.richText({
+    assert(geop.areas.richText({
       type: 'area',
       items: [
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>So cool</h2>'
         },
         {
@@ -80,16 +80,16 @@ describe('Areas', function() {
           content: '<h3>Do not return me</h3>'
         },
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>Something else cool</h2>'
         }
       ]
     }, { delimiter: '' }) === '<h2>So cool</h2><h2>Something else cool</h2>');
-    assert(apos.areas.richText({
+    assert(geop.areas.richText({
       type: 'area',
       items: [
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>So cool</h2>'
         },
         {
@@ -97,7 +97,7 @@ describe('Areas', function() {
           content: '<h3>Do not return me</h3>'
         },
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>Something else cool</h2>'
         }
       ]
@@ -105,11 +105,11 @@ describe('Areas', function() {
   });
 
   it('returns the plaintext of an area via the plaintext method', function() {
-    assert.strictEqual(apos.areas.plaintext({
+    assert.strictEqual(geop.areas.plaintext({
       type: 'area',
       items: [
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>So cool</h2>'
         },
         {
@@ -117,16 +117,16 @@ describe('Areas', function() {
           content: '<h3>Do not return me</h3>'
         },
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>Something else cool</h2>'
         }
       ]
     }), 'So cool\nSomething else cool');
-    assert.strictEqual(apos.areas.plaintext({
+    assert.strictEqual(geop.areas.plaintext({
       type: 'area',
       items: [
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>So cool</h2>'
         },
         {
@@ -134,7 +134,7 @@ describe('Areas', function() {
           content: '<h3>Do not return me</h3>'
         },
         {
-          type: 'apostrophe-rich-text',
+          type: 'geoportal-rich-text',
           content: '<h2>Something else cool</h2>'
         }
       ]
@@ -154,7 +154,7 @@ describe('Areas', function() {
         items: [
           {
             _id: 'test2',
-            type: 'apostrophe-rich-text',
+            type: 'geoportal-rich-text',
             content: ''
           }
         ]
@@ -164,7 +164,7 @@ describe('Areas', function() {
         items: [
           {
             _id: 'test2',
-            type: 'apostrophe-rich-text',
+            type: 'geoportal-rich-text',
             content: '<h4> </h4>'
           }
         ]
@@ -180,12 +180,12 @@ describe('Areas', function() {
         ]
       }
     };
-    assert(apos.areas.isEmpty({ area: doc.body }));
-    assert(apos.areas.isEmpty(doc, 'body'));
-    assert(apos.areas.isEmpty(doc, 'nonexistent'));
-    assert(apos.areas.isEmpty(doc, 'emptyText'));
-    assert(apos.areas.isEmpty(doc, 'insignificantText'));
-    assert(apos.areas.isEmpty(doc, 'insignificantPieces'));
+    assert(geop.areas.isEmpty({ area: doc.body }));
+    assert(geop.areas.isEmpty(doc, 'body'));
+    assert(geop.areas.isEmpty(doc, 'nonexistent'));
+    assert(geop.areas.isEmpty(doc, 'emptyText'));
+    assert(geop.areas.isEmpty(doc, 'insignificantText'));
+    assert(geop.areas.isEmpty(doc, 'insignificantPieces'));
   });
 
   it('area not considered empty when it should not be', function() {
@@ -197,7 +197,7 @@ describe('Areas', function() {
         items: [
           {
             _id: 'test2',
-            type: 'apostrophe-video',
+            type: 'geoportal-video',
             url: 'http://somewhere.com'
           }
         ]
@@ -207,7 +207,7 @@ describe('Areas', function() {
         items: [
           {
             _id: 'test2',
-            type: 'apostrophe-rich-text',
+            type: 'geoportal-rich-text',
             content: ''
           }
         ]
@@ -217,7 +217,7 @@ describe('Areas', function() {
         items: [
           {
             _id: 'test2',
-            type: 'apostrophe-rich-text',
+            type: 'geoportal-rich-text',
             content: '<h4>Some text</h4>'
           }
         ]
@@ -237,34 +237,34 @@ describe('Areas', function() {
         ]
       }
     };
-    assert(!apos.areas.isEmpty({ area: doc.body }));
-    assert(!apos.areas.isEmpty(doc, 'body'));
-    assert(!apos.areas.isEmpty(doc, 'fullText'));
-    assert(!apos.areas.isEmpty({ area: doc.fullText }));
-    assert(!apos.areas.isEmpty(doc, 'significantPieces'));
+    assert(!geop.areas.isEmpty({ area: doc.body }));
+    assert(!geop.areas.isEmpty(doc, 'body'));
+    assert(!geop.areas.isEmpty(doc, 'fullText'));
+    assert(!geop.areas.isEmpty({ area: doc.fullText }));
+    assert(!geop.areas.isEmpty(doc, 'significantPieces'));
   });
 
   it('both isEmpty and legacy empty methods work on schema fields', function() {
     assert(
-      !apos.schemas.fieldTypes.boolean.isEmpty({
+      !geop.schemas.fieldTypes.boolean.isEmpty({
         type: 'boolean',
         name: 'test'
       }, true)
     );
     assert(
-      apos.schemas.fieldTypes.boolean.isEmpty({
+      geop.schemas.fieldTypes.boolean.isEmpty({
         type: 'boolean',
         name: 'test'
       }, false)
     );
     assert(
-      !apos.schemas.fieldTypes.boolean.empty({
+      !geop.schemas.fieldTypes.boolean.empty({
         type: 'boolean',
         name: 'test'
       }, true)
     );
     assert(
-      apos.schemas.fieldTypes.boolean.empty({
+      geop.schemas.fieldTypes.boolean.empty({
         type: 'boolean',
         name: 'test'
       }, false)
@@ -273,7 +273,7 @@ describe('Areas', function() {
 
   it('when simultaneous updates are attempted to different areas, nothing gets lost', function(done) {
     var home;
-    var req = apos.tasks.getReq();
+    var req = geop.tasks.getReq();
     async.series([
       getHome,
       simultaneousUpdates,
@@ -283,7 +283,7 @@ describe('Areas', function() {
       done();
     });
     function getHome(callback) {
-      return apos.pages.find(req, { slug: '/' }).toObject(function(err, _home) {
+      return geop.pages.find(req, { slug: '/' }).toObject(function(err, _home) {
         assert(!err);
         assert(_home);
         home = _home;
@@ -293,12 +293,12 @@ describe('Areas', function() {
     function simultaneousUpdates(callback) {
       var areas = [ 'one', 'two', 'three', 'four' ];
       return async.each(areas, function(area, callback) {
-        return apos.areas.lockSanitizeAndSaveArea(req, {
+        return geop.areas.lockSanitizeAndSaveArea(req, {
           docId: home._id,
           dotPath: area,
           items: [
             {
-              type: 'apostrophe-rich-text',
+              type: 'geoportal-rich-text',
               content: area
             }
           ]
@@ -306,7 +306,7 @@ describe('Areas', function() {
       }, callback);
     }
     function verifyUpdates(callback) {
-      return apos.pages.find(req, { slug: '/' }).toObject(function(err, _home) {
+      return geop.pages.find(req, { slug: '/' }).toObject(function(err, _home) {
         assert(!err);
         assert(home);
         home = _home;

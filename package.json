@@ -1,7 +1,7 @@
 {
-  "name": "apostrophe",
+  "name": "geoportal",
   "version": "2.96.2",
-  "description": "The Apostrophe Content Management System.",
+  "description": "Esri Indonesia GeoPortal Content Management System.",
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && npm audit && mocha",
@@ -12,8 +12,8 @@
     "url": "git@github.com:apostrophecms/apostrophe.git"
   },
   "keywords": [
-    "apostrophe",
-    "apostrophe-cms",
+    "geoportal",
+    "geoportal-cms",
     "apostrophecms",
     "cms",
     "content management",

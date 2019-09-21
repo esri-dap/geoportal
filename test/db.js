@@ -13,9 +13,9 @@ describe('Db', function() {
       shortName: 'test',
 
       afterInit: function(callback) {
-        assert(apos.db);
+        assert(geop.db);
         // Verify a normal, boring connection to localhost without the db option worked
-        return apos.docs.db.findOne().then(function(doc) {
+        return geop.docs.db.findOne().then(function(doc) {
           assert(doc);
           return done();
         }).catch(function(err) {
@@ -31,16 +31,16 @@ describe('Db', function() {
       root: module,
       shortName: 'test2',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           port: 7777
         },
-        'apostrophe-db': {
-          db: apos.db,
+        'geoportal-db': {
+          db: geop.db,
           uri: 'mongodb://this-will-not-work-unless-db-successfully-overrides-it/fail'
         }
       },
       afterInit: function(callback) {
-        return apos.docs.db.findOne().then(function(doc) {
+        return geop.docs.db.findOne().then(function(doc) {
           assert(doc);
           return t.destroy(apos2, function() {
             return t.destroy(apos, done);

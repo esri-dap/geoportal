@@ -16,17 +16,17 @@ describe('Templates', function() {
       root: module,
       shortName: 'test',
       modules: {
-        'apostrophe-express': {
+        'geoportal-express': {
           secret: 'xxx',
           port: 7900
         }
       },
       afterInit: function(callback) {
-        assert(apos.push);
+        assert(geop.push);
         // In tests this will be the name of the test file,
         // so override that in order to get apostrophe to
         // listen normally and not try to run a task. -Tom
-        apos.argv._ = [];
+        geop.argv._ = [];
         return callback(null);
       },
       afterListen: function(err) {
@@ -37,7 +37,7 @@ describe('Templates', function() {
   });
 
   it('should be able to push a browser call and get back an HTML-safe JSON string', function() {
-    var req = apos.tasks.getAnonReq();
+    var req = geop.tasks.getAnonReq();
     req.browserCall('test(?)', { data: '<script>alert(\'ruh roh\');</script>' });
     var calls = req.getBrowserCalls();
     assert(calls.indexOf('<\\/script>') !== -1);
